@@ -9,9 +9,15 @@ Unlike many of the libraries out there, Scribe.js allows logging on multiple fil
 
 Sample
 =======
-![Command Prompt output](__misc/scribejs sample cmd [a].png)
-![Files output](__misc/scribejs sample directory [a].png)
-![Files output](__misc/scribejs sample file [a].png)
+Output to Console
+---
+![Command Prompt output](https://raw.github.com/bluejamesbond/Scribe.js/master/__misc/scribejs%20sample%20cmd%20%5Ba%5D.PNG)
+Directory template
+---
+![Files Directory](https://raw.github.com/bluejamesbond/Scribe.js/master/__misc/scribejs%20sample%20directory%20%5Ba%5D.PNG)
+Output to File
+---
+![Files output](https://raw.github.com/bluejamesbond/Scribe.js/master/__misc/scribejs%20sample%20file%20%5Ba%5D.PNG)
 
 How to use Scribe.js
 =======
