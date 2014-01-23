@@ -9,7 +9,9 @@ Unlike many of the libraries out there, Scribe.js allows logging on multiple fil
 
 Sample
 =======
-
+![Command Prompt output](__misc/scribejs sample cmd [a].png)
+![Files output](__misc/scribejs sample directory [a].png)
+![Files output](__misc/scribejs sample file [a].png)
 
 How to use Scribe.js
 =======
