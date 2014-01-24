@@ -4,7 +4,7 @@
 Overview
 =======
 Unlike many of the libraries out there, Scribe.js allows logging on multiple files and is divided into folders by date. And it is possibly the easiest logging you can implement. And it does everything you need a basic logger to do.
-- Save messages into logs
+- Save messages into log files organized by user, date, and type
 - Print messages into console
 
 Sample
