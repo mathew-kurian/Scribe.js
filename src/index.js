@@ -97,7 +97,7 @@ var overload = function() {
     }
     catch(error)
     {
-        console.error("[Scribe] Major error detected. Post an issue on github with this error.");
+        console.error("[Scribe] Major error detected. Please post an issue on Github.");
         console.error(error);
 
         throw error;
