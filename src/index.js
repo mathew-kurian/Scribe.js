@@ -79,35 +79,32 @@ var overload = function() {
     var userName = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'].toLowerCase();
     loggers.settings.userName = userName.slice(userName.lastIndexOf('\\') + 1);
 
-
     // Create daily logger directory
     var fpath = path.join(__dirname, "log".toLowerCase());
 
-    // Create directory.
-    mkdirp(fpath, function(err) {
-        // path was created unless there was error
-        if(err) console.error('[Scribe]Failed to make directory.');
-        else    console.info('[Scribe]Folder created/exists.');
-    });
-
     // Create daily logger directory
-    fpath = path.join(fpath, moment().format('MMM_D_YY').toLowerCase());
-
-    // Create directory.
-    mkdirp(fpath, function(err) {
-        // path was created unless there was error
-        if(err) console.error('[Scribe]Failed to make directory.');
-        else    console.info('[Scribe]Folder created/exists.');
-    });
+    var dailyPath = path.join(fpath, moment().format('MMM_D_YY').toLowerCase());
 
     // Create user directories
-    fpath = path.join(fpath, loggers.settings.userName);
+    var userPath = path.join(dailyPath, loggers.settings.userName);
 
-    mkdirp(fpath, function(err) {
-        // path was created unless there was error
-        if(err) console.error('[Scribe]Failed to make directory.');
-        else    console.info('[Scribe]Folder created/exists.');
-    });
+    try
+    {
+        // Create directories syncrhonized.
+        mkdirp.sync(fpath, 0777 & (~process.umask()));
+        mkdirp.sync(dailyPath, 0777 & (~process.umask()));
+        mkdirp.sync(userPath, 0777 & (~process.umask()));
+    }
+    catch(error)
+    {
+        console.log("[Scribe] Major error detected. Post an issue on github with this error.");
+        console.log(error);
+
+        throw error;
+    }
+
+    // Assign this variable as write directory
+    fpath = userPath;
 
     var _sps = function(sp){
         var s = '';
