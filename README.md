@@ -79,8 +79,10 @@ console.low("[Tagname]Simple message");
 ```js
 // Inside app.js
 app.configure(function () {
-    app.use(scribe.logger);
+    app.use(scribe.express.logger);
 }
+// Enablel Web Control Panel
+app.get('/log', scribe.express.getlog);
 ```
 Contributors
 =======
