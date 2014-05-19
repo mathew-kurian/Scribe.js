@@ -9,6 +9,15 @@ Unlike many of the libraries out there, Scribe.js allows logging on multiple fil
 
 Sample
 =======
+Web Control Panel - Select Date
+---
+![Control Panel View 1](http://i.imgur.com/sXyDc09.png)
+Web Control Panel - Select Log Type
+---
+![Control Panel View 1](http://i.imgur.com/sXyDc09.png)
+Web Control Panel - View Logs
+---
+![Control Panel View 1](http://i.imgur.com/ULkKn1X.png)
 Output to Console
 ---
 ![Command Prompt output](https://raw.github.com/bluejamesbond/Scribe.js/master/__misc/scribejs%20sample%20cmd%20%5Ba%5D.PNG)
