@@ -9,24 +9,24 @@ Unlike many of the libraries out there, Scribe.js allows logging on multiple fil
 
 Output Methods (Web | Console | File)
 =======
-Web Control Panel - Select Date
+Method#Web - Select Date
 ---
 ![Control Panel View 1](http://i.imgur.com/sXyDc09.png)
-Web Control Panel - Select Log Type
+Method#Web - Select Log Type
 ---
 ![Control Panel View 1](http://i.imgur.com/NgCa8tR.png)
-Web Control Panel - View Logs
+Method#Web - View Logs
 ---
 ![Control Panel View 1](http://i.imgur.com/ULkKn1X.png)
-Output to Console
+Method#Console - Command Prompt
 ---
 ![Command Prompt output](https://raw.github.com/bluejamesbond/Scribe.js/master/__misc/scribejs%20sample%20cmd%20%5Ba%5D.PNG)
-Directory template
----
-![Files Directory](https://raw.github.com/bluejamesbond/Scribe.js/master/__misc/scribejs%20sample%20directory%20%5Ba%5D.PNG)
-Output to File
+Method#File - File
 ---
 ![Files output](https://raw.github.com/bluejamesbond/Scribe.js/master/__misc/scribejs%20sample%20file%20%5Ba%5D.PNG)
+Method#File - Directory Layout
+---
+![Files Directory](https://raw.github.com/bluejamesbond/Scribe.js/master/__misc/scribejs%20sample%20directory%20%5Ba%5D.PNG)
 
 How to use Scribe.js
 =======
