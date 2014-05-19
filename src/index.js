@@ -6,7 +6,7 @@ var util = require('util')
   , fs = require('fs');
 
 var APP_NAME = "Mus.ec";
-var LOG_PATH = "./scribe";
+var LOG_PATH = "./..";
 var MAIN_USER = "root";
 
 // Logger information which will be read by the 'overload' function when
@@ -230,11 +230,16 @@ var getlog = function(req, res) {
     }
 
     var type = req.param('type');
-    type = type ? type : "log";
+    var raw = req.param('raw');
     var contents = "No log found"; 
+    
+    raw = raw ? true : false;
+    type = type ? type : "log";
+
     fs.readFile(LOG_PATH + "/log/" + date + "/" + MAIN_USER + "/app." + type, 'utf8', function(err, data) {
         if (!err) contents = data;
-        // contents = contents.replace(/^(.*?)#\|#/mg, '<span class = "log-time">$1</span>#\|#')
+        if(raw) return res.send("<pre><code>" + contents + "</code></pre>");
+
         contents = contents.replace(/ /g, '&nbsp;')
         contents = contents.replace(regA, '<span class = "log-time">$1</span>$2');
         contents = contents.replace(regB, '$1<span class = "log-type">$2</span>$3');
