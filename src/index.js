@@ -5,8 +5,9 @@ var util = require('util')
   , moment = require('moment')
   , fs = require('fs');
 
-var APP_NAME = "APP_NAME";
-var LOG_PATH = __dirname + "/log";
+var APP_NAME = "Mus.ec";
+var LOG_PATH = "./scribe";
+var MAIN_USER = "root";
 
 // Logger information which will be read by the 'overload' function when
 // assigning the roles of each I/O scribes.
@@ -83,12 +84,9 @@ var createdir = function(){
 
 var overload = function() {
 
-    // Additional transports
-    console.realtime = console.info;
-    console.high = console.info;
-    console.normal = console.info;
-    console.low = console.info;
-   
+    for(var i in loggers.types)
+        console[i] = console.info;
+
     // Assign this variable as write directory
     var dayiso = moment().isoWeekday(); // FIXME Remove this
     var fpath = logpath = createdir();
@@ -123,7 +121,7 @@ var overload = function() {
                 // use the 'arguments' variable instead.
                 var utfs = arguments.length == 1 && typeof arguments[0] === 'object' ? JSON.stringify(arguments[0], null, 4) : util.format.apply(util, arguments).trim()
                   // Moment.js is a great time library for Node.js
-                  , mtime = moment().format('MMMM Do YYYY, h:mm:ss A')
+                  , mtime = moment().format('h:mm:ss A')
                   // Used to show where the tags are to be placed.
                   // I.e. [Memache] Message goes here.
                   // Coldex holds the index of the first ']'
@@ -194,45 +192,47 @@ var logger = function(req, res, next) {
     next();
 }
 
-var htmltemplate = "";
-var css = {};
-css['html,body'] = 'margin:0; border:none;float:none;display:block;padding:0;font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;background:#1c262f;overflow:hidden;';
-css['div'] =  'font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;font-size:11px;';
-css['html'] = 'background:#2A3946;padding:0;padding-left:50px;'
-css['body'] = 'border-left: 1px solid rgba(255, 255, 255, 0.12);';
-css['.log-time'] = 'background: none;color: rgba(255, 255, 255, 0.24);padding:2px 5px;margin-right:2px;margin-left:-1px;font-size:11px;';
-css['.log-type'] = 'background: #633E3E;color: #C20404;padding:2px 5px;margin-right:2px;font-size:11px;';
-css['.log-line'] = 'height:auto;line-height:15px;color:#BEBEBE;font-size:11px;'
-css['.button, .selected'] = "font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;background:#2C3338;text-align:center;width:100%;line-height:35px;height:35px;margin-bottom:5px;box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.11);"
-css['.selected'] = "background:#4D5961;"
-css['a'] = "background:none;text-decoration:none;font-size: 11px;color: #C2C2C2;padding: 10px;"
-
-htmltemplate+= "<head><title>TITLE</title><style>"
-for(var i in css)   htmltemplate+= i + "{" + css[i] + "}";
-htmltemplate += "</style></head>";
-var buttons = '<div style = "position:fixed;top:5px;left:5px;width:40px;height:100px;">' +
-                    '<div class="button info_selected"><a href="log?type=info">I</a></div>' +
-                    '<div class="button log_selected"><a href="log?type=log">L</a></div>' +
-                    '<div class="button error_selected"><a href="log?type=error">E</a></div>' +
-                    '<div class="button warn_selected"><a href="log?type=warn">W</a></div>' +
-                    '<div class="button realtime_selected"><a href="log?type=realtime">Re</a></div>' +
-                    '<div class="button high_selected"><a href="log?type=high">Hi</a></div>' +
-                    '<div class="button normal_selected"><a href="log?type=normal">No</a></div>' +
-                    '<div class="button low_selected"><a href="log?type=low">Lo</a></div>' +
-                '</div>'
-htmltemplate += '<body style="position:relative;"><div style="position:absolute;left:0;top:0;bottom:0;right:0;"><div style="width:100%;height:100%;overflow:auto;"><div style="width:100%;height:auto;">CONTENT</div></div></div>' + buttons + '</body>';
-htmltemplate = "<html>" + htmltemplate + "</html>";
+var datetemplate = fs.readFileSync(__dirname + "/log.html", { encoding : "utf8"});
 
 var divRegex = loggers.settings.divider.replace(/([\||\$|\^|\?|\[|\]|\)|\(|\{|\}])/g, '\\$1');
 var regA = new RegExp('^(.*?)(' + divRegex + ")", 'mg');
 var regB = new RegExp('^(.*?)' + divRegex + '\\s{0,}\\[(.*?)\\](.*?)$', 'gm') 
 var regC = new RegExp('^(.*?)' + divRegex,'mg');
 
+var rndColors = [ "#16a085", "#27ae60", "#2980b9", "#8e44ad", "#f39c12", "#d35400", "#c0392b", "#7f8c8d"]
+
 var getlog = function(req, res) {
+    var date = req.param('date');
+    if(typeof date === 'undefined'){
+        var logs = [];
+        var path = LOG_PATH + "/log";
+        fs.readdir(path, function(err, files){
+            var reponse = datetemplate.replace("TITLE", APP_NAME + " - " + "Scribe.js Control Panel");
+            if(err) return res.send(reponse.replace('CONTENT', err));
+ 
+            var loggerDates = "";
+            for(var i = 0; i < files.length; i++)
+                try {
+                    var file = files[i];
+                    var fileSplit = file.split("_");
+                    var m = fileSplit[0]; 
+                    var d = fileSplit[1];
+                    var y = "20" + fileSplit[2];
+                    loggerDates += '<div style="background:' + rndColors[Math.floor(Math.random() * rndColors.length)] + '"data-types="' + fs.readdirSync(path + '/' + file + "/" +  MAIN_USER + "/").join(',').replace(/app./g, '') + '", data-raw="' + file + '" class="date"><div class="date-month">' + m + '</div><div class="date-day">' + d + '</div><div class="date-year">' + y + '</div></div>';
+                } catch(e) {}
+
+            return res.send(reponse.replace('CONTENT', files.join(",")).replace('LOGGER_DATES', loggerDates)
+                                                                       .replace('LOG_PATH', LOG_PATH)
+                                                                       .replace('LOGGER_USERNAME', MAIN_USER));
+        });
+
+        return;
+    }
+
     var type = req.param('type');
     type = type ? type : "log";
-    var contents = "No log found";
-    fs.readFile(logpath + "/app." + type, 'utf8', function(err, data) {
+    var contents = "No log found"; 
+    fs.readFile(LOG_PATH + "/log/" + date + "/" + MAIN_USER + "/app." + type, 'utf8', function(err, data) {
         if (!err) contents = data;
         // contents = contents.replace(/^(.*?)#\|#/mg, '<span class = "log-time">$1</span>#\|#')
         contents = contents.replace(/ /g, '&nbsp;')
@@ -240,8 +240,7 @@ var getlog = function(req, res) {
         contents = contents.replace(regB, '$1<span class = "log-type">$2</span>$3');
         contents = contents.replace(regC, '$1')
         contents = contents.replace(/^(.*?)$/mg, '<div class = "log-line">$1</div>')
-        var response = htmltemplate.replace(type + '_', '').replace("CONTENT", contents).replace("TITLE", APP_NAME + " - " + type);
-        res.send(response);
+        res.send({ status : 0, data : contents});
     });
 }
 
