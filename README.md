@@ -81,7 +81,7 @@ console.low("[Tagname]Simple message");
 app.configure(function () {
     app.use(scribe.express.logger);
 }
-// Enablel Web Control Panel
+// Enable Web Control Panel
 app.get('/log', scribe.express.getlog);
 ```
 Contributors
