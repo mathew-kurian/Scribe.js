@@ -7,14 +7,14 @@ Unlike many of the libraries out there, Scribe.js allows logging on multiple fil
 - Save messages into log files organized by user, date, and type
 - Print messages into console using colors indicating level of importance
 
-Sample
+Output Methods (Web | Console | File)
 =======
 Web Control Panel - Select Date
 ---
 ![Control Panel View 1](http://i.imgur.com/sXyDc09.png)
 Web Control Panel - Select Log Type
 ---
-![Control Panel View 1](http://i.imgur.com/sXyDc09.png)
+![Control Panel View 1](http://i.imgur.com/NgCa8tR.png)
 Web Control Panel - View Logs
 ---
 ![Control Panel View 1](http://i.imgur.com/ULkKn1X.png)
