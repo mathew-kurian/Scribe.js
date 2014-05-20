@@ -236,18 +236,13 @@ var getlog = function(req, res) {
 
     if(fs.existsSync(filepath)){
         var stream = fs.createReadStream(filepath);
+        res.header('Content-type', 'text/plain');
         res.header('Content-length', fs.statSync(filepath)["size"]);
         stream.pipe(res);
     } else{
        res.statusCode = 404;
        res.send();
     }
-
-    // contents = contents.replace(/ /g, '&nbsp;');
-    // contents = contents.replace(regA, '<span class = "log-time">$1</span>$2');
-    // contents = contents.replace(regB, '$1<span class = "log-type">$2</span>$3');
-    // contents = contents.replace(regC, '$1');
-    // contents = contents.replace(/^(.*?)$/mg, '<div class = "log-line">$1</div>');
 }
 
 exports.init = overload;
