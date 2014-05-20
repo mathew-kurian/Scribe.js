@@ -6,7 +6,7 @@ var util = require('util')
   , fs = require('fs');
 
 var APP_NAME = "APP_NAME";
-var LOG_PATH = "./";
+var LOG_PATH = __dirname;
 var MAIN_USER = "root";
 
 // Logger information which will be read by the 'overload' function when
