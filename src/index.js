@@ -236,8 +236,10 @@ var getlog = function(req, res) {
 
     if(fs.existsSync(filepath)){
         var stream = fs.createReadStream(filepath);
-        res.header('Content-type', 'text/plain');
-        res.header('Content-length', fs.statSync(filepath)["size"]);
+        res.writeHead(200, {
+          'Content-Length': fs.statSync(filepath)["size"],
+          'Content-Type': 'text/plain',
+        });
         stream.pipe(res);
     } else{
        res.statusCode = 404;
