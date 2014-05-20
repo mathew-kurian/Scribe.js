@@ -5,7 +5,7 @@ var util = require('util')
   , moment = require('moment')
   , fs = require('fs');
 
-var APP_NAME = "Mus.ec";
+var APP_NAME = "APP_NAME";
 var LOG_PATH = "./..";
 var MAIN_USER = "root";
 
@@ -193,17 +193,11 @@ var logger = function(req, res, next) {
 }
 
 var datetemplate = fs.readFileSync(__dirname + "/log.html", { encoding : "utf8"});
-
-var divRegex = loggers.settings.divider.replace(/([\||\$|\^|\?|\[|\]|\)|\(|\{|\}])/g, '\\$1');
-var regA = new RegExp('^(.*?)(' + divRegex + ")", 'mg');
-var regB = new RegExp('^(.*?)' + divRegex + '\\s{0,}\\[(.*?)\\](.*?)$', 'gm') 
-var regC = new RegExp('^(.*?)' + divRegex,'mg');
-
 var rndColors = [ "#16a085", "#27ae60", "#2980b9", "#8e44ad", "#f39c12", "#d35400", "#c0392b", "#7f8c8d"]
 
 var getlog = function(req, res) {
     var date = req.param('date');
-    if(typeof date === 'undefined'){
+    if(typeof date === 'undefined'){ 
         var logs = [];
         var path = LOG_PATH + "/log";
         fs.readdir(path, function(err, files){
@@ -223,7 +217,9 @@ var getlog = function(req, res) {
 
             return res.send(reponse.replace('CONTENT', files.join(",")).replace('LOGGER_DATES', loggerDates)
                                                                        .replace('LOG_PATH', LOG_PATH)
-                                                                       .replace('LOGGER_USERNAME', MAIN_USER));
+                                                                       .replace('LOGGER_USERNAME', MAIN_USER)
+                                                                       .replace('DIVIDER', loggers.settings.divider)
+                                                                       .replace('COLOR_GEN', rndColors[Math.floor(Math.random() * rndColors.length)]));
         });
 
         return;
@@ -236,17 +232,22 @@ var getlog = function(req, res) {
     raw = raw ? true : false;
     type = type ? type : "log";
 
-    fs.readFile(LOG_PATH + "/log/" + date + "/" + MAIN_USER + "/app." + type, 'utf8', function(err, data) {
-        if (!err) contents = data;
-        if(raw) return res.send("<pre><code>" + contents + "</code></pre>");
+    var filepath = LOG_PATH + "/log/" + date + "/" + MAIN_USER + "/app." + type;
 
-        contents = contents.replace(/ /g, '&nbsp;')
-        contents = contents.replace(regA, '<span class = "log-time">$1</span>$2');
-        contents = contents.replace(regB, '$1<span class = "log-type">$2</span>$3');
-        contents = contents.replace(regC, '$1')
-        contents = contents.replace(/^(.*?)$/mg, '<div class = "log-line">$1</div>')
-        res.send({ status : 0, data : contents});
-    });
+    if(fs.existsSync(filepath)){
+        var stream = fs.createReadStream(filepath);
+        res.header('Content-length', fs.statSync(filepath)["size"]);
+        stream.pipe(res);
+    } else{
+       res.statusCode = 404;
+       res.send();
+    }
+
+    // contents = contents.replace(/ /g, '&nbsp;');
+    // contents = contents.replace(regA, '<span class = "log-time">$1</span>$2');
+    // contents = contents.replace(regB, '$1<span class = "log-type">$2</span>$3');
+    // contents = contents.replace(regC, '$1');
+    // contents = contents.replace(/^(.*?)$/mg, '<div class = "log-line">$1</div>');
 }
 
 exports.init = overload;
