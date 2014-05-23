@@ -1,34 +1,517 @@
 <html>
+
 <head>
-<title>TITLE</title>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-<script type="text/javascript" src="http://anthonyterrien.com/js/jquery.knob.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.js"></script>
-<script type="text/javascript">function Transform3d(a){this.desc="";this.obj=a;this.translate=function(b,d,c){this.desc+=" translate3d("+b+","+d+","+c+")";return this};this.scale=function(b,d,c){this.desc+=" scale3d("+b+","+d+","+c+")";return this};this.rotate=function(b,d,c){this.desc+=" rotate3d("+b+","+d+","+c+")";return this};this.apply=function(){var b=this.obj;var c=this.desc;(b=$(b)).css({"-webkit-transform":c,"-ms-transform":c,"-moz-transform":c,transform:c,});return b}}$.fn.transform3d=function(){return new Transform3d(this)};$.fn.center=function(){this.css("position","absolute");this.css("top",Math.max(0,(($(window).height()-this.outerHeight())/2)+$(window).scrollTop())+"px");this.css("left",Math.max(0,(($(window).width()-this.outerWidth())/2)+$(window).scrollLeft())+"px");return this};$.fn.centerInParent=function(){this.css("position","absolute");this.css("top",Math.max(0,((this.parent().height()-this.outerHeight())/2)+this.parent().scrollTop())+"px");this.css("left",Math.max(0,((this.parent().width()-this.outerWidth())/2)+this.parent().scrollLeft())+"px");return this};</script>
-<style>html,body,div,span,applet,object,iframe,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,u,i,center,dl,dt,dd,ol,ul,li,textarea,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,h1,h2,h3,video{margin:0;padding:0;border:0;font:inherit;vertical-align:top;text-indent:0;font-family:'Open Sans'}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}span{vertical-align:baseline}body{display:block}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}a{text-decoration:none;color:inherit}html{width:100%;height:100%;font-family:'Open Sans'}html,div,span,a{user-select:none;-o-user-select:none;-moz-user-select:none;-khtml-user-select:none;-webkit-user-select:none;font-family:'Open Sans'}div::selection,html::selection,span::selection,a::selection{background:transparent;font-family:'Open Sans'}div::-moz-selection,html::-moz-selection,span::-moz-selection,a::-moz-selection{background:transparent;font-family:'Open Sans'}html,body{margin:0;border:0;float:none;display:block;padding:0;font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;background:#161d25;overflow:hidden;position:relative;width:100%;height:100%}div{font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;font-size:11px}html{background:#161d25;padding:0}body{border-left:1px solid rgba(255,255,255,0.12)}.animator{-webkit-transition:all 500ms ease-out;transition:all 500ms ease-out;-ms-transition:all 500ms ease-out;-moz-transition:all 500ms ease-out;-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);transform:translate3d(0,0,0);-webkit-backface-visibility:hidden}.log-time{background:0;color:rgba(255,255,255,0.24);padding:2px 5px;margin-right:2px;margin-left:-1px;font-size:11px;font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif}.log-type{font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;background:#04c25f;color:#000;padding:2px 4px;margin-right:2px;font-size:11px;text-transform:uppercase;font-size:9px;letter-spacing:1px;font-weight:700;border-radius:3px}.log-line{height:auto;line-height:15px;color:#bebebe;font-size:11px;font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif}.button,.selected{font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;background:#2c3338;text-align:center;width:100%;line-height:35px;height:35px;margin-bottom:5px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.11)}.selected{background:#4d5961}a{background:0;text-decoration:none;font-size:11px;color:#c2c2c2;font-family:Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif}.menu{border-radius:3px;background:url(http://i.imgur.com/LnFUuFm.png) center center no-repeat;background-size:67%;cursor:pointer;background-color:#2980b9;border:1px solid rgba(255,255,255,0.05)}.menu-item{border-bottom:1px solid rgba(255,255,255,0.15);color:#DDD;text-transform:uppercase;letter-spacing:2px;height:40px;line-height:40px;text-indent:14px;font-family:"Open Sans";font-size:9px;cursor:pointer;font-weight:900}.menu-item-selected{background:rgba(255,255,255,0.2);border-bottom-color:transparent}.back{background-image:url(http://i.imgur.com/hkF73Yp.png?1);background-size:30% auto;background-color:#c0392b;background-repeat:no-repeat;background-position:center}.date{height:200px;line-height:49px;width:200px;margin:10px;background:#393e41;color:rgba(255,255,255,0.39);text-align:center;font-family:"Open Sans";text-transform:uppercase;font-weight:300;letter-spacing:1px;font-size:53px;text-align:left;border:1px solid rgba(255,255,255,0.05);cursor:pointer;display:inline-block;margin-right:0}.date-month{font-family:"Open Sans";text-align:center;font-weight:700;letter-spacing:2px;padding-top:6px;font-size:21px}.date-year{font-family:"Open Sans";text-align:center;font-weight:300;letter-spacing:2px;margin-top:21px}.date-day{text-align:center;width:100%;font-size:92px;font-family:"Open Sans";margin-top:25px;color:#FFF;font-weight:300}</style>
+    <title>__title</title> 
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://anthonyterrien.com/js/jquery.knob.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.js"></script>
+    <script type="text/javascript">
+        function Transform3d(a) {
+            this.desc = "";
+            this.obj = a;
+            this.translate = function (b, d, c) {
+                this.desc += " translate3d(" + b + "," + d + "," + c + ")";
+                return this
+            };
+            this.scale = function (b, d, c) {
+                this.desc += " scale3d(" + b + "," + d + "," + c + ")";
+                return this
+            };
+            this.rotate = function (b, d, c) {
+                this.desc += " rotate3d(" + b + "," + d + "," + c + ")";
+                return this
+            };
+            this.apply = function () {
+                var b = this.obj;
+                var c = this.desc;
+                (b = $(b)).css({
+                    "-webkit-transform": c,
+                    "-ms-transform": c,
+                    "-moz-transform": c,
+                    transform: c,
+                });
+                return b
+            }
+        }
+        $.fn.transform3d = function () {
+            return new Transform3d(this)
+        };
+        $.fn.center = function () {
+            this.css("position", "absolute");
+            this.css("top", Math.max(0, (($(window).height() - this.outerHeight()) / 2) + $(window).scrollTop()) + "px");
+            this.css("left", Math.max(0, (($(window).width() - this.outerWidth()) / 2) + $(window).scrollLeft()) + "px");
+            return this
+        };
+        $.fn.centerInParent = function () {
+            this.css("position", "absolute");
+            this.css("top", Math.max(0, ((this.parent().height() - this.outerHeight()) / 2) + this.parent().scrollTop()) + "px");
+            this.css("left", Math.max(0, ((this.parent().width() - this.outerWidth()) / 2) + this.parent().scrollLeft()) + "px");
+            return this
+        };
+    </script>
+    <style>
+        html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        textarea,
+        fieldset,
+        form,
+        label,
+        legend,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td,
+        article,
+        aside,
+        canvas,
+        details,
+        embed,
+        figure,
+        figcaption,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        output,
+        ruby,
+        section,
+        summary,
+        time,
+        mark,
+        audio,
+        h1,
+        h2,
+        h3,
+        video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font: inherit;
+            vertical-align: top;
+            text-indent: 0;
+            font-family: 'Open Sans'
+        }
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        section {
+            display: block
+        }
+        span {
+            vertical-align: baseline
+        }
+        body {
+            display: block
+        }
+        ol,
+        ul {
+            list-style: none
+        }
+        blockquote,
+        q {
+            quotes: none
+        }
+        blockquote:before,
+        blockquote:after,
+        q:before,
+        q:after {
+            content: '';
+            content: none
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+        html {
+            width: 100%;
+            height: 100%;
+            font-family: 'Open Sans'
+        }
+        html,
+        div,
+        span,
+        a {
+            user-select: none;
+            -o-user-select: none;
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            -webkit-user-select: none;
+            font-family: 'Open Sans'
+        }
+        div::selection,
+        html::selection,
+        span::selection,
+        a::selection {
+            background: transparent;
+            font-family: 'Open Sans'
+        }
+        div::-moz-selection,
+        html::-moz-selection,
+        span::-moz-selection,
+        a::-moz-selection {
+            background: transparent;
+            font-family: 'Open Sans'
+        }
+        html,
+        body {
+            margin: 0;
+            border: 0;
+            float: none;
+            display: block;
+            padding: 0;
+            font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+            background: #161d25;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100%
+        }
+        div {
+            font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+            font-size: 11px
+        }
+        html {
+            background: #161d25;
+            padding: 0
+        }
+        body {
+            border-left: 1px solid rgba(255, 255, 255, 0.12)
+        }
+        .animator {
+            -webkit-transition: all 500ms ease-out;
+            transition: all 500ms ease-out;
+            -ms-transition: all 500ms ease-out;
+            -moz-transition: all 500ms ease-out;
+            -webkit-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden
+        }
+        .log-time {
+            background: 0;
+            color: rgba(255, 255, 255, 0.24);
+            padding: 2px 5px;
+            margin-right: 2px;
+            margin-left: -1px;
+            font-size: 11px;
+            font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif
+        }
+        .log-type {
+            font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+            background: #04c25f;
+            color: #000;
+            padding: 2px 4px;
+            margin-right: 2px;
+            font-size: 11px;
+            text-transform: uppercase;
+            font-size: 9px;
+            letter-spacing: 1px;
+            font-weight: 700;
+            border-radius: 3px
+        }
+        .log-line {
+            height: auto;
+            line-height: 15px;
+            color: #bebebe;
+            font-size: 11px;
+            font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif
+        }
+        .button,
+        .selected {
+            font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+            background: #2c3338;
+            text-align: center;
+            width: 100%;
+            line-height: 35px;
+            height: 35px;
+            margin-bottom: 5px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.11)
+        }
+        .selected {
+            background: #4d5961
+        }
+        a {
+            background: 0;
+            text-decoration: none;
+            font-size: 11px;
+            color: #c2c2c2;
+            font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif
+        }
+        .menu {
+            border-radius: 3px;
+            background: url(http://i.imgur.com/LnFUuFm.png) center center no-repeat;
+            background-size: 67%;
+            cursor: pointer;
+            background-color: #2980b9;
+            border: 1px solid rgba(255, 255, 255, 0.05)
+        }
+        .menu-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            color: #DDD;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            height: 40px;
+            line-height: 40px;
+            text-indent: 14px;
+            font-family: "Open Sans";
+            font-size: 9px;
+            cursor: pointer;
+            font-weight: 900
+        }
+        .menu-item-selected {
+            background: rgba(255, 255, 255, 0.2);
+            border-bottom-color: transparent
+        }
+        .back {
+            background-image: url(http://i.imgur.com/hkF73Yp.png?1);
+            background-size: 30% auto;
+            background-color:#34495e;
+            background-repeat: no-repeat;
+            background-position: center
+        }
+        .date {
+            height: 200px;
+            line-height: 49px;
+            width: 200px;
+            margin: 10px;
+            background: #393e41;
+            color: rgba(255, 255, 255, 0.39);
+            text-align: center;
+            font-family: "Open Sans";
+            text-transform: uppercase;
+            font-weight: 300;
+            letter-spacing: 1px;
+            font-size: 53px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 0
+        }
+        .date-month {
+            font-family: "Open Sans";
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding-top: 6px;
+            font-size: 21px
+        }
+        .date-year {
+            font-family: "Open Sans";
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-top: 21px
+        }
+        .date-day {
+            text-align: center;
+            width: 100%;
+            font-size: 92px;
+            font-family: "Open Sans";
+            margin-top: 25px;
+            color: #FFF;
+            font-weight: 300
+        }
+    </style>
 </head>
+
 <body style="position:relative;left:0;top:0;bottom:0">
-<div class="back" style="position:absolute;left:0;top:50px;bottom:0;width:30px;cursor:pointer;z-index:900">
-</div>
-<div style="position:absolute;left:0;top:0;right:0;height:50px;background:#34495e">
-<div id="menu-container" style="position:absolute;left:0;top:0;right:0;height:50px">
-<div id="menu" class="menu" style="position:absolute;left:10px;top:9px;height:30px;width:40px"></div>
-<a id="path" style="position:absolute;left:70px;top:9px;height:30px;width:500px;color:#DDD;line-height:33px;font-weight:bold;color:#FFF;text-transform:uppercase;font-weight:300;letter-spacing:1px;font-size:9px" target="_blank" href="#"></a>
-</div>
-<div style="position:absolute;right:0;top:5px;bottom:5px;width:168px;right:5px;background:url(http://i.imgur.com/0Jg6k6g.png) center right no-repeat;background-size:66%"></div>
-</div>
-<div id="sidebar" class="shift" style="position:absolute;left:30px;top:50px;right:0;width:250px;background:#000;border-right:1px solid rgba(255,255,255,0.15);bottom:0;z-index:800;box-shadow:50px 0 50px -50px #000">LOGGERS
-</div>
-<div class="shift" style="position:absolute;left:30px;top:50px;bottom:0;right:0">
-<div style="width:100%;height:100%;overflow:auto">
-<div id="dates" style="width:100%;height:auto">LOGGER_DATES</div>
-<div id="content" style="width:100%;height:auto"></div>
-</div>
-</div>
-<div id="dial-holder" class="animator shift" style="position:absolute;left:30px;right:0;top:50px;bottom:0;display:none;background:rgba(0,0,0,0.7);z-index:10">
-<input type="text" value="0" data-width="65" class="dial" id="progress-knob" data-height="65" '+ ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" />
-</div>
-<script>/*<![CDATA[*/var activeDate=undefined;var activeMenuItem=undefined;var activeType=undefined;var logPath="LOG_PATH";var username="LOGGER_USERNAME";var divider="DIVIDER";var activeXhr;var divRegex=divider.replace(/([\||\$|\^|\?|\[|\]|\)|\(|\{|\}])/g,"\\$1");var regA=new RegExp("^(.*?)("+divRegex+")","mg");var regB=new RegExp("^(.*?)"+divRegex+"\\s{0,}\\[(.*?)\\](.*?)$","gm");var regC=new RegExp("^(.*?)"+divRegex,"mg");var processData=function(b){b=b.replace(/ /g,"&nbsp;");b=b.replace(regA,'<span class = "log-time">$1</span>$2');b=b.replace(regB,'$1<span class = "log-type">$2</span>$3');b=b.replace(regC,"$1");b=b.replace(/^(.*?)$/mg,'<div class = "log-line">$1</div>');return b};$("#sidebar").on("click",".menu-item",function(){$(".menu-item").removeClass("menu-item-selected");$(this).addClass("menu-item-selected");var e=activeType=$(this).html();activeMenuItem=e;var b=activeDate;try{activeXhr.abort()}catch(a){}activeXhr=$.ajax("log?type="+e+"&date="+b,{settings:{dataType:"text"},xhrFields:{onprogress:function(c){$("#progress-knob").val(Math.floor(c.currentTarget.response.length/(c.totalSize|c.total)*100)).change()}}}).done(function(f,g,d){if(f.replace){$("#content").html(processData(f))}else{if(d.responseText){$("#content").html(processData(d.responseText))}}$("#content").parent().scrollTop(9999999);$("#dial-holder").fadeOut()}).fail(function(c){$("#content").html(processData(moment().format("h:mm:ss A")+" "+divider+"[StreamError]Detected error retrieving the content to your browser."));$("#dial-holder").fadeOut()});$("#path").html(logPath+"/log/"+activeDate+"/"+username+"/app."+e);$("#path").attr("href","log?type="+e+"&date="+b+"&raw=true");$("#path").attr("target","_blank");toggleSidebar();$("#progress-knob").val(0).change();$("#dial-holder").fadeIn()});$(".date").click(function(){activeDate=$(this).attr("data-raw");$("#dates").css("display","none");var b=$(this).attr("data-types").split(",");if(b){var a="";for(var c=0;c<b.length;c++){a+='<div class = "menu-item" id="menu-'+b[c]+'">'+b[c]+"</div>"}$("#sidebar").html(a);($("#menu-"+activeMenuItem).length>0?$("#menu-"+activeMenuItem):$("#sidebar").children().eq(0)).trigger("click")}toggleSidebar(false);$(".shift").css("left","30px");$(".back").css("width","30px");$("#menu-container").transform3d().translate(0,0,0).apply()});$(".back").click(function(){$(".shift").css("left","0");$(".back").css("width","0");$("#menu-container").transform3d().translate("-52px",0,0).apply();$("#dates").css("display","block");$("#content").html("");$("#path").html("Select a date to begin");$("#path").attr("href","#");$("#path").attr("target","");try{activeXhr.abort()}catch(b){}toggleSidebar(false);activeDate=undefined});var sidebarVisible=false;function toggleSidebar(a){sidebarVisible=typeof a==="boolean"?a:!sidebarVisible;if(!sidebarVisible){$("#sidebar").transform3d().translate("-300px",0,0).apply()}else{$("#sidebar").transform3d().translate(0,0,0).apply()}}$("#menu").click(function(){toggleSidebar()});$(window).resize(function(){$(".dial").parent().centerInParent()});$(document).ready(function(){$(".dial").knob();$(".dial").parent().centerInParent();$(".shift").css("left","0").addClass("animator");$(".back").css("width","0").addClass("animator");$("#menu-container").transform3d().translate("-52px",0,0).apply().addClass("animator");$("#sidebar").transform3d().translate("-300px",0,0).apply().addClass("animator");$("#path").html("Select a date to begin")});/*]]>*/</script>
+    <div class="back" style="position:absolute;left:0;top:50px;bottom:0;width:30px;cursor:pointer;z-index:900">
+    </div>
+    <div style="position:absolute;left:0;top:0;right:0;height:50px;background:#34495e">
+        <div id="menu-container" style="position:absolute;left:0;top:0;right:0;height:50px">
+            <div id="menu" class="menu" style="position:absolute;left:10px;top:9px;height:30px;width:40px"></div>
+            <a id="path" style="position:absolute;left:70px;top:9px;height:30px;width:500px;color:#DDD;line-height:33px;font-weight:bold;color:#FFF;text-transform:uppercase;font-weight:300;letter-spacing:1px;font-size:9px" target="_blank" href="#"></a>
+        </div>
+        <div style="position:absolute;right:0;top:5px;bottom:5px;width:168px;right:5px;background:url(http://i.imgur.com/0Jg6k6g.png) center right no-repeat;background-size:66%"></div>
+    </div>
+    <div id="sidebar" class="shift" style="position:absolute;left:30px;top:50px;right:0;width:250px;background:#000;border-right:1px solid rgba(255,255,255,0.15);bottom:0;z-index:800;box-shadow:50px 0 50px -50px #000">LOGGERS
+    </div>
+    <div class="shift" style="position:absolute;left:30px;top:50px;bottom:0;right:0">
+        <div style="width:100%;height:100%;overflow:auto">
+            <div id="dates" style="width:100%;height:auto">__logdates</div>
+            <div id="content" style="width:100%;height:auto"></div>
+        </div>
+    </div>
+    <div id="dial-holder" class="animator shift" style="position:absolute;left:30px;right:0;top:50px;bottom:0;display:none;background:rgba(0,0,0,0.7);z-index:10">
+        <input type="text" value="0" data-width="65" class="dial" id="progress-knob" data-height="65" '+ ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" />
+    </div>
+    <script>
+        /*<![CDATA[*/
+        var activeDate = undefined;
+        var activeMenuItem = undefined;
+        var activeType = undefined;
+        var logPath = "__logpath";
+        var username = "__username";
+        var divider = "__divider";
+        var activeXhr;
+        var divRegex = divider.replace(/([\||\$|\^|\?|\[|\]|\)|\(|\{|\}])/g, "\\$1");
+        var regA = new RegExp("^(.*)(" + divRegex + ")", "gm");
+        var regB = new RegExp("^(.*)" + divRegex + "\\s{0,}\\[(.*?)\\](.*)$", "gm");
+        var regC = new RegExp("^(.*)" + divRegex, "gm");
+        var processData = function (b) {
+            b = b.replace(/ /g, "&nbsp;");
+            b = b.replace(regA, '<span class = "log-time">$1</span>$2');
+            b = b.replace(regB, '$1<span class = "log-type">$2</span>$3');
+            b = b.replace(regC, "$1");
+            b = b.replace(/^(.*?)$/mg, '<div class = "log-line">$1</div>');
+            return b
+        };
+        $("#sidebar").on("click", ".menu-item", function () {
+            $(".menu-item").removeClass("menu-item-selected");
+            $(this).addClass("menu-item-selected");
+            var e = activeType = $(this).html();
+            activeMenuItem = e;
+            var b = activeDate;
+            try {
+                activeXhr.abort()
+            } catch (a) {}
+            activeXhr = $.ajax("log?type=" + e + "&date=" + b, {
+                settings: {
+                    dataType: "text"
+                },
+                xhrFields: {
+                    onprogress: function (c) {
+                        $("#progress-knob").val(Math.floor(c.loaded / (c.totalSize | c.total) * 100)).change();
+                    }
+                }
+            }).done(function (f, g, d) {
+                if (f.replace) {
+                    $("#content").html(processData(f))
+                } else {
+                    if (d.responseText) {
+                        $("#content").html(processData(d.responseText))
+                    }
+                }
+                $("#content").parent().scrollTop(9999999);
+                $("#dial-holder").fadeOut()
+            }).fail(function (c) {
+                $("#content").html(processData(moment().format("h:mm:ss A") + " " + divider + "[StreamError]Detected error retrieving the content to your browser."));
+                $("#dial-holder").fadeOut()
+            });
+            $("#path").html(logPath + "/log/" + activeDate + "/" + username + "/app." + e);
+            $("#path").attr("href", "log?type=" + e + "&date=" + b + "&raw=true");
+            $("#path").attr("target", "_blank");
+            toggleSidebar();
+            $("#progress-knob").val(0).change();
+            $("#dial-holder").fadeIn()
+        });
+        $(".date").click(function () {
+            activeDate = $(this).attr("data-raw");
+            $("#dates").css("display", "none");
+            var b = $(this).attr("data-types").split(",");
+            if (b) {
+                var a = "";
+                for (var c = 0; c < b.length; c++) {
+                    a += '<div class = "menu-item" id="menu-' + b[c] + '">' + b[c] + "</div>"
+                }
+                $("#sidebar").html(a);
+                ($("#menu-" + activeMenuItem).length > 0 ? $("#menu-" + activeMenuItem) : $("#sidebar").children().eq(0)).trigger("click")
+            }
+            toggleSidebar(false);
+            $(".shift").css("left", "30px");
+            $(".back").css("width", "30px");
+            $("#menu-container").transform3d().translate(0, 0, 0).apply()
+        });
+        $(".back").click(function () {
+            $(".shift").css("left", "0");
+            $(".back").css("width", "0");
+            $("#menu-container").transform3d().translate("-52px", 0, 0).apply();
+            $("#dates").css("display", "block");
+            $("#content").html("");
+            $("#path").html("Select a date to begin");
+            $("#path").attr("href", "#");
+            $("#path").attr("target", "");
+            try {
+                activeXhr.abort()
+            } catch (b) {}
+            toggleSidebar(false);
+            activeDate = undefined
+        });
+        var sidebarVisible = false;
+
+        function toggleSidebar(a) {
+            sidebarVisible = typeof a === "boolean" ? a : !sidebarVisible;
+            if (!sidebarVisible) {
+                $("#sidebar").transform3d().translate("-300px", 0, 0).apply()
+            } else {
+                $("#sidebar").transform3d().translate(0, 0, 0).apply()
+            }
+        }
+        $("#menu").click(function () {
+            toggleSidebar()
+        });
+        $(window).resize(function () {
+            $(".dial").parent().centerInParent()
+        });
+        $(document).ready(function () {
+            $(".dial").knob();
+            $(".dial").parent().centerInParent();
+            $(".shift").css("left", "0").addClass("animator");
+            $(".back").css("width", "0").addClass("animator");
+            $("#menu-container").transform3d().translate("-52px", 0, 0).apply().addClass("animator");
+            $("#sidebar").transform3d().translate("-300px", 0, 0).apply().addClass("animator");
+            $("#path").html("Select a date to begin")
+        }); /*]]>*/
+    </script>
 </body>
+
 </html>
