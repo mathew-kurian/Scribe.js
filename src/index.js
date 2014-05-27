@@ -222,8 +222,8 @@ self.configure = function(callback){
 self.express.logger = function(validate) {
 
     return function(req, res, next){
-
-        if(validate(req, res)) {
+        
+        if(!validate || validate(req, res)) {
             console.info('[%s]%s | %s %s %s' , "express.js"
                                         , req.ip.red
                                         , req.method.green
