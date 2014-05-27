@@ -96,7 +96,7 @@ app.use(scribe.express.logger(function(req, res){
 }));
 
 // Enable Web Control Panel
-app.get('/log', scribe.express.getlog);
+app.get('/log', scribe.express.controlPanel);
 ```
 Contributors
 =======
