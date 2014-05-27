@@ -78,9 +78,23 @@ console.low("[Tagname]Simple message");
 ----
 ```js
 // Inside app.js
-app.configure(function () {
-    app.use(scribe.express.logger);
-}
+// If you are trying to use it. Just do the following.
+var scribe = require('./libs/scribe');
+
+scribe.addLogger("log", true /* Save to file? */, true /* Print to console? */, 'green');
+scribe.addLogger('error', true, true, 'red');
+scribe.addLogger('warn', true, true, 'yellow');
+scribe.addLogger('realtime', true, true, 'underline');
+scribe.addLogger('high', true, true, 'magenta');
+scribe.addLogger('normal', true, true, 'white');
+scribe.addLogger('low', true, true, 'grey');
+scribe.addLogger('info', true, true, 'cyan');
+
+// Express.js Output
+app.use(scribe.express.logger(function(req, res){
+    return true;
+}));
+
 // Enable Web Control Panel
 app.get('/log', scribe.express.getlog);
 ```
