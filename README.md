@@ -88,7 +88,7 @@ scribe.addLogger('low', true, true, 'grey');
 // Express.js
 // --------------
 app.use(scribe.express.logger(function(req, res){         // Express.js access log
-    return true;                                          // if you want to filter out any Express messages
+    return true;                                          // Filter out any Express messages
 }));
 
 // Control Panel
