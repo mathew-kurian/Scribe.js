@@ -1,4 +1,4 @@
-// Scribe.ja (NodeJS)
+// Scribe.js (NodeJS)
 // Copyright 2014 by Mathew Kurian
 //
 // Permission is hereby granted, free of charge, to any person obtaining
@@ -39,24 +39,24 @@ self.express = {};
 // ---------------------------------
 
 var $ = {
-    app : "Mus.ec",
+    app : "scribe.js",
     logPath : "./../logs",
     mainUser : "root",
-    maxTagLength : 30,
-    indentation : 5,
+    maxTagLength : 50,
+    indentation : 2,
     divider : ':::',
     defaultUserDir : '_user',
     testOutput : function(result, pipes, actual, expected, opts){
 
-        var pipe = result ? 'info' : 'error';
+        var pipe = result ? 'log' : 'error';
+        var ne = expected.indexOf("\n") > -1;
+        var na = actual.indexOf("\n") > -1;
 
-        pipes[pipe]("--------------------------------------------------------------");
-        pipes[pipe]("Test#" + opts + " | Status: " + (result ? "PASSED" : "FAILED"));
-        pipes[pipe]("--------------------------------------------------------------");
-        pipes[pipe]("---Expected---")
-        pipes[pipe](expected);
-        pipes[pipe]("---Received---")
-        pipes[pipe](actual);
+        pipes[pipe]((" " + opts + " ").bold.inverse + (result ? " PASSED ".green : " FAILED ".red).bold.inverse)
+        pipes[pipe](" EXPECTED "[result ? "green" : "red"].bold.inverse + " " + (!ne ? expected: ""))
+        if(ne) pipes[pipe](expected);
+        pipes[pipe](" ACTUAL "[result ? "green" : "red"].bold.inverse + " " + (!na ? actual : ""))
+        if(na) pipes[pipe](actual);
     }
 }
 
@@ -138,11 +138,11 @@ function Extender(tag, opts, stack){
     self.tag = tag;
     self.opts = opts;
 
-    self.should = function(actual){
+    self.do = self.invoke = self.should = function(actual){
 
         var _actual = compress(actual);
 
-        self.be = function(expected){
+        self.expect = self.be = function(expected){
 
             var _expected = compress(expected);
 
@@ -163,7 +163,11 @@ var spaces = function(sp){
 }
 
 var stackTag = function(_stack){
-    return tag(path.basename(_stack.getFileName()) + ":" + _stack.getLineNumber());
+    try {
+        return tag(path.basename(_stack.getFileName()) + ":" + _stack.getLineNumber());
+    } catch(e){
+        return tag(activeDefaultTag);
+    }
 }
 
 // Exports
@@ -199,6 +203,10 @@ exports.removeLogger = function(name){
     return false;
 }
 
+self.set = function(a, b){
+    $[a] = b;
+}
+
 self.configure = function(callback){
 
     var _logPath = $.logPath;
@@ -214,7 +222,7 @@ self.configure = function(callback){
     } else if (_activeUserDir !== activeUserDir){
         if(_activeUserDir) fs.unlink(_activeUserDir, function(){})
     }
-    
+
     validate();
     createDir();
 }
@@ -222,9 +230,9 @@ self.configure = function(callback){
 self.express.logger = function(validate) {
 
     return function(req, res, next){
-        
+
         if(!validate || validate(req, res)) {
-            console.info('[%s]%s | %s %s %s' , "express.js"
+            console.info('[%s]%s %s %s %s' , "express.js"
                                         , req.ip.red
                                         , req.method.green
                                         , req.url.grey
@@ -235,69 +243,79 @@ self.express.logger = function(validate) {
     }
 }
 
+self.express.webpipe = function(){
+
+    self.addLogger('user', true, true, 'magenta');
+
+    return function(req, res){
+        console.t('scribe.js').user(req.ip.red + " " + req.body.data);
+        res.send('received');
+    };    
+}
+
 // Web Control Panel
 // ---------------------------------
 
 var datetemplate = fs.readFileSync(path.join(__dirname, "/log.html"), { encoding : "utf8"});
 var flatColors = [ "#16a085", "#27ae60", "#2980b9", "#8e44ad", "#f39c12", "#d35400", "#c0392b", "#7f8c8d"]
 
-self.express.controlPanel = function(req, res) {
+self.express.controlPanel = function() {
 
-    var date = req.param('date');
-    
-    if(!date) { 
-
-        var logs = [];
-        var datePath = path.normalize(path.join($.logPath));
+    return function(req, res){
+        var date = req.param('date');
         
-        fs.readdir(datePath, function(err, files){
+        if(!date) { 
 
-            console.log(files);
-
-            var response;
-            var loggerDates = "";
+            var logs = [];
+            var datePath = path.normalize(path.join($.logPath));
             
-            for(var i = 0; i < files.length; i++){
-                try {
-                    var file = files[i];
-                    var fileSplit = file.split("_");
-                    loggerDates += '<div style="background:' + 
-                                    flatColors[Math.floor(Math.random() * flatColors.length)] + '"data-types="' + 
-                                    fs.readdirSync(path.join(datePath, file, $.mainUser)).join(',').replace(/app./g, '') + '", data-raw="' + 
-                                    file + '" class="date"><div class="date-month">' + fileSplit[0] + '</div><div class="date-day">' + 
-                                    fileSplit[1] + '</div><div class="date-year">' + ("20" + fileSplit[2]) + '</div></div>';
-                } catch(e) {}
-            }
+            fs.readdir(datePath, function(err, files){
 
-            return res.send(datetemplate.replace("__title", $.app + " - Scribe.js Control Panel")
-                                        .replace('__content', files.join(","))
-                                        .replace('__logdates', loggerDates)
-                                        .replace('__logpath', activeDir)
-                                        .replace('__username', $.mainUser)
-                                        .replace('__divider', $.divider));
-        });
+                var response;
+                var loggerDates = "";
+                
+                for(var i = 0; i < files.length; i++){
+                    try {
+                        var file = files[i];
+                        var fileSplit = file.split("_");
+                        loggerDates += '<div style="background:' + 
+                                        flatColors[Math.floor(Math.random() * flatColors.length)] + '"data-types="' + 
+                                        fs.readdirSync(path.join(datePath, file, $.mainUser)).join(',').replace(/app./g, '') + '", data-raw="' + 
+                                        file + '" class="date"><div class="date-month">' + fileSplit[0] + '</div><div class="date-day">' + 
+                                        fileSplit[1] + '</div><div class="date-year">' + ("20" + fileSplit[2]) + '</div></div>';
+                    } catch(e) {}
+                }
 
-        return;
-    }
+                return res.send(datetemplate.replace("__title", $.app + " - Scribe.js Control Panel")
+                                            .replace('__content', files.join(","))
+                                            .replace('__logdates', loggerDates)
+                                            .replace('__logpath', activeDir)
+                                            .replace('__username', $.mainUser)
+                                            .replace('__divider', $.divider));
+            });
 
-    var type = req.param('type');
-    type = type ? type : "log";
+            return;
+        }
 
-    var contents = "No log found";
-    var filepath = path.join(activeDir, "app." + type);
+        var type = req.param('type');
+        type = type ? type : "log";
 
-    if(fs.existsSync(filepath)){
-        var stream = fs.createReadStream(filepath);
-        
-        res.writeHead(200, {
-          'Content-Length': fs.statSync(filepath)["size"],
-          'Content-Type': 'text/plain',
-        });
-        
-        stream.pipe(res);
-    } else{
-       res.statusCode = 404;
-       res.send();
+        var contents = "No log found";
+        var filepath = path.join(activeDir, "app." + type);
+
+        if(fs.existsSync(filepath)){
+            var stream = fs.createReadStream(filepath);
+            
+            res.writeHead(200, {
+              'Content-Length': fs.statSync(filepath)["size"],
+              'Content-Type': 'text/plain',
+            });
+            
+            stream.pipe(res);
+        } else{
+           res.statusCode = 404;
+           res.send();
+        }
     }
 }
 
@@ -367,7 +385,7 @@ var addPipe = function(n) {
             if (loggers[i].console){
 
                 if(!tag) { 
-                    tag = [ activeDefaultTag ];
+                    tag = [ stackTag(stack()[1]) ];
                 }
 
                 var tabIn;
@@ -389,7 +407,7 @@ var addPipe = function(n) {
 
     })(n);
 
-    console[n]('[mus.ec]Created pipe console.%s', n.toUpperCase());
+    console.t()[n]('Created pipe console.%s', n.toUpperCase());
 }
 
 // Startup
