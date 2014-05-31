@@ -59,7 +59,7 @@ npm install callsite
 5. Logging with Scribe
 ----
 ```js
-var scribe = require('./libs/scribe');     
+var scribe = require('./scribe');     
 
 // Configuration
 // --------------
@@ -79,8 +79,8 @@ scribe.configure(function(){
 
 // Create Loggers
 // --------------
-scribe.addLogger("log", true , true, 'green');            // name, save to file, print to console, tag color
-scribe.addLogger('realtime', true, true, 'underline');
+scribe.addLogger("log", true , true, 'green');            // (name, save to file, print to console,
+scribe.addLogger('realtime', true, true, 'underline');    // tag color)
 scribe.addLogger('high', true, true, 'magenta');
 scribe.addLogger('normal', true, true, 'white');
 scribe.addLogger('low', true, true, 'grey');
