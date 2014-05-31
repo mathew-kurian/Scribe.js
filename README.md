@@ -127,7 +127,7 @@ console.log("Your message");                             // [invokedFrom.js:25] 
 ```js
 // Simple Testing
 // --------------
-console.test("Test name").expect(5).should(5);           // Pretty printed test results    
+console.test("Test name").should(5).be(5);           // Pretty printed test results    
 ```
 Contributors
 =======
