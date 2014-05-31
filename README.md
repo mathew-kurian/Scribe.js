@@ -93,7 +93,7 @@ app.use(scribe.express.logger(function(req, res){         // Express.js access l
 
 // Control Panel
 // --------------
-app.get('/log', scribe.express.controlPanel);             // Enable web control panel
+app.get('/log', scribe.express.controlPanel());           // Enable web control panel
 
 // Basic logging
 // --------------
@@ -118,15 +118,15 @@ console.t().log("Your message");                          // [MY_APP_NAME]      
 console.f(__filename).log("Your message");               // [file.js]              Your message
 
 // Auto tagging
-// -----------------
+// ------------
 console.log("Your message");                             // [invokedFrom.js:25]    Your message
 
 ```
 6. Experimental
 ----
 ```js
-// Simple visually aided Testing
-// -----------------
+// Simple Testing
+// --------------
 console.test("Test name").expect(5).should(5);           // Pretty printed test results    
 ```
 Contributors
