@@ -121,6 +121,15 @@ console.f(__filename).log("Your message");               // [file.js]           
 // ------------
 console.log("Your message");                             // [invokedFrom.js:25]    Your message
 
+// Tag Scoping
+// -----------
+(function(console){
+
+    console.info("yeeha");                               // [scoped-tag]           yeeha
+    console.log("yeeha");                                // [scoped-tag]           yeeha
+    
+})(console.t('scoped-tag'));
+
 ```
 6. Experimental
 ----
