@@ -407,7 +407,7 @@ var addPipe = function(n) {
 
     })(n);
 
-    console.t()[n]('Created pipe console.%s', n.toUpperCase());
+    // console.t()[n]('Created pipe console.%s', n.toUpperCase());
 }
 
 // Startup
