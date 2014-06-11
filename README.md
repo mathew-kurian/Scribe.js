@@ -65,7 +65,7 @@ var scribe = require('./scribe');
 // --------------
 scribe.configure(function(){
     scribe.set('app', 'MY_APP_NAME');                     // NOTE Best way learn about these settings is
-    scribe.set('logPath', './../logs');                   // them out for yourself.
+    scribe.set('logPath', './scribe'); // Doublecheck     // them out for yourself.
     scribe.set('defaultTag', 'DEFAULT_TAG');
     scribe.set('divider', ':::');
     scribe.set('identation', 5);                          // Identation before console messages
