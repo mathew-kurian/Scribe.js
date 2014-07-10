@@ -112,7 +112,7 @@ var createDir = function(){
 var getUser = function(){
     try {
         activeUserDir = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'].toLowerCase();
-        activeUserDir = activeUserDir.slice(activeUserDir.lastIndexOf('\\') + 1);
+        activeUserDir = activeUserDir.slice(activeUserDir.lastIndexOf((process.platform == 'win32') ? '\\':'/') + 1);
     } catch(e){
         activeUserDir = $.defaultUserDir;
     } finally {
