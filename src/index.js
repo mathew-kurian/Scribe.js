@@ -413,3 +413,13 @@ var addPipe = function(n) {
 // Startup
 activeUserDir = getUser();
 self.configure();
+
+// Express missing notification
+try {
+    var express = require("express");
+    if(!express){
+        throw new Error();
+    }
+} catch(e){
+    console.warn("SCRIBE WARNING: Express not installed - visual web logger is disabled.");
+}
