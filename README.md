@@ -28,10 +28,6 @@ Method#File - Directory Layout
 ---
 ![Files Directory](https://raw.github.com/bluejamesbond/Scribe.js/master/__misc/scribejs%20sample%20directory%20%5Ba%5D.PNG)
 
-How to use Scribe.js
-=======
-Using Sribe is as simple as putting the contents of the Scribe folder into your root NodeJS folder. Note: What I am about to show you is the simplest way to use Scribe.js. Since this library (if you can even call it that), is not insave at all, and it should be very easy to adjust to your liking.
-
 Installation
 =======
 ```
