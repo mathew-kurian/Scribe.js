@@ -32,33 +32,13 @@ How to use Scribe.js
 =======
 Using Sribe is as simple as putting the contents of the Scribe folder into your root NodeJS folder. Note: What I am about to show you is the simplest way to use Scribe.js. Since this library (if you can even call it that), is not insave at all, and it should be very easy to adjust to your liking.
 
-1. Make a Scribe directory
-----
+Installation
+=======
 ```
-\root
-    \node_modules 
-       \scribe <--- Make a folder named "scribe"
-    \views
-    \controllers
-    \bunchOfOtherFolder...
-    app.js
+npm install git+https://github.com/bluejamesbond/Scribe.js.git
 ```
-2. Add Scribe into this folder
-----
-```
-\node_modules\scribe <--- Copy the contents of this repo into that folder
-```
-4. Install the required modules
-----
-```bat
-npm install colors
-npm install moment
-npm install mkdirp
-npm install callsite
-npm install express // if you want to enable the visual web view
-```
-5. Logging with Scribe
-----
+Documentation
+=======
 ```js
 var scribe = require('scribe');     
 
@@ -139,8 +119,8 @@ console.log("Your message");                             // [invokedFrom.js:25] 
 })(console.t('scoped-tag'));
 
 ```
-6. Experimental
-----
+Experimental
+=======
 ```js
 // Simple Testing
 // --------------
