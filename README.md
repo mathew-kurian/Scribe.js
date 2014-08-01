@@ -85,6 +85,7 @@ scribe.addLogger('realtime', true, true, 'underline');    // tag color)
 scribe.addLogger('high', true, true, 'magenta');
 scribe.addLogger('normal', true, true, 'white');
 scribe.addLogger('low', true, true, 'grey');
+scribe.addLogger('info', true, true, 'cyan');
 
 // Express.js
 // WARNING: ExpressJS must be installed for this to work
