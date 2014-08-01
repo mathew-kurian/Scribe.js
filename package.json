@@ -1,0 +1,50 @@
+{
+  "name": "Scribe.js",
+  "description": "Unlike many of the libraries out there, Scribe.js allows logging on multiple files and is divided into folders by date. And it is possibly the easiest logging you can implement. And it does everything you need a basic logger to do.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/bluejamesbond/Scribe.js",
+  "keywords": [],
+  "author": "Mathew Kurian <MathewKurian@utexas.edu> (https://github.com/bluejamesbond)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bluejamesbond/Scribe.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bluejamesbond/Scribe.js/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/bluejamesbond/Scribe.js/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": "0.10.29"
+  },
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt": "~0.4.5"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "callsite": "^1.0.0",
+    "colors": "^0.6.2",
+    "express": "^4.7.2",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "mkdirp": "^0.5.0",
+    "moment": "^2.8.0"
+  }
+}
