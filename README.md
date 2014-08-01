@@ -46,7 +46,7 @@ Using Sribe is as simple as putting the contents of the Scribe folder into your 
 2. Add Scribe into this folder
 ----
 ```
-\node_modules\scribe <--- Copy the contents of the "src" folder (which you get from this repo) into "scribe".
+\node_modules\scribe <--- Copy the contents of this repo into that folder
 ```
 4. Install the required modules
 ----
