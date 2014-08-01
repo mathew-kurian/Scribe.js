@@ -35,7 +35,7 @@ exports['read'] = {
             scribe.set('divider', ':::');
             scribe.set('identation', 5); // Identation before console messages
 
-            scribe.set('maxTagLength', 30); // Any tags that have a length greather than
+            scribe.set('maxTagLength', 50); // Any tags that have a length greather than
             // 30 characters will be ignored
 
             // scribe.set('mainUser', 'root'); // Username of the account which is running
@@ -54,7 +54,7 @@ exports['read'] = {
 
         // Basic logging
         // --------------
-        console.log("[Tagname] Your message"); // [Tagname]             Your message  
+        console.log("[Tagname] Your message"); // [Tagname]             Your message
         console.realtime("[Tagname]   Your message"); // [Tagname]             Your message
         console.high("[Tagname]         Your message  "); // [Tagname]             Your message
         console.normal("[Tagname][]Your message"); // [Tagname]             []Your message
@@ -82,10 +82,63 @@ exports['read'] = {
         // -----------
         (function(console) {
 
-            console.info("yeeha"); // [scoped-tag]           yeeha
-            console.log("yeeha"); // [scoped-tag]           yeeha
+            console.info("yeeha");
+            console.log("yeeha");
 
-        })(console.t('scoped-tag'));
+            // Tag Scoping
+            // -----------
+            (function(console) {
+
+                // Tag Scoping
+                // -----------
+                (function(console) {
+
+                    console.info("yeeha");
+                    console.log("yeeha");
+
+                })(console.t('l3'));
+
+                console.info("yeeha");
+                console.log("yeeha");
+
+            })(console.t('l2'));
+
+        })(console.t('l1'));
+
+
+        // File Scoping
+        // -----------
+        (function(console) {
+
+            console.info("yeeha");
+            console.log("yeeha");
+
+            // File Scoping
+            // -----------
+            (function(console) {
+
+                // File Scoping
+                // -----------
+                (function(console) {
+
+                    // Note: a use of console.t(...) resets the
+                    console.t("LOL").info("yeeha");
+
+                    console.info("yeeha");
+                    console.log("yeeha");
+
+                })(console.f());
+
+                console.info("yeeha");
+                console.log("yeeha");
+
+            })(console.f());
+
+        })(console.f());
+
+        // Simple Testing
+        // --------------
+        console.test("Test name").should(5).be(5); // Pretty printed test results
 
         test.equal(true, true);
         test.done();

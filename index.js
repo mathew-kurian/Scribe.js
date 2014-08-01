@@ -123,12 +123,13 @@ var validate = function() {
     return false;
 };
 
-function Extender(tag, opts) {
+function Extender(tag, opts, mode) {
 
     var self = this;
 
     self.tag = tag;
     self.opts = opts;
+    self.mode = mode;
 
     self.do = self.invoke = self.should = function(actual) {
 
@@ -325,25 +326,50 @@ self.express.controlPanel = function() {
 // Additional Features
 // ---------------------------------
 
-console.t = console.tag = function(n) {
-    return new Extender(n ? tag(n) : activeDefaultTag);
+console.t = function(n, _) {
+    n = _ ? _ + ":" + n : n;
+    var _tag = n;
+    var ext = new Extender(n ? tag(n) : activeDefaultTag);
+    ext.t = function() {
+        return console.t.call(console, arguments[0], _tag);
+    };
+
+    ext.t = function() {
+        return console.t.call(console, arguments[0], _tag);
+    };
+
+    return ext;
 };
 
-console.f = console.file = function(n) {
-
-    var _tag;
+console.f = function(n, _) {
 
     if (!n) {
         var st = stack()[1];
-        _tag = tag(path.basename(st.getFileName()) + ":" + st.getLineNumber());
+        n = path.basename(st.getFileName());
     } else {
-        _tag = tag(path.basename(n));
+        n = path.basename(n);
     }
 
-    return new Extender(_tag);
+    (n = _ ? _ + ":" + n : n);
+
+    var _tag = n;
+    var ext = new Extender(n ? n : activeDefaultTag, undefined, "f");
+
+    ext.f = function() {
+        return console.f.call(console, arguments[0], _tag);
+    };
+
+    ext.t = function() {
+        return console.t.call(console, arguments[0], _tag);
+    };
+
+    return ext;
 };
 
-console.assert = console.test = function(name, tag) {
+Extender.prototype.test =
+Extender.prototype.asset =
+console.assert =
+console.test = function(name, tag) {
     tag = tag ? tag : stackTag(stack()[1]);
     return new Extender(tag, name, stack()[1]);
 };
@@ -352,7 +378,12 @@ function addPipe(n) {
 
     Extender.prototype[n] = function() {
         var args = Array.prototype.splice.call(arguments, 0);
-        args.unshift(this.tag + args.shift());
+        if (this.mode === "f") {
+            var st = stack()[1];
+            args.unshift(tag(this.tag + ":" + st.getLineNumber()) + args.shift());
+        } else {
+            args.unshift(this.tag + args.shift());
+        }
         console[n].apply(this, args);
     };
 
