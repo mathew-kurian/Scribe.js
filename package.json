@@ -1,5 +1,5 @@
 {
-  "name": "Scribe.js",
+  "name": "scribe",
   "description": "Unlike many of the libraries out there, Scribe.js allows logging on multiple files and is divided into folders by date. And it is possibly the easiest logging you can implement. And it does everything you need a basic logger to do.",
   "version": "0.1.0",
   "homepage": "https://github.com/bluejamesbond/Scribe.js",
