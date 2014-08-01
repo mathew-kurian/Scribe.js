@@ -328,16 +328,16 @@ console['t'] = console['tag'] = function(n){
 
 console['f'] = console['file'] = function(n){
 
-    var tag;
+    var _tag;
 
     if(!n) {
         var st = stack()[1];
-        tag = tag(path.basename(st.getFileName()) + ":" + st.getLineNumber());
+        _tag = tag(path.basename(st.getFileName()) + ":" + st.getLineNumber());
     } else {
-        tag = tag(path.basename(n));  
+        _tag = tag(path.basename(n));  
     } 
 
-    return new Extender(tag);
+    return new Extender(_tag);
 }
 
 console['assert'] = console['test'] = function(name, tag){
