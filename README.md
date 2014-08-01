@@ -55,6 +55,7 @@ npm install colors
 npm install moment
 npm install mkdirp
 npm install callsite
+npm install express // if you want to enable the visual web view
 ```
 5. Logging with Scribe
 ----
@@ -86,12 +87,18 @@ scribe.addLogger('normal', true, true, 'white');
 scribe.addLogger('low', true, true, 'grey');
 
 // Express.js
+// WARNING: ExpressJS must be installed for this to work
+// You also need to start an ExpressJS server in order for
+// this to work.
 // --------------
 app.use(scribe.express.logger(function(req, res){         // Express.js access log
     return true;                                          // Filter out any Express messages
 }));
 
 // Control Panel
+// WARNING: ExpressJS must be installed for this to work
+// You also need to start an ExpressJS server in order for
+// this to work.
 // --------------
 app.get('/log', scribe.express.controlPanel());           // Enable web control panel
 
