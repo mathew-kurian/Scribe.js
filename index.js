@@ -286,8 +286,7 @@ self.express.controlPanel = function() {
                             file + '" class="date"><div class="date-month">' + fileSplit[0] + '</div><div class="date-day">' +
                             fileSplit[1] + '</div><div class="date-year">' + ("20" + fileSplit[2]) + '</div></div>';
                     } catch (e) {
-                        console.error(e);
-                        return res.send(e);
+                        continue;
                     }
                 }
 
