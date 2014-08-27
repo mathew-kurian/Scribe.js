@@ -56,5 +56,5 @@
   "_id": "scribe@0.1.0",
   "_shasum": "0c1760410b7b3bbcea562fd8ed1aba90d6cc06a3",
   "_resolved": "git+https://github.com/bluejamesbond/Scribe.js.git#0ab884d6b39ce79a431a23f683358c50a0508812",
-  "_from": "git+https://github.com/guillaume/Scribe.js.git"
+  "_from": "git+https://github.com/bluejamesbond/Scribe.js.git"
 }
