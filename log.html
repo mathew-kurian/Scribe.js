@@ -424,7 +424,7 @@
             try {
                 activeXhr.abort()
             } catch (a) {}
-            activeXhr = $.ajax("log?type=" + e + "&date=" + b, {
+            activeXhr = $.ajax("log?type=" + e + "&date=" + b + "&token=" + location.search.split('token=')[1], {
                 settings: {
                     dataType: "text"
                 },
