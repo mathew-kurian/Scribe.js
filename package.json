@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/bluejamesbond/Scribe.js.git"
+    "url": "git://github.com/guillaume/Scribe.js.git"
   },
   "bugs": {
-    "url": "https://github.com/bluejamesbond/Scribe.js/issues"
+    "url": "https://github.com/guillaume/Scribe.js/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/bluejamesbond/Scribe.js/blob/master/LICENSE-MIT"
+      "url": "https://github.com/guillaume/Scribe.js/blob/master/LICENSE-MIT"
     }
   ],
   "main": "index.js",
