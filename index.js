@@ -341,6 +341,10 @@ console.t = function(n, _) {
     return ext;
 };
 
+console.time = function () {
+    return new Extender(moment().format('MMM_D_YY') + spaces($.indentation));
+}
+
 console.f = function(n, _) {
 
     if (!n) {
