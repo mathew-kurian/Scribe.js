@@ -84,7 +84,7 @@ exports['read'] = {
         
         // Show Time
         // ---------
-        console.day().log("Your message"); // [invokedFrom.js:25]    Sep_8_14 12:02:35 PM  Your message
+        console.time().log("Your message"); // [invokedFrom.js:25]    Sep_8_14 12:02:35 PM  Your message
 
         // Tag Scoping
         // -----------
