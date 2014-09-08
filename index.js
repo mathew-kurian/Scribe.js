@@ -348,7 +348,7 @@ console.day = function () {
 
 //Print time, example '9:14:67 AM'
 console.time = function () {
-    return new Extender(moment().format('h:mm:ss A') + spaces($.indentation));
+    return new Extender(moment().format('MMM_D_YY h:mm:ss A') + spaces($.indentation));
 }
 
 console.f = function(n, _) {
