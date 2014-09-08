@@ -399,11 +399,12 @@ function addPipe(n) {
 
     console[n] = (function(i) {
 
-        if (validate()) {
-            createDir();
-        }
 
         return function() {
+
+            if (validate()) {
+                createDir();
+            }
 
             var utfs = (arguments.length === 1 ? pretty(arguments[0]) : util.format.apply(util, arguments)).trim();
             var time = moment().format('h:mm:ss A');
