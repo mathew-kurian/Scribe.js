@@ -305,7 +305,7 @@ self.express.controlPanel = function() {
         var type = req.param('type');
         type = type ? type : "log";
 
-        var filepath = path.join(activeDir, "app." + type);
+        var filepath = path.join($.logPath, date, $.mainUser, "app." + type);
 
         if (fs.existsSync(filepath)) {
             var stream = fs.createReadStream(filepath);
