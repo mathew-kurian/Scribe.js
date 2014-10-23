@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc'
       },
       gruntfile: {
-        src: 'Gruntfile.js'
+        src: ['scribe.js', 'Gruntfile.js']
       },
       lib: {
         src: ['lib/**/*.js']
