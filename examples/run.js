@@ -1,10 +1,13 @@
+/*jshint -W079 */
 /**
  * The main file
  */
 
 var scribe  = require('../scribe'), //loads Scribe
     console = process.console;      //create a local (for the module) console
- 
+
+scribe.config({});
+
 //Don't worry, you can still acces the original console
 global.console.log("I'm using the original console.log()"); 
 
