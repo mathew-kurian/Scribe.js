@@ -25,3 +25,5 @@ console.log(
 );
 
 console.tag("Combo!").time().file().log("A combo");
+
+console.log("A string %s and a number %d", "hello", "123"); //you can you printf-like format
