@@ -4,10 +4,9 @@
  * Console2 functions
  */
 
-var scribe  = require('../scribe'), //loads Scribe
-    console = process.console;      //create a local (for the module) console
+require('../scribe')(); //loads Scribe
 
-scribe.config({});
+var console = process.console;      //create a local (for the module) console
 
 console.addLogger('log');
 

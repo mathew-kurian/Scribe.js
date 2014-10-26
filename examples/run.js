@@ -3,12 +3,12 @@
  * The main file
  */
 
-var scribe  = require('../scribe'), //loads Scribe
-    console = process.console;      //create a local (for the module) console
+require('../scribe')(); //loads Scribe
 
-scribe.config({});
+var console = process.console;      //create a local (for the module) console
 
-//Don't worry, you can still acces the original console
+
+//Don't worry, you can still access the original console
 global.console.log("I'm using the original console.log()"); 
 
 //Let's create a new logger `myLoger` ...
