@@ -12,12 +12,24 @@ console.log(process.console); //undefined
 var myConfigConsole = scribe.console({
 
     console : {                                      //Default options for all myConfigConsole loggers
-        colors : ['rainbow', 'inverse', 'black']
+        colors     : 'white',
+        tagsColors : 'red',
+        timeColors : ['grey', 'underline'],
+        dateColors : ['gray', 'bgMagenta'],
+        fileColors : 'white',
+        lineColors : ['yellow', 'inverse']
     }
 
 });
 
 
-myConfigConsole.addLogger('fun');
+myConfigConsole.addLogger('fun', ['rainbow', 'inverse', 'black']);
 
 myConfigConsole.fun('Some rainbow in background !');
+
+myConfigConsole.addLogger('log');
+
+myConfigConsole.tag('A tag', 123).log('custom tags');
+myConfigConsole.time().log('custom time');
+myConfigConsole.date().log('custom date');
+myConfigConsole.file().log('custom file');
