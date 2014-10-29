@@ -8,6 +8,14 @@
         LogWriter = require('./lib/logWriter.js');
 
     /**
+     * logsFolder
+     *
+     * Store current logs folder
+     * @type {Array}
+     */
+    var logsFolder = [];
+
+    /**
      * scribe
      *
      * Scribe.js module
@@ -45,6 +53,12 @@
          */
         var listenOnConsole = function (console2, opt, logWriter) {
 
+            if (logsFolder.indexOf(opt.rootPath || scribeOpt.rootPath) > -1) {
+                throw new Error('Folder ' + (opt.rootPath || scribeOpt.rootPath) + ' already in use');
+            } else {
+                logsFolder.push(opt.rootPath || scribeOpt.rootPath);
+            }
+
             //On new log, save it
             console2.on('new', function (log) {
                 
@@ -70,6 +84,8 @@
 
             //Create a default console2 and attach it to process
             process.console = new Console2();
+            
+            logsFolder.push(scribeOpt.rootPath);
 
             listenOnConsole(
                 process.console,
@@ -102,6 +118,7 @@
                 var console = new Console2(config.console || {});
 
                 if (config.logWriter !== false) { //if config.logWriter is false, don't save logs
+
                     listenOnConsole(
                         console,
                         config.logWriter || {},
