@@ -104,7 +104,7 @@
                 if (config.logWriter !== false) { //if config.logWriter is false, don't save logs
                     listenOnConsole(
                         console,
-                        config.logWriter,
+                        config.logWriter || {},
                         logWriter || new LogWriter()
                     );
                 }
