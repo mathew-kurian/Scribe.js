@@ -4,8 +4,10 @@
 
     'use strict';
 
-    var Console2  = require('./lib/console2.js'),
-        LogWriter = require('./lib/logWriter.js');
+    var Console2   = require('./lib/console2.js'),
+        logWriter  = require('./lib/logWriter.js'),
+        LogWriter  = logWriter.LogWriter,
+        logFolders = logWriter.folders;
 
 
     /**
@@ -19,8 +21,8 @@
      *                                                        to process.console ? Default true.
      *
      * @return {Object}
-     * @return {Function}    console                Get a console
-     * @return {Constructor} Console2               Console2 constructor
+     * @return {Function}    console                          Get a console
+     * @return {Constructor} Console2                         Console2 constructor
      */
     var scribe = function (scribeOpt) {
 
