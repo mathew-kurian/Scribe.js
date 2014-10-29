@@ -7,13 +7,6 @@
     var Console2  = require('./lib/console2.js'),
         LogWriter = require('./lib/logWriter.js');
 
-    /**
-     * logsFolder
-     *
-     * Store current logs folder
-     * @type {Array}
-     */
-    var logsFolder = [];
 
     /**
      * scribe
@@ -104,14 +97,19 @@
 
                 if (config.logWriter !== false) { //if config.logWriter is false, don't save logs
 
-                    var rootPath = config.logWriter 
-                        ? config.logWriter.rootPath || scribeOpt.rootPath
-                        : scribeOpt.rootPath
-                    ;
+                    if (!logWriter) {
+
+                        var rootPath = config.logWriter ?
+                            config.logWriter.rootPath || scribeOpt.rootPath :
+                            scribeOpt.rootPath
+                        ;
+
+                        logWriter = new LogWriter(rootPath);
+                    }
 
                     listenOnConsole(
                         console,
-                        logWriter || new LogWriter(rootPath)
+                        logWriter
                     );
                 }
 
