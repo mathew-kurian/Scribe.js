@@ -48,22 +48,14 @@
          * Save logs and options.
          *
          * @param {Console2}    console2    A Console2 instance
-         * @param {Object}      opt         LogWriter options
          * @param {LogWriter}   logWriter   A LogWriter instance
          */
-        var listenOnConsole = function (console2, opt, logWriter) {
-
-            if (logsFolder.indexOf(opt.rootPath || scribeOpt.rootPath) > -1) {
-                throw new Error('Folder ' + (opt.rootPath || scribeOpt.rootPath) + ' already in use');
-            } else {
-                logsFolder.push(opt.rootPath || scribeOpt.rootPath);
-            }
+        var listenOnConsole = function (console2, logWriter) {
 
             //On new log, save it
             console2.on('new', function (log) {
                 
                 logWriter.save(log, {
-                    rootPath : opt.rootPath || scribeOpt.rootPath,
                     logger   : log.opt
                 });
 
@@ -72,27 +64,20 @@
             //On new logger, save its options
             console2.on('newLogger', function (logger, loggerOpt) { 
 
-                logWriter.saveOpt(loggerOpt, {
-                    rootPath : opt.rootPath || scribeOpt.rootPath   
-                });
+                logWriter.saveOpt(loggerOpt);
 
             });
         };
 
 
+        //Create a default console2 and attach it to process
         if (scribeOpt.createDefaultConsole) {
 
-            //Create a default console2 and attach it to process
             process.console = new Console2();
             
-            logsFolder.push(scribeOpt.rootPath);
-
             listenOnConsole(
                 process.console,
-                {
-                    rootPath : scribeOpt.rootPath
-                },
-                new LogWriter()
+                new LogWriter(scribeOpt.rootPath)
             );
         }
 
@@ -119,10 +104,14 @@
 
                 if (config.logWriter !== false) { //if config.logWriter is false, don't save logs
 
+                    var rootPath = config.logWriter 
+                        ? config.logWriter.rootPath || scribeOpt.rootPath
+                        : scribeOpt.rootPath
+                    ;
+
                     listenOnConsole(
                         console,
-                        config.logWriter || {},
-                        logWriter || new LogWriter()
+                        logWriter || new LogWriter(rootPath)
                     );
                 }
 
