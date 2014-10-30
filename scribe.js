@@ -59,7 +59,7 @@
             //On new logger, save its options
             console2.on('newLogger', function (logger, loggerOpt) { 
 
-                logWriter.saveOpt(loggerOpt);
+                logWriter.addLogger(loggerOpt);
 
             });
         };
