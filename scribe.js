@@ -7,7 +7,7 @@
     var Console2   = require('./lib/console2.js'),
         logWriter  = require('./lib/logWriter.js'),
         LogWriter  = logWriter.LogWriter,
-        logFolders = logWriter.folders;
+        webPanel   = require('./lib/webPanel.js');
 
 
     /**
@@ -22,7 +22,9 @@
      *
      * @return {Object}
      * @return {Function}    console                          Get a console
+     * @return {Function}    webPanel                         Get an express Router
      * @return {Constructor} Console2                         Console2 constructor
+     * @return {Constructor} LogWriter                        LogWriter constructor
      */
     var scribe = function (scribeOpt) {
 
@@ -34,6 +36,16 @@
 
         scribeOpt.rootPath             = scribeOpt.rootPath || 'logs';
         scribeOpt.createDefaultConsole = scribeOpt.createDefaultConsole !== false;
+
+
+        /**
+         * consoles
+         *
+         * Stores consoles and their logWriters
+         *
+         * @type {Array}
+         */
+        var consoles = [];
 
 
         /**
@@ -59,21 +71,76 @@
             //On new logger, save its options
             console2.on('newLogger', function (logger, loggerOpt) { 
 
-                logWriter.addLogger(loggerOpt);
+            logWriter.addLogger(loggerOpt);
 
             });
         };
 
 
+        /**
+         * addConsole
+         *
+         * Create a new console
+         *
+         * @param {Object}       config            Config options
+         * @param {?Object}      config.console    Console2 options
+         * @param {?Object}      config.logWriter  LogWriter options.
+         *                                         If false, Scribe won't save logs on disk.
+         *
+         * @param {LogWriter}    logWriter         Optional. A custom logWriter instance
+         *
+         * @return {Console2}                      A new Console2 instance
+         */
+        var addConsole = function (config, logWriter) {
+
+            if (!config) {
+                config = {};
+            }
+
+            var console = new Console2(config.console || {});
+
+            if (config.logWriter !== false) { //if config.logWriter is false, don't save logs
+
+                if (!logWriter) {
+
+                    var rootPath = config.logWriter ?
+                        config.logWriter.rootPath || scribeOpt.rootPath :
+                        scribeOpt.rootPath
+                    ;
+
+                    logWriter = new LogWriter(rootPath);
+                }
+
+                listenOnConsole(
+                    console,
+                    logWriter
+                );
+            }
+
+            consoles.push({
+                console   : console,
+                logWriter : config.logWriter !== false ? logWriter : null 
+            });
+
+            return console;
+        };
+
+
+        /**
+         * initWebPanel
+         *
+         * Retrun an express Router
+         */
+        var initWebPanel = function () {
+          
+            return webPanel(consoles);
+
+        };
+
+        
         //Create a default console2 and attach it to process
         if (scribeOpt.createDefaultConsole) {
-
-            process.console = new Console2();
-            
-            listenOnConsole(
-                process.console,
-                new LogWriter(scribeOpt.rootPath)
-            );
+            process.console = addConsole();
         }
 
 
@@ -82,42 +149,17 @@
             /**
              * console
              *
-             * Create a new console
-             *
-             * @param {Object}       config            Config options
-             * @param {?Object}      config.console    Console2 options
-             * @param {?Object}      config.logWriter  LogWriter options.
-             *                                         If false, Scribe won't save logs on disk.
-             *
-             * @param {LogWriter}    logWriter         Optional. A custom logWriter instance
-             *
-             * @return {Console2}                      A new Console2 instance
+             * @type {Function}
              */
-            console : function (config, logWriter) {
+            console : addConsole,
 
-                var console = new Console2(config.console || {});
+            /**
+             * webPanel
+             *
+             * @type {Function}
+             */
+            webPanel : initWebPanel,
 
-                if (config.logWriter !== false) { //if config.logWriter is false, don't save logs
-
-                    if (!logWriter) {
-
-                        var rootPath = config.logWriter ?
-                            config.logWriter.rootPath || scribeOpt.rootPath :
-                            scribeOpt.rootPath
-                        ;
-
-                        logWriter = new LogWriter(rootPath);
-                    }
-
-                    listenOnConsole(
-                        console,
-                        logWriter
-                    );
-                }
-
-                return console;
-            },
-    
             /**
              * Console2
              *
