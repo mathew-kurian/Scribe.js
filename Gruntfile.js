@@ -17,7 +17,7 @@ module.exports = function(grunt) {
         src: ['scribe.js', 'Gruntfile.js']
       },
       lib: {
-        src: ['lib/**/*.js', 'examples/**/*.js']
+        src: ['lib/**/*.js', 'examples/**/*.js', 'static/js/**/*.js']
       },
       test: {
         src: ['test/**/*.js']
