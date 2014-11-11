@@ -1,0 +1,56 @@
+<div class="menu">
+
+    <ul class="actions">
+
+        <li class="action action--reload a" ng-click="reload()">
+            ⟳
+        </li>
+
+        <li class="action">
+            <h4 class="title">Date :</h4>
+            <ng-toggle tri-toggle ng-model="showDate"></ng-toggle>
+        </li>
+
+        <li class="action">
+            <h4 class="title">Time :</h4>
+            <ng-toggle tri-toggle ng-model="showTime"></ng-toggle>
+        </li>
+
+        <li class="action">
+            <h4 class="title">Tags :</h4>
+            <ng-toggle tri-toggle ng-model="showTags"></ng-toggle>
+        </li>
+
+        <li class="action">
+            <h4 class="title">File :</h4>
+            <ng-toggle tri-toggle ng-model="showFile"></ng-toggle>
+        </li>
+
+        <li class="action">
+
+            <h4 class="title">Order by :</h4>
+
+            <select ng-model="order">
+                <option value="context.time">Time</option>
+                <option value="context.tags">Tags</option>
+                <option value="context.location">File</option>
+                <option value="argsString">Message</option>
+            </select>
+
+            <form action="">
+                <input type="checkbox" id="reverseOrder" ng-model="reverse">
+                <label class="title tiny" for="reverseOrder">Reverse</label>
+            </form>
+            
+        </li>
+
+        <li class="action action--search pull-right">
+            <h4 class="title">Filter :</h4>
+            <form action="">
+                <input type="text" class="input" ng-model="search">
+            </form>
+        </li>
+
+    </ul>
+
+</div>

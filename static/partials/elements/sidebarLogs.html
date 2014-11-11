@@ -1,0 +1,35 @@
+<div class="sidebar" ng-class="{'sidebar--open' : sidebar}">
+
+    <h3 class="sidebar__title">
+        Files
+        <span class="tiny pull-right">
+            <form action="">
+                <input type="checkbox" id="selectAll" ng-model="selectAll">
+                <label for="selectAll">Select all</label>
+            </form>
+        </span>
+    </h3>
+
+    <ul class="content">
+       
+        <li ng-repeat="file in currentFiles" class="sidebar__item">
+            <form action="">
+                <input type="checkbox" id="check{{$id}}" ng-model="file.selected">
+                <label for="check{{$id}}">{{file.name}}</label>
+            </form>
+        </li>
+    
+    </ul>
+
+    <h4 class="sidebar__title">Add a file</h4>
+    <autocomplete
+        ng-model="fileToAdd"
+        data="allLogsFiles"
+        on-select="addFile"
+        ng-keyup="$event.keyCode == 13 && addFile(fileToAdd)"
+        click-activation="true"
+        attr-placeholder="A path"
+        attr-input-class="input"
+        class="sidebar__block"></autocomplete>
+
+</div>

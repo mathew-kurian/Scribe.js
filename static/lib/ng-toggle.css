@@ -1,0 +1,117 @@
+.ng-toggle-wrap {
+    display: inline-block;
+    margin: 3px;
+    position: relative;
+    width: 62px;
+    height: 36px;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0) scale(1.0, 1.0);
+    z-index: 0;
+}
+.ng-toggle-wrap:hover {
+    z-index: 1;
+}
+.ng-toggle-wrap.vertical {
+    height: 62px;
+}
+.ng-toggle-wrap .ng-toggle-switch {
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.ng-toggle-wrap.vertical .ng-toggle-switch {
+    -webkit-transform: translate(-50%, -50%) rotate(-90deg);
+    transform: translate(-50%, -50%) rotate(-90deg);
+}
+.ng-toggle-switch {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 56px;
+    height: 30px;
+    display: inline-block;
+    background-color: #ddd;
+    border-radius: 25px;
+    -webkit-transition: background-color .25s ease;
+    transition: background-color .25s ease;
+    cursor: pointer;
+}
+.ng-toggle-switch.true {
+    background-color: #68C527;
+}
+.ng-toggle-switch.false {
+    background-color: #ff4d35;
+}
+.ng-toggle-false {
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 100%;
+}
+.ng-toggle-true {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+}
+.ng-toggle-handle {
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    background-color: white;
+    position: absolute;
+    top: 3px;
+    left: 16px;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+}
+.ng-toggle-switch.true .ng-toggle-handle {
+    left: 29px;
+}
+.ng-toggle-switch.false .ng-toggle-handle {
+    left: 3px;
+}
+.ng-toggle-tooltip {
+    display: inline-block;
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    -webkittransition: opacity .3s ease;
+    transition: opacity .3s ease;
+    transform: translate(-5px, -50%) translateZ(0) scale(1.0, 1.0);
+    -webkit-transform: translate(-5px, -50%) translateZ(0) scale(1.0, 1.0);
+    -webkit-backface-visibility: hidden;
+    background: rgba(0, 0, 0, 0.8);
+    color: #CCC;
+    padding: 3px 11px;
+    font-size: 12px;
+    border-radius: 12px;
+    opacity: 0;
+    pointer-events: none;
+    text-align: right;
+    white-space: nowrap;
+}
+.ng-toggle-wrap:hover .ng-toggle-tooltip {
+    opacity: 1;
+}
+.ng-toggle-tooltip:before {
+    width: 5px;
+    height: 5px;
+    border-style: solid;
+    border-width: 4px 0px 4px 5px;
+    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.8);
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    content: '';
+    pointer-events: none;
+}
+.ng-toggle-tooltip .active {
+    color: white;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .4);
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+}

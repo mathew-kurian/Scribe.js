@@ -1,0 +1,23 @@
+<div class="page">
+
+    <sidebar-logs files="currentFiles" open="sidebar"></sidebar-logs>
+    
+    <menu></menu>
+
+    <div class="logs__wrapper">
+        <log 
+            ng-repeat="line in lines | orderBy : order : reverse | filter : search track by $index"
+            log="line"
+            show-file="showFile"
+            show-time="showTime"
+            show-date="showDate"
+            show-tags="showTags"
+            ></log>
+    </div>
+
+    <div class="logs__empty" ng-if="lines.length == 0">
+        <h1>No file selected</h1>
+        <h2>← Open menu</h2>
+    </div>
+
+</div>

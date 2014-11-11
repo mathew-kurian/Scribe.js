@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="scribe">
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{{title}} - ScribeJS</title>
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="lib/ng-toggle.css" type="text/css">
+        <link rel="stylesheet" href="lib/autocomplete.css" type="text/css">
+        <link href="style.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body ng-keydown="sidebar = $event.keyCode == 27 ? false : sidebar">
+        
+        <header class="header">
+        
+            <div class="header__menu-button" ng-click="sidebar = !sidebar"></div>
+            <p class="header__title a" ng-click="back()">{{title}}</p>
+            <div class="header__mode">
+                Mode : {{mode}}
+                <ng-toggle ng-true-val="'dates'" ng-false-val="'folder'" ng-model="mode"></ng-toggle>
+            </div>
+            <a class="header__logo" href="/logs"></a>
+        
+        </header>
+
+        <ng-view></ng-view>
+
+        <div class="mask" ng-show="sidebar" ng-click="sidebar = false"></div>
+    
+        <script type="text/javascript" src="lib/angular.min.js"></script>
+        <script type="text/javascript" src="lib/angular-route.min.js"></script>
+        <script type="text/javascript" src="lib/angular-resource.min.js"></script>
+        <script type="text/javascript" src="lib/ng-toggle.js"></script>
+        <script type="text/javascript" src="lib/autocomplete.js"></script>
+
+        <script type="text/javascript" src="js/app.js"></script>
+        
+        <script type="text/javascript" src="js/directives/block.js"></script>
+        <script type="text/javascript" src="js/directives/sidebarLoggers.js"></script>
+        <script type="text/javascript" src="js/directives/sidebarLogs.js"></script>
+        <script type="text/javascript" src="js/directives/log.js"></script>
+        <script type="text/javascript" src="js/directives/menu.js"></script>
+        
+        <script type="text/javascript" src="js/services/scribeAPI.js"></script>
+        <script type="text/javascript" src="js/services/logs.js"></script>
+
+        <script type="text/javascript" src="js/controllers/homeController.js"></script>
+        <script type="text/javascript" src="js/controllers/dateController.js"></script>
+        <script type="text/javascript" src="js/controllers/folderController.js"></script>
+        <script type="text/javascript" src="js/controllers/logsController.js"></script>
+
+    </body>
+
+</html>
