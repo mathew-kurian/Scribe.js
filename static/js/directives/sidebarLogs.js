@@ -2,6 +2,10 @@
 
     'use strict';
 
+    /**
+     * Log viewer sidebar directives
+     */
+
     window.app.directive('sidebarLogs', [function () {
     
         return {

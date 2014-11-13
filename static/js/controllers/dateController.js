@@ -2,6 +2,10 @@
 
     'use strict';
 
+    /**
+     * Dates controller
+     */
+
     window.app.controller('dateController', [
         '$scope',
         '$rootScope',
@@ -10,8 +14,10 @@
         'dates',
         function ($scope, $rootScope, $filter, logs, dates) {
 
+            //reset
             $rootScope.sidebar = false;
 
+            //build blocks
             $scope.blocks = dates.map(function (item) {
                 
                 return {
@@ -20,6 +26,7 @@
                     message       : $filter('date')(item.date, 'd'),
                     messageBottom : $filter('date')(item.date, 'yyyy'),
                     click : function () {
+                        //save files
                         logs.setLogs(item.files.map(function (el, index) {
                             return {
                                 selected : index === 0, //select the first by default 
@@ -27,6 +34,8 @@
                                 path     : el.path
                             };
                         }));
+
+                        //redirect
                         $rootScope.go('logs');
                     }
                 };

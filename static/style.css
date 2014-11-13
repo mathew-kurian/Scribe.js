@@ -1,7 +1,8 @@
 
 /*
- * Scribe
+ * Scribe.js style
  */
+
 * {
     box-sizing: border-box;
     font-family: Consolas, Menlo, Monaco, Lucida Console,
@@ -136,7 +137,6 @@ body {
 /**
  * Sidebar
  */
-
 .sidebar {
     position : absolute;
     top: 0;
@@ -176,7 +176,6 @@ body {
 /**
  * Blocks
  */
-
 .block {
     display: inline-block;
     height: 200px;
@@ -209,7 +208,6 @@ body {
         font-size: 18px;
         font-weight: normal;
     }
-
     .block__message--top {
         padding-top: 6px;
     }
@@ -222,7 +220,6 @@ body {
         height: auto;
         line-height: 32px;
     }
-
 .block--file {
     height: 48px;
     width: 98%;
@@ -237,7 +234,6 @@ body {
         line-height: 30px;
         width: auto
     }
-
 .block--date {}
     .block--date .block__message--top {
         letter-spacing: 2px;
@@ -280,7 +276,6 @@ body {
                 color: #e2e2e2;
                 font-weight: 400;
             }
-
             .action--search > * {
                 display: inline-block;
                 vertical-align: middle;
@@ -290,23 +285,21 @@ body {
                 min-width: 190px;
                 font-size: 14px;
             }
-
         .action--reload {
             color: #e2e2e2;
             font-size: 24px;
             font-weight: 700;
             margin-right: 8px;
         }
+
 /**
  * Log
  */
-
 .logs__wrapper {
     display: table;
     table-layout: fixed;
     max-width: 100%;
 }
-
 .log {
     display: table-row;
     height: auto;
@@ -315,32 +308,23 @@ body {
     line-height: 20px;
     color: #bebebe;
 }
-
     .log__item {
         display: table-cell;
         padding: 0 6px;
     }
-
     .log__tags {}
-
         .log__tag {}
-
     .log__time {}
-
     .log__location {}
-
         .log__location > span {
             background: #2980b9;
         }
-
     .log__message {
         white-space: pre;
     }
-    
     .log__json {
         white-space: pre-wrap;
     }
-
 .logs__empty {
     text-align: center;
     width: 100%;
@@ -379,7 +363,6 @@ body {
         padding: 0;
         margin: 0;
     }
-
     .sidebar__block > .autocomplete {
         padding: 0 22px;
     }

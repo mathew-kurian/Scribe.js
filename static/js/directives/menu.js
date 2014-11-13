@@ -2,6 +2,12 @@
 
     'use strict';
 
+    /**
+     * Menu directive
+     *
+     * Log viewer top control bar
+     */
+    
     window.app.directive('menu', [function () {
         
         return {

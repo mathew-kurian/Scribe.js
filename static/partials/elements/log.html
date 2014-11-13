@@ -1,22 +1,22 @@
 <p class="log">
 
     <span class="log__item log__time">
-        <span ng-if="(showDate == 1 || log.show.date ) && showDate != 0">
+        <span ng-if="showDate != 0 && (showDate == 1 || log.show.date)">
             {{log.context.time | date: 'EEE MMM dd yyyy'}}
         </span>
-        <span ng-if="(showTime == 1 || log.show.time) && showTime != 0">
+        <span ng-if="showTime != 0 && (showTime == 1 || log.show.time)">
             {{log.context.time | date: 'yyyy-MM-ddTHH:mm:ss:Z'}}
         </span>
     </span>
 
     <span class="log__item log__tags">
-        <span ng-if="(showTags == 1 || log.show.tags) && showTags != 0">
+        <span ng-if="showTags != 0 && (showTags == 1 || log.show.tags)">
             <span ng-repeat="tag in log.context.tags" class="log__tag bck-tag">{{handleTags(tag)}}</span>
         </span>
     </span>
 
     <span class="log__item log__location">
-        <span ng-if="(showFile == 1 || log.show.location) && showFile != 0" class="bck-tag">
+        <span ng-if="showFile != 0 && (showFile == 1 || log.show.location)" class="bck-tag">
             {{log.context.location.filename}}:{{log.context.location.line}}
         </span>
     </span>

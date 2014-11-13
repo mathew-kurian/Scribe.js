@@ -2,6 +2,10 @@
 
     'use strict';
 
+    /**
+     * Home, folders and dates sidebar directives
+     */
+
     window.app.directive('sidebarLoggers', [function () {
     
         return {
