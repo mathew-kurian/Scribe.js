@@ -17,9 +17,9 @@
          * - /
          *   Home page. Choose the good logger
          * - /dates/?path
-         *   If dates mode. Choose the dates.
+         *   Choose the dates.
          * - /folder/?path
-         *   If folder mode. Explore directories.
+         *   Explore directories.
          * - /logs
          *   The logs viewer
          */
@@ -27,12 +27,12 @@
         $routeProvider
 
             .when('/', {
-                templateUrl : 'partials/blocks.html',
+                templateUrl : 'partials/folder.html',
                 controller  : 'homeController'
             })
 
             .when('/dates/', {
-                templateUrl : 'partials/blocks.html',
+                templateUrl : 'partials/dates.html',
                 controller  : 'dateController',
 
                 // resolve dates
@@ -62,7 +62,7 @@
             })
 
             .when('/folder/', {
-                templateUrl : 'partials/blocks.html',
+                templateUrl : 'partials/folder.html',
                 controller  : 'folderController',
                 
                 //resolve folder content
