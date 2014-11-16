@@ -9,13 +9,36 @@
     window.app.controller('dateController', [
         '$scope',
         '$rootScope',
+        '$location',
         '$filter',
         'logs',
         'dates',
-        function ($scope, $rootScope, $filter, logs, dates) {
+        function ($scope, $rootScope, $location, $filter, logs, dates) {
 
             //reset
             $rootScope.sidebar = false;
+
+            /**
+             * $scope.nextPage
+             *
+             * Go to to a next page
+             *
+             * @param {int} next    if < 0, goes to older dates, if > 0 goes to newer dates
+             */ 
+            $scope.nextPage = function (next) {
+
+                var currentDate = $location.search().from || Date.now(),
+                    day         = 24 * 60 * 60 * 1000;
+
+                $rootScope.go(
+                    'dates',
+                    {
+                        path   : $location.search().path,
+                        from   : next * day + parseInt(currentDate, 10),
+                        length : 10
+                    }
+                );
+            };
 
             //build blocks
             $scope.blocks = dates.map(function (item) {

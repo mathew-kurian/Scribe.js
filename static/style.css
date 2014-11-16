@@ -251,6 +251,29 @@ body {
     }
 
 /**
+ * Nav
+ */
+.nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+    .nav > .btn {
+        display: inline-block;
+        padding: 4px 14px;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: #101 0px 0px 6px;
+        border-radius : 4px;
+        font-size: 38px;
+        color: #e2e2e2;
+    }
+    .nav > .btn:hover {
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+/**
  * Menu
  */
 .menu {
@@ -371,3 +394,4 @@ body {
         right: 22px;
         width: auto;
     }
+
