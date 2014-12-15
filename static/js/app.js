@@ -222,6 +222,12 @@
                 }
             };
 
+            $rootScope.onKeyDown = function ($event) {
+                if ($event.keyCode == 27) {
+                    $rootScope.sidebar = false 
+                }
+            }
+
         }
     ]);
 
