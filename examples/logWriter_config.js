@@ -18,6 +18,8 @@ var scribe = require('../scribe.js')({
 
 var myLogWriter = new scribe.LogWriter('logsConsoleTwo');
 
+//Create own getPath and getFilename methods to erase to default ones
+
 myLogWriter.getPath = function (opt) {
     
     return path.join(
