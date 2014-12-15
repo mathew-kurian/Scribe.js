@@ -9,6 +9,17 @@
      * to display folder name, dates and file name
      */
 
+    var colors =  [
+        "#16a085",
+        "#27ae60",
+        "#2980b9",
+        "#8e44ad",
+        "#f39c12",
+        "#d35400",
+        "#c0392b",
+        "#7f8c8d"
+    ];
+
     window.app.directive('block', [function () {
 
         return {
@@ -58,7 +69,19 @@
             },
             restrict    : "E",
             templateUrl : 'partials/elements/blocks.html',
-            replace     : true
+            replace     : true,
+
+            controller : ['$scope', function ($scope) {
+                
+                /**
+                 * $scope.color
+                 * 
+                 * @return {String}     A radom haxa color from `colors`
+                 */
+                $scope.color = function () {
+                    return colors[Math.floor(Math.random() * colors.length)]
+                };
+            }]
         };
 
     }]);
