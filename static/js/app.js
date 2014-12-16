@@ -98,8 +98,9 @@
         '$location',
         '$q',
         '$window',
+        '$document',
         'ScribeAPI',
-        function ($rootScope, $location, $q, $window, ScribeAPI) {
+        function ($rootScope, $location, $q, $window, $document, ScribeAPI) {
 
             /**
              * getAllLogsFiles
@@ -222,11 +223,12 @@
                 }
             };
 
-            $rootScope.onKeyDown = function ($event) {
+            $document.bind('keydown', function ($event) {
                 if ($event.keyCode == 27) {
-                    $rootScope.sidebar = false 
+                    $rootScope.sidebar = false;
+                    $rootScope.$digest()
                 }
-            }
+            });
 
         }
     ]);
