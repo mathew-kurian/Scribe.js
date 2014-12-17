@@ -79,7 +79,7 @@
                  * @return {String}     A radom haxa color from `colors`
                  */
                 $scope.color = function () {
-                    return colors[Math.floor(Math.random() * colors.length)]
+                    return colors[Math.floor(Math.random() * colors.length)];
                 };
             }]
         };

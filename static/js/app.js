@@ -224,9 +224,9 @@
             };
 
             $document.bind('keydown', function ($event) {
-                if ($event.keyCode == 27) {
+                if ($event.keyCode === 27) {
                     $rootScope.sidebar = false;
-                    $rootScope.$digest()
+                    $rootScope.$digest();
                 }
             });
 
