@@ -19,6 +19,8 @@
      * @param {String}       scribe.rootPath                  Logs folder. Default 'logs'
      * @param {Boolean}      scribeOpt.createDefaultConsole   Should scribe attach a fresh Console2 
      *                                                        to process.console ? Default true.
+     * @param {Boolean}      scribeOpt.createBasic            Should scribe create basic logging functions ? 
+     *                                                        Default true
      *
      * @return {Object}
      * @return {Function}    console                          Get a console
@@ -36,6 +38,7 @@
 
         scribeOpt.rootPath             = scribeOpt.rootPath || 'logs';
         scribeOpt.createDefaultConsole = scribeOpt.createDefaultConsole !== false;
+        scribeOpt.createBasic          = scribeOpt.createBasic !== false;
 
 
         /**
@@ -125,11 +128,48 @@
             return console;
         };
 
+        /**
+         * createBasic
+         *
+         * Create basic log function of nodejs for `console`
+         * 
+         * @param {Console2}    console
+         */
+        var createBasic = function (console) {
+
+            var loggers = [
+                {
+                    name  : 'log',
+                    color : 'white' 
+                },
+                {
+                    name  : 'info',
+                    color : 'cyan'
+                },
+                {
+                    name  : 'error',
+                    color : 'red'
+                },
+                {
+                    name  : 'warning',
+                    color : 'yellow'
+                },
+                {
+                    name  : 'dir',
+                    color : 'white'
+                }
+            ];
+
+            loggers.forEach(function (logger) {
+                console.addLogger(logger.name, logger.color);
+            });
+        };
+
 
         /**
          * initWebPanel
          *
-         * Retrun an express Router
+         * @return  an express Router
          */
         var initWebPanel = function () {
           
@@ -141,6 +181,11 @@
         //Create a default console2 and attach it to process
         if (scribeOpt.createDefaultConsole) {
             process.console = addConsole();
+        }
+
+        //Create basic logging functions
+        if (scribeOpt.createBasic) {
+            createBasic(process.console);
         }
 
 
