@@ -18,7 +18,9 @@ var myConfigConsole = scribe.console({
         dateColors : ['gray', 'bgMagenta'],
         fileColors : 'white',
         lineColors : ['yellow', 'inverse']
-    }
+    },
+
+    createBasic : false                             //Don't create basic loggers
 
 });
 

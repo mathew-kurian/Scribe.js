@@ -77,9 +77,9 @@ var consoleThree = scribe.console({
  * Then check logsConsoleOne and logsConsoleTwo folders
  */
 
-consoleOne.addLogger('log');
-consoleTwo.addLogger('log');
-consoleThree.addLogger('log');
+//consoleOne.addLogger('log');
+//consoleTwo.addLogger('log');
+//consoleThree.addLogger('log');
 
 consoleOne.time().log('Hello World from consoleOne');
 consoleTwo.time().log('Hello World from consoleTwo');

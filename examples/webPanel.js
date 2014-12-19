@@ -13,7 +13,6 @@ app.use('/logs', scribe.webPanel());
 
 
 //Make some logs
-console.addLogger('log');
 console.addLogger('debug', 'inverse');
 console.addLogger('fun', 'rainbow');
 

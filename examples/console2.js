@@ -4,11 +4,9 @@
  * Console2 functions
  */
 
-require('../scribe')(); //loads Scribe
+require('../scribe')(); //loads Scribe (with basic loggers)
 
 var console = process.console;      //create a local (for the module) console
-
-console.addLogger('log');
 
 console.log("Hello");
 console.log("A string %s and a number %d", "hello", "123"); //you can use printf-like format
