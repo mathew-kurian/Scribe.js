@@ -4,10 +4,10 @@
 
     'use strict';
 
-    var Console2   = require('./lib/console2.js'),
-        logWriter  = require('./lib/logWriter.js'),
-        LogWriter  = logWriter.LogWriter,
-        webPanel   = require('./lib/webPanel.js');
+    var Console2      = require('./lib/console2.js'),
+        LogWriter     = require('./lib/logWriter.js').LogWriter,
+        ExpressLogger = require('./lib/expressLogger.js'),
+        webPanel      = require('./lib/webPanel.js');
 
 
     /**
@@ -208,6 +208,14 @@
              * @type {Function}
              */
             webPanel : initWebPanel,
+
+            /**
+             * express
+             *
+             * Utilities for express
+             * @type {Object}
+             */
+            express  : ExpressLogger,
 
             /**
              * Console2
