@@ -19,8 +19,6 @@
      * @param {String}       scribe.rootPath                  Logs folder. Default 'logs'
      * @param {Boolean}      scribeOpt.createDefaultConsole   Should scribe attach a fresh Console2 
      *                                                        to process.console ? Default true.
-     * @param {Boolean}      scribeOpt.createBasic            Should scribe create basic logging functions ? 
-     *                                                        Default true
      *
      * @return {Object}
      * @return {Function}    console                          Get a console
@@ -38,7 +36,6 @@
 
         scribeOpt.rootPath             = scribeOpt.rootPath || 'logs';
         scribeOpt.createDefaultConsole = scribeOpt.createDefaultConsole !== false;
-        scribeOpt.createBasic          = scribeOpt.createBasic !== false;
 
 
         /**
@@ -81,54 +78,6 @@
 
 
         /**
-         * addConsole
-         *
-         * Create a new console
-         *
-         * @param {Object}       config            Config options
-         * @param {?Object}      config.console    Console2 options
-         * @param {?Object}      config.logWriter  LogWriter options.
-         *                                         If false, Scribe won't save logs on disk.
-         *
-         * @param {LogWriter}    logWriter         Optional. A custom logWriter instance
-         *
-         * @return {Console2}                      A new Console2 instance
-         */
-        var addConsole = function (config, logWriter) {
-
-            if (!config) {
-                config = {};
-            }
-
-            var console = new Console2(config.console || {});
-
-            if (config.logWriter !== false) { //if config.logWriter is false, don't save logs
-
-                if (!logWriter) {
-
-                    var rootPath = config.logWriter ?
-                        config.logWriter.rootPath || scribeOpt.rootPath :
-                        scribeOpt.rootPath
-                    ;
-
-                    logWriter = new LogWriter(rootPath);
-                }
-
-                listenOnConsole(
-                    console,
-                    logWriter
-                );
-            }
-
-            consoles.push({
-                console   : console,
-                logWriter : config.logWriter !== false ? logWriter : null 
-            });
-
-            return console;
-        };
-
-        /**
          * createBasic
          *
          * Create basic log function of nodejs for `console`
@@ -167,6 +116,65 @@
 
 
         /**
+         * addConsole
+         *
+         * Create a new console
+         *
+         * @param {Object}       config                 Config options
+         * @param {?Object}      config.console         Console2 options
+         * @param {?Object}      config.logWriter       LogWriter options.
+         *                                              If false, Scribe won't save logs on disk.
+         * @param {Boolean}      config.createBasic     Should scribe create basic logging functions ? 
+         *                                              Default true
+         *
+         * @param {LogWriter}    logWriter              Optional. A custom logWriter instance
+         *
+         * @return {Console2}                           A new Console2 instance
+         */
+        var addConsole = function (config, logWriter) {
+
+            if (!config) {
+                config = {};
+            }
+
+            config.createBasic = config.createBasic !== false;
+
+            var console = new Console2(config.console || {});
+
+            if (config.logWriter !== false) { //if config.logWriter is false, don't save logs
+
+                if (!logWriter) {
+
+                    var rootPath = config.logWriter ?
+                        config.logWriter.rootPath || scribeOpt.rootPath :
+                        scribeOpt.rootPath
+                    ;
+
+                    logWriter = new LogWriter(rootPath);
+                }
+
+                listenOnConsole(
+                    console,
+                    logWriter
+                );
+            }
+
+            consoles.push({
+                console   : console,
+                logWriter : config.logWriter !== false ? logWriter : null 
+            });
+
+            //Create basic logging functions
+            if (config.createBasic) {
+                createBasic(console);
+            }
+
+            return console;
+        };
+
+
+
+        /**
          * initWebPanel
          *
          * @return  an express Router
@@ -183,10 +191,6 @@
             process.console = addConsole();
         }
 
-        //Create basic logging functions
-        if (scribeOpt.createBasic) {
-            createBasic(process.console);
-        }
 
 
         return  {
