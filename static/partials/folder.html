@@ -1,0 +1,15 @@
+<div class="page">
+
+    <sidebar-loggers open="sidebar" loggers="logWriters" ></sidebar-loggers>
+
+    <block
+        ng-repeat="block in blocks"
+        type="block.type"
+        message-top="block.messageTop"
+        message="block.message"
+        message-bottom="block.messageBottom"
+        force-file="onlyFiles"
+        ng-click="block.click()"
+        ></block>
+</div>
+

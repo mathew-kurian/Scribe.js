@@ -4,20 +4,15 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    nodeunit: {
-      'files': ['test/**/*.js'],
-      'usage': ['test/**/usage.js'],
-      'express-usage': ['test/**/express-usage.js']
-    },
     jshint: {
       options: {
         jshintrc: '.jshintrc'
       },
       gruntfile: {
-        src: 'Gruntfile.js'
+        src: ['scribe.js', 'Gruntfile.js']
       },
       lib: {
-        src: ['lib/**/*.js']
+        src: ['lib/**/*.js', 'examples/**/*.js', 'static/js/**/*.js']
       },
       test: {
         src: ['test/**/*.js']
@@ -30,21 +25,20 @@ module.exports = function(grunt) {
       },
       lib: {
         files: '<%= jshint.lib.src %>',
-        tasks: ['jshint:lib', 'nodeunit']
+        tasks: ['jshint:lib']
       },
       test: {
         files: '<%= jshint.test.src %>',
-        tasks: ['jshint:test', 'nodeunit']
+        tasks: ['jshint:test']
       },
     },
   });
 
   // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit']);
+  grunt.registerTask('default', ['jshint']);
 
 };

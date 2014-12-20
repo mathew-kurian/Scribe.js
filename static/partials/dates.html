@@ -1,0 +1,21 @@
+<div class="page">
+
+    <sidebar-loggers open="sidebar" loggers="logWriters" ></sidebar-loggers>
+
+    <block
+        ng-repeat="block in blocks"
+        type="block.type"
+        message-top="block.messageTop"
+        message="block.message"
+        message-bottom="block.messageBottom"
+        force-file="onlyFiles"
+        ng-click="block.click()"
+        ></block>
+
+    <div class="nav">
+        <div class="btn previous" ng-click="nextPage(-10)"><</div>
+        <div class="btn pull-right next" ng-click="nextPage(10)">></div>
+    </div>
+
+</div>
+
