@@ -167,6 +167,41 @@ Don't use it directly but use `scribe.console()` instead in order to hook LogWri
 
 ![console2 demo](__misc/console2Demo.png)
 
+```javascript
+require('../scribe')(); //loads Scribe (with basic loggers)
+
+//create a local (for the module) console
+var console = process.console; 
+
+console.log("Hello");
+//you can use printf-like format
+console.log("A string %s and a number %d", "hello", "123"); 
+
+//Time
+console.time().log("Print the full time");
+console.date().log("Just print the date");
+
+//Tags
+console.tag("My Tag").log("Add a tag");
+console.tag("Tag1", 'Tag2', 123).log("Or multiple tag");
+console.tag({msg : 'my-tag', colors : ['red', 'inverse']}).log("Use colors.js colors");
+
+//File and line number
+console.file().log("Print the file and the line of the call");
+
+//Object
+console.log({just : 'an object'});
+
+//Combos !
+console.log(
+        "Print many things",
+        { key1 : "val 1", key2 : { a: "b", c : []}, key3 : [1234]},
+        ['an array'],
+        "A String"
+);
+console.tag("Combo!").time().file().log("A combo");
+```
+
 **Params** : (all optional)
 
 - `opt.colors` : Array|String. Default colors output for all loggers. Default ['cyan'].
