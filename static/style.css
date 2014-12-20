@@ -142,6 +142,7 @@ body {
     top: 0;
     bottom: 0;
     z-index: 3;
+    overflow-y: auto;
     width: 300px;
     padding-top: 50px;
     background: #111;
@@ -172,7 +173,7 @@ body {
             color: #fff;
             text-decoration: none;
         }
-        
+
 /**
  * Blocks
  */
