@@ -352,6 +352,70 @@ console.tag('Multiple args and big context').time().file().demo(
 See [`/examples/console2.js`](/examples/console2.js)
 
 
+###Console2 events
+
+Each Console2 instance emits events :
+
+- `newLogger` when a new logger is created
+
+    ```javascript
+    /**
+     * name : name of the logger
+     * opt : Console2 options
+     */
+    console.on('newLogger', function (name, opt) {
+        //welcome, new logger !
+    });
+    ```
+- `new` when a logger logs something
+
+    ```javascript
+    /**
+     * log : the log object.
+
+    var log = {
+        type       : 'loggerName',
+        show       : {
+            tags     : Boolean,
+            location : Boolean,
+            time     : Boolean,
+            date     : Boolean
+        },
+        context    : {
+            tags     : [ tags ],
+            file     : Boolean,
+            time     : Date.now(),
+            location : { filename : 'main.js', line : 12 }
+        },
+        args       : arguments, //loggers arguments
+        opt        : opt,        //loggers options for addLogger()
+        
+        contextString : '[..] ...' ,
+        argsString    : 'My message',
+        message       : '[..] ...       My message'
+    };
+    
+    *
+    * loggerName : the logger name
+    */
+    console.on('new', function (log, loggerName) {
+        //Oh! `loggerName` has logged something
+    });
+    ```
+- `[loggerName]` when [loggerName] logs something. Fired whith `new`
+
+    ```javascript
+    /**
+     * log : same as above
+     */
+    console.on('log', function (log) {
+        //someone has logged something with logger "log"
+    });
+    ```
+    If loggerName is `'error'`, Scribe replace error with `'errorEvent'` as NodeJS `eventEmitter` will raise an Error if there is no listeners.
+    
+See [`/examples/events.js`](`/examples/events.js`)
+
 ## LogWriter(rootPath)
 
 ![logWriter demo](__misc/logWriterDemo.png)
