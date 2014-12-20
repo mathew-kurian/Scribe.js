@@ -24,6 +24,61 @@ And :
 - Logging express requests
 - Providing a rich HTML web panel to access logs from your browser and an API
 
+
+#Table of contents
+
+
+<!-- toc -->
+
+* [Overview](#overview)
+* [Table of contents](#table-of-contents)
+* [Installing](#installing)
+* [Examples](#examples)
+* [Documentation](#documentation)
+  * [scribe(config)](#scribeconfig)
+    * [scribe.console(config, logWriter)](#scribeconsoleconfig-logwriter)
+    * [scribe.webPanel()](#scribewebpanel)
+    * [scribe.express.logger(console, validate)](#scribeexpressloggerconsole-validate)
+    * [scribe.LogWriter](#scribelogwriter)
+    * [scribe.Console2](#scribeconsole2)
+  * [Console2(opt)](#console2opt)
+    * [Console2.time()](#console2time)
+    * [Console2.date()](#console2date)
+    * [Console2.tag(\*args), Console2.t(\*args)](#console2tagargs-console2targs)
+    * [Console2.file(), Console2.f()](#console2file-console2f)
+    * [Console2.addLogger(name, colors, opt)](#console2addloggername-colors-opt)
+    * [Console2.buildArgs(log)](#console2buildargslog)
+    * [Console2.buildContext(log, opt)](#console2buildcontextlog-opt)
+    * [Console2.\[your logger](*args)](#console2your-loggerargs)
+    * [Console2 events](#console2-events)
+  * [LogWriter(rootPath)](#logwriterrootpath)
+    * [LogWriter.initHistory()](#logwriterinithistory)
+    * [LogWriter.createDir(path, callback)](#logwritercreatedirpath-callback)
+    * [LogWriter.appendFile(pathToFile, content, callback)](#logwriterappendfilepathtofile-content-callback)
+    * [LogWriter.writeFile(pathToFile, content, callback)](#logwriterwritefilepathtofile-content-callback)
+    * [LogWriter.newFileHistory(pathToFile)](#logwriternewfilehistorypathtofile)
+    * [logWriter.getUser()](#logwritergetuser)
+    * [LogWriter.getPath(opt)](#logwritergetpathopt)
+    * [LogWriter.getFile(opt)](#logwritergetfileopt)
+    * [LogWriter.path(opt)](#logwriterpathopt)
+    * [LogWriter.save(log, opt)](#logwritersavelog-opt)
+    * [LogWriter.saveOpt(logger)](#logwritersaveoptlogger)
+    * [LogWriter.addLogger(logger)](#logwriteraddloggerlogger)
+    * [*How logs are saved ?*](#how-logs-are-saved)
+    * [Example](#example)
+  * [WebPanel](#webpanel)
+    * [Dev tips :](#dev-tips)
+  * [ExpressLogger](#expresslogger)
+    * [ExpressLogger.logger(console, filter)](#expressloggerloggerconsole-filter)
+* [Using Scribe through your modules](#using-scribe-through-your-modules)
+* [Come back to the old console](#come-back-to-the-old-console)
+* [Contributors](#contributors)
+
+<!-- toc stop -->
+
+
+
+
 # Installing
 
 ```
@@ -60,7 +115,7 @@ var scribe = require('scribe')();
 Use this import if you want to configure or custom something.
 
 
-###scribe(config)
+##scribe(config)
 
 **Params** :
 
@@ -540,7 +595,7 @@ var console = process.console;
 
 console.tag('Hello world').log("We're in the main file")
 
-sub.something(); 
+sub.something(); //Will use process.console
 ```
 
 ```javascript
@@ -572,7 +627,7 @@ process.customConsole = customConsole; //attach it to process
 
 customConsole('Hello world').log("We're in the main file")
 
-sub.something(); 
+sub.something(); //Will use process.console
 ```
 
 ```javascript
