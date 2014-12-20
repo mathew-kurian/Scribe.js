@@ -356,7 +356,7 @@ See [`/examples/console2.js`](/examples/console2.js)
 
 ![logWriter demo](__misc/logWriterDemo.png)
 
-LogWriter contructor. Highly configurables as all functions are public. See code.
+LogWriter constructor. Highly configurable as all functions are public. See code.
 
 **Param** :
 
@@ -408,7 +408,7 @@ LogWriter create an `history.json` file in root folder where it keeps tracks of 
 
 It also create `[logger name].json` in root folder for each logger where it saves the logger config.
 
-Then, for each day, LogWriter will save logs in a new directory.
+Then LogWriter will save logs in directory according to the output of `LogWriter.path()`.
 
 
 ### Example
@@ -419,7 +419,7 @@ See [`/examples/logWriter_config.js`](/examples/logWriter_config.js) to see how 
 
 ## WebPanel
 
-An express router that served and HTML logs explorer.
+An express router that served an HTML logs explorer.
 
 ![Web panel demo](__misc/webPanelDemo.gif)
 
@@ -445,7 +445,7 @@ WebPanel highly depends on LogWriter as it use `history.json` file to find logs.
 
 WebPanel is RESTfull :
 
-- on the server side, an express router serves and API and find files on disk
+- on the server side, an express router serves an API and find files on disk
 - on client side, an AngularJS app manage the routing and the data
 
 All the client code is under `/static`.
