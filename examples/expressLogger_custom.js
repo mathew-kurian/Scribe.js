@@ -8,13 +8,13 @@
     //Create a Console2 for express
     //with logs saved in /expressLogger
     var expressConsole = scribe.console({
-        console : { 
+        console : {
             colors     : 'white',
             timeColors : ['grey', 'underline'],
         },
         createBasic : false,
         logWriter : {
-            rootPath : 'expressLogger' 
+            rootPath : 'expressLogger'
         }
     });
 
@@ -27,7 +27,7 @@
         //    return false      //ie. don't log this request
         //else
         //{
-         
+
         return true;
     };
 

@@ -17,7 +17,7 @@
      *
      * @param {Object}       scribeOpt                        Optional options
      * @param {String}       scribe.rootPath                  Logs folder. Default 'logs'
-     * @param {Boolean}      scribeOpt.createDefaultConsole   Should scribe attach a fresh Console2 
+     * @param {Boolean}      scribeOpt.createDefaultConsole   Should scribe attach a fresh Console2
      *                                                        to process.console ? Default true.
      *
      * @return {Object}
@@ -25,11 +25,12 @@
      * @return {Function}    webPanel                         Get an express Router
      * @return {Constructor} Console2                         Console2 constructor
      * @return {Constructor} LogWriter                        LogWriter constructor
+     * @return {Object}      express                          Express utils
      */
     var scribe = function (scribeOpt) {
 
         //Scribe options
-        
+
         if (!scribeOpt) {
             scribeOpt = {};
         }
@@ -61,7 +62,7 @@
 
             //On new log, save it
             console2.on('new', function (log) {
-                
+
                 logWriter.save(log, {
                     logger   : log.opt
                 });
@@ -69,7 +70,7 @@
             });
 
             //On new logger, save its options
-            console2.on('newLogger', function (logger, loggerOpt) { 
+            console2.on('newLogger', function (logger, loggerOpt) {
 
                 logWriter.addLogger(loggerOpt);
 
@@ -81,7 +82,7 @@
          * createBasic
          *
          * Create basic log function of nodejs for `console`
-         * 
+         *
          * @param {Console2}    console
          */
         var createBasic = function (console) {
@@ -89,7 +90,7 @@
             var loggers = [
                 {
                     name  : 'log',
-                    color : 'white' 
+                    color : 'white'
                 },
                 {
                     name  : 'info',
@@ -124,7 +125,7 @@
          * @param {?Object}      config.console         Console2 options
          * @param {?Object}      config.logWriter       LogWriter options.
          *                                              If false, Scribe won't save logs on disk.
-         * @param {Boolean}      config.createBasic     Should scribe create basic logging functions ? 
+         * @param {Boolean}      config.createBasic     Should scribe create basic logging functions ?
          *                                              Default true
          *
          * @param {LogWriter}    logWriter              Optional. A custom logWriter instance
@@ -161,7 +162,7 @@
 
             consoles.push({
                 console   : console,
-                logWriter : config.logWriter !== false ? logWriter : null 
+                logWriter : config.logWriter !== false ? logWriter : null
             });
 
             //Create basic logging functions
@@ -180,12 +181,12 @@
          * @return  an express Router
          */
         var initWebPanel = function () {
-          
+
             return webPanel(consoles);
 
         };
 
-        
+
         //Create a default console2 and attach it to process
         if (scribeOpt.createDefaultConsole) {
             process.console = addConsole();
@@ -231,7 +232,7 @@
              */
             LogWriter : LogWriter
         };
-    };  
+    };
 
     module.exports = scribe;
 

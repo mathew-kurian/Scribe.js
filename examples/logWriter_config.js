@@ -4,7 +4,7 @@ var moment = require('moment'),
     path   = require('path');
 
 var scribe = require('../scribe.js')({
-    createDefaultConsole : false 
+    createDefaultConsole : false
 });
 
 
@@ -21,11 +21,11 @@ var myLogWriter = new scribe.LogWriter('logsConsoleTwo');
 //Create own getPath and getFilename methods to erase to default ones
 
 myLogWriter.getPath = function (opt) {
-    
+
     return path.join(
         this.getUser(),
         opt.logger.name
-    ); 
+    );
 
 };
 
@@ -37,7 +37,7 @@ myLogWriter.getFilename = function (opt) {
         '.' +
         opt.logger.name +
         '.json';
-        
+
 };
 
 
@@ -72,8 +72,8 @@ var consoleThree = scribe.console({
 
 
 /**
- * Use the consoles 
- * 
+ * Use the consoles
+ *
  * Then check logsConsoleOne and logsConsoleTwo folders
  */
 

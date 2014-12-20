@@ -9,7 +9,7 @@ var console = process.console;      //create a local (for the module) console
 
 
 //Don't worry, you can still access the original console
-global.console.log("I'm using the original console.log()"); 
+global.console.log("I'm using the original console.log()");
 
 //Let's create a new logger `myLoger` ...
 console.addLogger('myLogger');
@@ -22,5 +22,5 @@ console.tag('MyTag').time().file().myLogger('Scribe.js is awesome');
 
 //By default, submodules still use original console
 require('./sub-without_new_console').saySomething("Hello world !");
-//But, you can use the new one ! 
-require('./sub-with_new_console').saySomething("Hello world !"); 
+//But, you can use the new one !
+require('./sub-with_new_console').saySomething("Hello world !");

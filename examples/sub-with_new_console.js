@@ -6,7 +6,7 @@
     var console = process.console;
 
     module.exports = {
-    
+
         saySomething : function (msg) {
             msg = "With new console - " + msg;
             console.myLogger(msg);       //I'm using my custom logger `myLogger`
