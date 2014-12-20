@@ -551,5 +551,5 @@ See : [NodeJS global doc](http://nodejs.org/api/globals.html)
 
 #Contributors
 
-- bluejamesbond
-- guillaumewuip
+- [bluejamesbond](https://github.com/bluejamesbond)
+- [guillaumewuip](https://github.com/guillaumewuip)
