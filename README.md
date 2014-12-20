@@ -49,7 +49,7 @@ And :
     * [Console2.addLogger(name, colors, opt)](#console2addloggername-colors-opt)
     * [Console2.buildArgs(log)](#console2buildargslog)
     * [Console2.buildContext(log, opt)](#console2buildcontextlog-opt)
-    * [Console2.\[your logger](*args)](#console2your-loggerargs)
+    * [Console2.\[your logger\](*args)](#console2your-loggerargs)
     * [Console2 events](#console2-events)
   * [LogWriter(rootPath)](#logwriterrootpath)
     * [LogWriter.initHistory()](#logwriterinithistory)
