@@ -38,10 +38,10 @@ A list of examples is provided in [`/examples`](/examples).
 
 ScribeJS is divided is 4 main modules :
 
-- [Console2](#Console2) : an extended console object
-- [LogWriter](#LogWriter) : an utility to save logs on disk
-- [WebPanel](#WebPanel) : a rich HTML logs explorer
-- [ExpressLogger](#ExpressLogger) : an utility to logs all express request
+- [Console2](#console2opt) : an extended console object
+- [LogWriter](#logwriterrootpath) : an utility to save logs on disk
+- [WebPanel](#webpanel) : a rich HTML logs explorer
+- [ExpressLogger](#expresslogger) : an utility to logs all express request
 
 It all starts by adding ScribeJS to your js file :
 
@@ -85,7 +85,7 @@ Create a new Console2 instance with LogWriter listening. This is the best way to
 **Params** :
 
 - `config`
-    - `console`  : *Optional.* [Console2 options](#Console2)
+    - `console`  : *Optional.* [Console2 options](#console2opt)
     - `logWiter` : *Optional.* Boolean|Object. If `false`, don't save logs on disk.
         - `rootPath` : directory where to store logs
     - `createBasic` : *Optional*. Boolean. `true` to create [basic loggers](#basic-loggers). Default `true`.
@@ -458,7 +458,7 @@ All the client code is under `/static`.
 
 ###ExpressLogger.logger(console, filter)
 An utility to log each request made to an express server.    
-See [`scribe.express.logger()`](#scribe.express.logger(console,-validate))
+See [`scribe.express.logger()`](#scribeexpressloggerconsole-validate)
 
 #Using Scribe through your modules
 
