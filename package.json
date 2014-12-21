@@ -22,7 +22,7 @@
       "url": "https://github.com/bluejamesbond/Scribe.js/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/scribe.js",
+  "main": "scribe.js",
   "scripts": {
     "test": "grunt nodeunit"
   },
