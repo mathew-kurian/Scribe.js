@@ -34,6 +34,7 @@
   font-family: "Open Sans";
   font-size: 10px;
   color: #FFF;
+  cursor: pointer;
 }
 
 .autocomplete li.active{
