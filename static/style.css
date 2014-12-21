@@ -76,7 +76,7 @@ body {
     width: 100%;
     height: 100%;
     overflow-y: auto;
-    background: #111;
+    background: #000;
 }
 
 .mask {
@@ -434,7 +434,8 @@ body {
     max-width: 85%;
     /* width: 100%; */
     text-align: left;
-    padding: 15px;
+    /* padding: 15px; */
+    border-left: 15px solid #111;
 }
 .log {
     display: table-row;
@@ -452,10 +453,16 @@ body {
         padding-right: 3px;
         text-align: left;
 }
-    .log__tags {}
+    .log__tags {
+    background: #111;
+}
         .log__tag {}
-    .log__time {}
-    .log__location {}
+    .log__time {
+    background: #111;
+}
+    .log__location {
+    background: #111;
+}
         .log__location > span {
             color: #2980b9;
         }
@@ -467,7 +474,7 @@ body {
         /* margin-top: -10px; */
         position: relative;
         /* top: -10px; */
-        /* border-left: 1px solid #222; */
+        border-left: 1px solid #222;
         /* box-shadow: inset 2px 0 2px -2px #000; */
 }
     .log__json {
