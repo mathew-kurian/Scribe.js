@@ -617,3 +617,11 @@ button.toggle-button.active {
 .header__mode .ng-toggle-wrap {
     margin-left: 5px;
 }
+
+.log:first-child .log__item {
+    padding-top: 15px;
+}
+
+.log:last-child .log__item {
+    padding-bottom: 15px;
+}
