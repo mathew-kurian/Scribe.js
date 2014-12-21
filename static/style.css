@@ -221,7 +221,7 @@ body {
  * Blocks
  */
 .block {
-    display: inline-block;
+    display: block;
     height: 44px;
     margin-right: 0;
 
@@ -247,6 +247,8 @@ body {
     text-align: left;
 
     transition: box-shadow 250ms;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 .block:hover {
     background: #595e50;
@@ -281,20 +283,12 @@ body {
         height: auto;
         line-height: 32px;
     }
-.block--file {
-    height: 48px;
-    width: 98%;
-    margin: 4px 1%;
-    padding: 8px;
+ {
 }
-.block--file:nth-child(2) {
-    margin-top: 12px;
+ {
 }
-    .block--file .block__message {
-        text-align: left;
-        line-height: 30px;
-        width: auto
-    }
+    .block--file:nth-child(2) {
+}
 .block--date {}
     .block--date .block__message--top {
         font-weight: 700;
