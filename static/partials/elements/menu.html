@@ -34,12 +34,11 @@
                 <option value="context.location">File</option>
                 <option value="argsString">Message</option>
             </select>
+        </li>
 
-            <form action="">
-                <input type="checkbox" id="reverseOrder" ng-model="reverse">
-                <label class="title tiny" for="reverseOrder">Reverse</label>
-            </form>
-
+        <li class="action">
+            <h4 class="title">Reverse</h4>
+            <ng-toggle id="reverseOrder" ng-model="reverse"></ng-toggle>
         </li>
 
         <li class="action action--search pull-right">
