@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2014 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="left-open" unicode="&#x3c;" d="m653 682l-296-296 296-297q11-10 11-25t-11-25l-92-93q-11-10-25-10t-25 10l-414 415q-11 10-11 25t11 25l414 414q10 10 25 10t25-10l92-93q11-10 11-25t-11-25z" horiz-adv-x="714.3" />
+<glyph glyph-name="right-open" unicode="&#x3e;" d="m618 361l-414-415q-11-10-25-10t-26 10l-92 93q-11 11-11 25t11 25l296 297-296 296q-11 11-11 25t11 25l92 93q11 10 26 10t25-10l414-414q10-11 10-25t-10-25z" horiz-adv-x="714.3" />
+<glyph glyph-name="arrows-ccw" unicode="&#x4f;" d="m186 140l116 116 0-292-276 16 88 86q-116 122-114 290t120 288q100 100 240 116l4-102q-100-16-172-88-88-88-90-213t84-217z m332 598l276-16-88-86q116-122 114-290t-120-288q-96-98-240-118l-2 104q98 16 170 88 88 88 90 213t-84 217l-114-116z" horiz-adv-x="820" />
+<glyph glyph-name="doc-text" unicode="&#xe800;" d="m819 638q16-16 27-42t11-50v-642q0-23-15-38t-38-16h-750q-23 0-38 16t-16 38v892q0 23 16 38t38 16h500q22 0 49-11t42-27z m-248 136v-210h210q-5 16-12 23l-175 175q-6 7-23 12z m215-853v572h-232q-23 0-38 15t-16 38v233h-429v-858h715z m-572 483q0 7 5 12t13 5h393q8 0 13-5t5-12v-36q0-8-5-13t-13-5h-393q-8 0-13 5t-5 13v36z m411-125q8 0 13-5t5-13v-36q0-8-5-13t-13-5h-393q-8 0-13 5t-5 13v36q0 8 5 13t13 5h393z m0-143q8 0 13-5t5-13v-36q0-8-5-13t-13-5h-393q-8 0-13 5t-5 13v36q0 8 5 13t13 5h393z" horiz-adv-x="857.1" />
+<glyph glyph-name="folder-empty" unicode="&#xe801;" d="m857 118v393q0 22-15 38t-38 15h-393q-23 0-38 16t-16 38v36q0 22-15 38t-38 15h-179q-22 0-38-15t-16-38v-536q0-22 16-38t38-16h679q22 0 38 16t15 38z m72 393v-393q0-51-37-88t-88-37h-679q-51 0-88 37t-37 88v536q0 51 37 88t88 37h179q51 0 88-37t37-88v-18h375q51 0 88-37t37-88z" horiz-adv-x="928.6" />
+</font>
+</defs>
+</svg>

@@ -47,9 +47,10 @@
                             var from      = $location.search().from || Date.now(), //timestamp
                                 length    = $location.search().length || 10,       //number of dates to show
                                 logWriter = $location.search().path;               //which log writer to use ?
-                            
+
                             $rootScope.title = logWriter + ' dates';
-                            
+                            $rootScope.path = logWriter + ' · dates';
+
                             //Get dates
                             return ScribeAPI.dateExplorer({
                                 logFolder : logWriter,
@@ -64,7 +65,7 @@
             .when('/folder/', {
                 templateUrl : 'partials/folder.html',
                 controller  : 'folderController',
-                
+
                 //resolve folder content
                 resolve : {
                     folder : [
@@ -72,11 +73,12 @@
                         '$rootScope',
                         '$location',
                         function (ScribeAPI, $rootScope, $location) {
-                            
+
                             //folder path
                             var path = $location.search().path;
 
                             $rootScope.title = path;
+                            $rootScope.path = path;
 
                             //Get folder content
                             return ScribeAPI.folderExplorer({
@@ -102,6 +104,12 @@
         'ScribeAPI',
         function ($rootScope, $location, $q, $window, $document, ScribeAPI) {
 
+            $rootScope.$on('$routeChangeSuccess', function(ev,data) {
+                if (data.$$route && data.$$route.controller){
+                    $rootScope.controller = data.$$route.controller;
+                }
+            });
+
             /**
              * getAllLogsFiles
              *
@@ -115,7 +123,7 @@
 
                 var deferred       = $q.defer(),
                     loggersHistory = [];
-                
+
                 //First, get all history files
                 loggers.forEach(function (logger) {
                     loggersHistory.push(ScribeAPI.log({
@@ -156,13 +164,13 @@
              *
              * Page title
              *
-             * @type {String} 
+             * @type {String}
              */
             $rootScope.title = "ScribeJS";
 
             /**
              * $rootScope.sidebar
-             * 
+             *
              * Open/close sidebar
              *
              * @type {Boolean}
@@ -233,6 +241,6 @@
         }
     ]);
 
-    
+
 
 }());

@@ -11,14 +11,14 @@
     </h3>
 
     <ul class="content">
-       
+
         <li ng-repeat="file in currentFiles" class="sidebar__item">
             <form action="">
                 <input type="checkbox" id="check{{$id}}" ng-model="file.selected">
                 <label for="check{{$id}}">{{file.name}}</label>
             </form>
         </li>
-    
+
     </ul>
 
     <h3 class="sidebar__title">Add a file</h3>
@@ -28,7 +28,7 @@
         on-select="addFile"
         ng-keyup="$event.keyCode == 13 && addFile(fileToAdd)"
         click-activation="true"
-        attr-placeholder="A path"
+        attr-placeholder="File Path"
         attr-input-class="input"
         class="sidebar__block"></autocomplete>
 

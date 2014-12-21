@@ -1,10 +1,10 @@
 <p class="log">
 
     <span class="log__item log__time">
-        <span ng-if="showDate != 0 && (showDate == 1 || log.show.date)">
+        <span ng-if="showDate != 0 && (showDate == 1 || log.show.date)" class="log__time__higher">
             {{log.context.time | date: 'EEE MMM dd yyyy'}}
         </span>
-        <span ng-if="showTime != 0 && (showTime == 1 || log.show.time)">
+        <span ng-if="showTime != 0 && (showTime == 1 || log.show.time)"  class="log__time__lower">
             {{log.context.time | date: 'yyyy-MM-ddTHH:mm:ss:Z'}}
         </span>
     </span>

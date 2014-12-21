@@ -1,9 +1,9 @@
-<div 
+<div
     class="block"
     ng-class="{'block--date' : type == 'date', 'block--file': forceFile}"
-    style="background: {{ color() }}"
+    style="/*box-shadow:inset 10px 0 0 {{ color() }}*/"
     >
     <p class="block__message block__message--top" ng-if="messageTop">{{messageTop}}</p>
     <p class="block__message block__message--middle" ng-if="message">{{message}}</p>
-    <p class="block__message block__message--bottom" ng-if="messageBottom">{{messageBottom}}</p>
+    <p class="block__message block__message--bottom" ng-if="messageBottom">&middot;&nbsp; {{messageBottom}}</p>
 </div>

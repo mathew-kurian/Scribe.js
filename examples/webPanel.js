@@ -24,7 +24,7 @@
         c : [1, 2, 3]
     });
 
-    app.listen(8080, function () {
-        console.time().log('Server listening at port 8080');
+    app.listen(3000, function () {
+        console.time().log('Server listening at port 3000');
     });
 }());

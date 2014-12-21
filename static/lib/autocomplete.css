@@ -6,9 +6,13 @@
 }
 
 .autocomplete input{
-  font-size: 1.2em;
+  font-size: 10px;
   width: 100%;
-  padding:0.4em;
+  padding: 8px;
+  background: #222;
+  border: 1px solid #2C2C2C;
+  color: #FFF;
+  font-family: "Open Sans";
 }
 
 .autocomplete ul{
@@ -25,8 +29,11 @@
   text-align: left;
   list-style:none;
   width: 100%;
-  padding:0.4em;
-  background-color: #fff;
+  padding: 7px;
+  background: #333;
+  font-family: "Open Sans";
+  font-size: 10px;
+  color: #FFF;
 }
 
 .autocomplete li.active{

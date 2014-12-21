@@ -15,7 +15,6 @@
 
             //reset
             $rootScope.sidebar = false;
-
             /**
              * attachCurrentFiles
              *
@@ -43,7 +42,7 @@
             var getCurrentLogs = function () {
 
                 $scope.currentFiles.forEach(function (file) {
-                    
+
                     $scope.lines = [];
 
                     if (file.selected) {
@@ -79,10 +78,10 @@
 
             //ng-toggle values
             //3 states : 1 / null / 0
-            $scope.showFile = null;
-            $scope.showTime = 1;
-            $scope.showDate = 0;
-            $scope.showTags = null;
+            $scope.showFile = 0;
+            $scope.showTime = 0;
+            $scope.showDate = 1;
+            $scope.showTags = 1;
 
             //Stores all lines (a line = a log)
             $scope.lines = [];
@@ -96,7 +95,7 @@
              * $scope.addFile
              *
              * Add a file to current files
-             * 
+             *
              * @param {String} path     Its path (with logWriter dir)
              * @type  {Function}
              */
@@ -117,7 +116,7 @@
                 attachCurrentFiles(logs.getLogs());
                 getCurrentLogs();
             };
-        
+
             $scope.reload();
 
 
@@ -132,7 +131,7 @@
                     getCurrentLogs();
                 }
             }, true);
-    
+
             //watch selectAll checkbox
             //to select all current files
             $scope.$watch('selectAll', function (value, old) {
