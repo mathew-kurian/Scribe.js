@@ -473,6 +473,7 @@ body {
 }
     .log__json {
         white-space: pre-wrap;
+        border-left: 1px solid #222;
     }
 .logs__empty {
     text-align: center;
