@@ -35,3 +35,6 @@ console.log(
 );
 console.tag("Combo!").time().file().log("A combo");
 
+//Chaining loggers
+console.info('Some info').tag('A tag').log('Some logs').warning('Some warning');
+
