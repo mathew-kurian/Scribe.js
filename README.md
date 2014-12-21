@@ -255,6 +255,9 @@ console.log(
         "A String"
 );
 console.tag("Combo!").time().file().log("A combo");
+
+//Chaining loggers
+console.info('Some info').tag('A tag').log('Some logs').warning('Some warning');
 ```
 
 **Params** : (all optional)
@@ -386,8 +389,13 @@ Do not use this unless you want to change how context (tags/location/time/date/.
 
 ###Console2.\[your logger](*args)
 
+
 Will print `*args` to the console, with context if there is.    
 See `Console2.buildArgs()`.
+
+**Params** : anything, printf format, etc.
+
+**Return** : the Console2 instance. 
 
 **Example** :
 
@@ -402,6 +410,8 @@ console.tag('Multiple args and big context').time().file().demo(
     [1, 2],         //array
     { foo : 'bar' } //object
 );
+
+console.log("Demo").time().warning("Test").info("some info");
 ```
 
 See [`/examples/console2.js`](/examples/console2.js)
