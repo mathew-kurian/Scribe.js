@@ -606,3 +606,7 @@ button.toggle-button.active {
 .higherScope {
     bottom: 29px !important;
 }
+
+.header__mode .ng-toggle-wrap {
+    margin-left: 5px;
+}
