@@ -1,4 +1,15 @@
-<p class="log">
+<p ng-class="{'log--collapse' : collapse == true, 'log': true}">
+
+    <span class="log__item log__number">
+        {{number}}
+    </span>
+
+    <span class="log__item log__collapse">
+        <span ng-if="isMultilines()" ng-click="changeState()">
+            <span ng-if="collapse">▶</span>
+            <span ng-if="!collapse">▼</span>
+        </span>
+    </span>
 
     <span class="log__item log__time" ng-if="showDate != 0 && (showDate == 1 || log.show.date) ||
                                              showTime != 0 && (showTime == 1 || log.show.time)">
@@ -22,8 +33,12 @@
         </span>
     </span>
 
-    <span class="log__item log__message" ng-if="log.hasOwnProperty('argsString')" >{{log.argsString}}</span>
+    <span class="log__item log__message" ng-if="log.hasOwnProperty('argsString')">
+        <span>{{log.argsString}}</span>
+    </span>
 
-    <span class="log__item log__json" ng-if="!log.hasOwnProperty('argsString')">{{log}}</span>
+    <span class="log__item log__json" ng-if="!log.hasOwnProperty('argsString')">
+        <span>{{log}}</span>
+    </span>
 
 </p>

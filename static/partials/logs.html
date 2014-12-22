@@ -8,6 +8,7 @@
         <log
             ng-repeat="line in lines | orderBy : order : reverse | filter : search track by $index"
             log="line"
+            number="$index"
             show-file="showFile"
             show-time="showTime"
             show-date="showDate"

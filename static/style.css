@@ -439,7 +439,7 @@ body {
     /* width: 100%; */
     text-align: left;
     /* padding: 15px; */
-    border-left: 15px solid #111;
+    border-left: 5px solid #111;
 }
 .log {
     display: table-row;
@@ -452,28 +452,37 @@ body {
 }
     .log__item {
         display: table-cell;
-        padding: 0 6px;
-
-        padding-right: 6px;
         text-align: left;
+        padding-bottom: 2px;
+        padding-right: 6px;
         padding-left: 0;
 }
-    .log__tags {
-    background: #111;
-}
-        .log__tag {}
-    .log__time {
-    background: #111;
-}
+    .log__number,
+    .log__collapse,
+    .log__time,
     .log__location {
+        background: #111;
+    }
+
+    .log__number {
+        text-align: right;
+}
+    .log__collapse {
+        font-size: 12px;
+}
+        .log__collapse > span {
+            display: block;
+            width: 12px; /* fix size between states */
+            padding: 2px 4px;
+            cursor: pointer;
+}
+    .log__tags {
     background: #111;
 }
         .log__location > span {
             color: #2980b9;
         }
     .log__message {
-        white-space: pre;
-
         color: #FFF;
         line-height: 13px;
         /* margin-top: -10px; */
@@ -482,6 +491,14 @@ body {
         border-left: 1px solid #222;
         /* box-shadow: inset 2px 0 2px -2px #000; */
         padding-left: 6px;
+}
+        .log__message > span {
+            display: block;
+            overflow: hidden;
+            white-space: pre;
+}
+        .log--collapse .log__message > span {
+            height : 15px;
 }
     .log__json {
         white-space: pre-wrap;
