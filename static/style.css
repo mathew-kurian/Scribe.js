@@ -498,7 +498,7 @@ body {
             white-space: pre;
 }
         .log--collapse .log__message > span {
-            height : 15px;
+            height: 13px;
 }
     .log__json {
         white-space: pre-wrap;
