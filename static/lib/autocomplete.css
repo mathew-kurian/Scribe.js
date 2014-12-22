@@ -13,6 +13,7 @@
   border: 1px solid #2C2C2C;
   color: #FFF;
   font-family: "Open Sans";
+  transition: background 250ms;
 }
 
 .autocomplete ul{
@@ -49,4 +50,8 @@
 .autocomplete li.active .highlight {
   background: #666;
   color: #fff;
+}
+.autocomplete input:focus {
+    background: #FFF;
+    color: #000;
 }

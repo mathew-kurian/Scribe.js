@@ -3,7 +3,7 @@
     <h3 class="sidebar__title">
         Files
         <span class="tiny pull-right">
-            <form action="">
+            <form action="" class="checkbox">
                 <input type="checkbox" id="selectAll" ng-model="selectAll">
                 <label for="selectAll">Select all</label>
             </form>
@@ -13,8 +13,8 @@
     <ul class="content">
 
         <li ng-repeat="file in currentFiles" class="sidebar__item">
-            <form action="">
-                <input type="checkbox" id="check{{$id}}" ng-model="file.selected">
+            <form action="" class="checkbox">
+                <input type="checkbox" class="checkbox" id="check{{$id}}" ng-model="file.selected">
                 <label for="check{{$id}}">{{file.name}}</label>
             </form>
         </li>
