@@ -1,5 +1,9 @@
 <p ng-class="{'log--collapse' : collapse == true, 'log': true}">
 
+    <span class="log__item log__number">
+        {{number}}
+    </span>
+
     <span class="log__item log__collapse">
         <span ng-if="isMultilines()" ng-click="changeState()">
             <span ng-if="collapse">▶</span>

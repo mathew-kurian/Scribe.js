@@ -439,7 +439,7 @@ body {
     /* width: 100%; */
     text-align: left;
     /* padding: 15px; */
-    border-left: 15px solid #111;
+    border-left: 5px solid #111;
 }
 .log {
     display: table-row;
@@ -457,6 +457,16 @@ body {
         padding-right: 6px;
         padding-left: 0;
 }
+    .log__number,
+    .log__collapse,
+    .log__time,
+    .log__location {
+        background: #111;
+    }
+
+    .log__number {
+        text-align: right;
+}
     .log__collapse {
         font-size: 12px;
 }
@@ -467,11 +477,6 @@ body {
             cursor: pointer;
 }
     .log__tags {
-    background: #111;
-}
-    .log__collapse,
-    .log__time,
-    .log__location {
     background: #111;
 }
         .log__location > span {

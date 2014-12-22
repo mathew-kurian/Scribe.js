@@ -22,6 +22,14 @@
                 log      : "=",
 
                 /**
+                 * number
+                 *
+                 * Line number
+                 * @type {Int}
+                 */
+                number : "=",
+
+                /**
                  * showFile
                  *
                  * Force to show file ?
