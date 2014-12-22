@@ -447,8 +447,9 @@ body {
         display: table-cell;
         padding: 0 6px;
 
-        padding-right: 3px;
+        padding-right: 6px;
         text-align: left;
+        padding-left: 0;
 }
     .log__tags {
     background: #111;
@@ -473,6 +474,7 @@ body {
         /* top: -10px; */
         border-left: 1px solid #222;
         /* box-shadow: inset 2px 0 2px -2px #000; */
+        padding-left: 6px;
 }
     .log__json {
         white-space: pre-wrap;

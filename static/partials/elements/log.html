@@ -1,6 +1,7 @@
 <p class="log">
 
-    <span class="log__item log__time">
+    <span class="log__item log__time" ng-if="showDate != 0 && (showDate == 1 || log.show.date) ||
+                                             showTime != 0 && (showTime == 1 || log.show.time)">
         <span ng-if="showDate != 0 && (showDate == 1 || log.show.date)" class="log__time__higher">
             {{log.context.time | date: 'EEE MMM dd yyyy'}}
         </span>
@@ -9,14 +10,14 @@
         </span>
     </span>
 
-    <span class="log__item log__tags">
-        <span ng-if="showTags != 0 && (showTags == 1 || log.show.tags)">
+    <span class="log__item log__tags" ng-if="showTags != 0 && (showTags == 1 || log.show.tags)">
+        <span>
             <span ng-repeat="tag in log.context.tags" class="log__tag bck-tag">{{handleTags(tag)}}</span>
         </span>
     </span>
 
-    <span class="log__item log__location">
-        <span ng-if="showFile != 0 && (showFile == 1 || log.show.location)" class="bck-tag">
+    <span class="log__item log__location" ng-if="showFile != 0 && (showFile == 1 || log.show.location)" >
+        <span class="bck-tag">
             {{log.context.location.filename}}:{{log.context.location.line}}
         </span>
     </span>
