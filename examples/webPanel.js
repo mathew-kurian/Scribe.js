@@ -14,8 +14,8 @@
 
 
     //Make some logs
-    console.addLogger('debug', 'inverse');
-    console.addLogger('fun', 'rainbow');
+    console.addLogger('debug', 'red');
+    console.addLogger('fun', 'red');
 
     console.time().fun('hello world');
     console.tag('This is a test').debug('A test');

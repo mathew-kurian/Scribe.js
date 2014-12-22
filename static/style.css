@@ -70,6 +70,9 @@ body {
     font-family: "Open Sans";
     /* font-weight: bold; */
     /* letter-spacing: 1px; */
+    padding: 1px 5px;
+    background: #000;
+    border: 1px solid #222;
 }
 
 .page {
