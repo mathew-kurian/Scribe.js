@@ -504,7 +504,7 @@ body {
         .log__message > span {
             display: block;
             overflow: hidden;
-            white-space: pre;
+            white-space: pre-wrap;
             font-size: 12px;
 }
         .log--collapse .log__message > span {
@@ -789,4 +789,12 @@ button.toggle-button.active {
 }
 .checkbox input[type=checkbox]:checked + label:after {
   opacity: 1;
+}
+
+.log__time_80 {
+    min-width: 80px;
+}
+
+.log__time_122 {
+    min-width: 122px;
 }
