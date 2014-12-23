@@ -124,3 +124,21 @@ h5 {
     height: 40px;
     width: 40px;
 }
+
+.button {
+    padding:10px 15px;
+    color:#FFF;
+    font-size:11px;
+    background:#21ce99;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    display: inline-block;
+    border-radius: 4px;
+    margin-top:20px;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    border:none;
+    margin-bottom:10px;
+}

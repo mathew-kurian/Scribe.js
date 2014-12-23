@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <base target="_parent" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ScribeJS Demo</title>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
@@ -11,7 +12,7 @@
     <script src ="js/index.js" type="text/javascript"></script>
   </head>
   <body>
-    <a class = "fork" href="https://github.com/bluejamesbond/Scribe.js"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    <a class = "fork" target="_parent" href="https://github.com/bluejamesbond/Scribe.js"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
     <div class = "header">
       <div class = "header__logo"></div>
     </div>
@@ -25,7 +26,7 @@
           <div class = "normal">
             <h2>Demo</h2>
             <h5>Enter some text to be printed out. JSON is supported as well. The text will be printed out by the server using a scribe-enabled console. You can then view the logs to see your content displayed.</h5>
-            <div class=""></div>
+            <a class="button" target="_parent" href="logs">access server logs</a>
           </div>
           <div class = "normal">
             <h2>Web Access</h2>
