@@ -1,2 +1,2 @@
-web: node ./examples/webPanel.js
+web: node ./herokuapp/app.js
 

@@ -9,15 +9,14 @@
        url('fonts/fontello.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
+
 /*
  * Scribe.js style
  */
 
 * {
     box-sizing: border-box;
-    font-family: "Source Code Pro", Consolas, Menlo, Monaco, Lucida Console,
-                 Liberation Mono, DejaVu Sans Mono,
-                 Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    font-family: "Ubuntu Mono", Courier, monospace;
 }
 html,
 body {
@@ -69,11 +68,11 @@ body {
     font-size: 9px;
     color: #21ce99;
     font-family: "Open Sans";
-    /* font-weight: bold; */
+    font-weight: bold;
     /* letter-spacing: 1px; */
     padding: 1px 5px;
     background: #000;
-    border: 1px solid #222;
+    border: 1px solid #2F2F2F;
 }
 
 .page {
@@ -122,13 +121,13 @@ body {
         cursor: pointer;}
     .header__title {
         position: absolute;
-        top: 5px;
+        top: 7px;
         left: 55px;
         height: 30px;
         width: 500px;
         font-size: 11px;
         line-height: 40px;
-        font-weight: 300;
+        font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 1px;
         color: #FFF;
@@ -144,10 +143,10 @@ body {
 
         text-transform: uppercase;
         font-family: "Open Sans";
-        font-weight: normal;
+        font-weight: bold;
         line-height: 40px;
         font-size: 10px;
-        letter-spacing: 1px;
+        letter-spacing: 0;
 }
         .header__mode > * {
             display: inline-block;
@@ -384,7 +383,11 @@ body {
             .action > * {
                 display: inline-block;
                 vertical-align: middle;
-            }
+            
+                font-family: "Open Sans";
+                font-size: 11px;
+                font-weight: bold;
+}
             .action .title {
                 color: #888;
                 font-weight: 400;
@@ -439,14 +442,14 @@ body {
     /* width: 100%; */
     text-align: left;
     /* padding: 15px; */
-    border-left: 5px solid #111;
+    /* border-left: 5px solid #111; */
 }
 .log {
     display: table-row;
     height: auto;
     width: 100%;
     font-size: 9px;
-    line-height: 17px;
+    line-height: 13px;
     color: #bebebe;
     margin: 0;
 }
@@ -461,14 +464,20 @@ body {
     .log__collapse,
     .log__time,
     .log__location {
-        background: #111;
+        background: #1B1B1B;
     }
 
     .log__number {
         text-align: right;
+        font-weight: bolder;
+        padding-left: 20px;
+        font-family: "Open Sans";
+        background: #333;
 }
     .log__collapse {
         font-size: 12px;
+        padding-right: 13px;
+        padding-left: 7px;
 }
         .log__collapse > span {
             display: block;
@@ -477,7 +486,7 @@ body {
             cursor: pointer;
 }
     .log__tags {
-    background: #111;
+    background: #1B1B1B;
 }
         .log__location > span {
             color: #2980b9;
@@ -496,9 +505,11 @@ body {
             display: block;
             overflow: hidden;
             white-space: pre;
+            font-size: 12px;
 }
         .log--collapse .log__message > span {
             height: 13px;
+            line-height: 13px;
 }
     .log__json {
         white-space: pre-wrap;
@@ -519,9 +530,9 @@ body {
         font-family: "Open Sans";
         color: #333;
         text-transform: uppercase;
-        font-weight: bold;
-        font-size: 16px;
-        line-height: 8px;
+        font-weight: bolder;
+        font-size: 22px;
+        line-height: 12px;
 }
 
 /**
@@ -576,7 +587,7 @@ body {
     font-family: "Open Sans";
 
 
-    font-weight: normal;
+    font-weight: bold;
     margin-right: 5px;
     text-transform: uppercase;
 }
@@ -585,8 +596,8 @@ body {
     font-family: "Open Sans";
 
     /* font-style: italic; */
-    color: #555;
-    font-weight: normal;
+    color: #676767;
+    font-weight: bold;
 }
 
 ng-view.ng-scope {
@@ -740,6 +751,7 @@ button.toggle-button.active {
   left: 0;
   border-radius: 3px;
   text-indent: 22px;
+  font-family: "Open Sans";
 }
 .checkbox label:after {
   content: '';
