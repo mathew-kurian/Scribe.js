@@ -1,12 +1,14 @@
 /* jshint -W079 */
-(function () {
-    var scribe  = require('../scribe')(),
+(function() {
+    var scribe = require('../scribe')(),
         console = process.console,
         express = require('express'),
-        app     = express();
+        app = express();
 
 
-    app.get('/', function (req, res) {
+    app.set('port', (process.env.PORT || 5000));
+
+    app.get('/', function(req, res) {
         res.send('Hello world, see you at /logs');
     });
 
@@ -21,10 +23,12 @@
     console.tag('This is a test').debug('A test');
     console.tag('An object').log({
         a: 'b',
-        c : [1, 2, 3]
+        c: [1, 2, 3]
     });
 
-    app.listen(3000, function () {
-        console.time().log('Server listening at port 3000');
+    var port = app.get("port");
+
+    app.listen(port, function() {
+        console.time().log('Server listening at port ' + port);
     });
-}());
+})();
