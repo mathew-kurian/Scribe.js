@@ -470,7 +470,7 @@ body {
     .log__number {
         text-align: right;
         font-weight: bolder;
-        padding-left: 20px;
+        padding-left: 12px;
         font-family: "Open Sans";
         background: #333;
 }
@@ -499,7 +499,7 @@ body {
         /* top: -10px; */
         border-left: 1px solid #222;
         /* box-shadow: inset 2px 0 2px -2px #000; */
-        padding-left: 6px;
+        padding-left: 10px;
 }
         .log__message > span {
             display: block;
