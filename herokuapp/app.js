@@ -58,7 +58,7 @@
             }
 
             // print
-            if (typeof tag === 'undefined') {
+            if (tag) {
                 console.log(msg);
             } else {
                 console.tag(tag).log(msg);
