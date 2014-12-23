@@ -59,9 +59,9 @@
 
             // print
             if (tag) {
-                console.log(msg);
-            } else {
                 console.tag(tag).log(msg);
+            } else {
+                console.log(msg);
             }
 
             res.status(200).send("Server logged message");
