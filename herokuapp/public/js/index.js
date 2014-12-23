@@ -17,10 +17,10 @@
             $.post("/", {
                 tag : tag,
                 msg : msg
-            }, function(/*data*/){
-                alert("Message sent");
-            }).fail(function(/*err*/) {
-                alert( "Message error" );
+            }, function(data){
+                alert(data);
+            }).fail(function(err) {
+                alert(err.responseText);
             }).always(function() {
                 _submit = false;
             });

@@ -7,6 +7,7 @@
         app = express();
 
     console.addLogger('log', 'green');
+    console.addLogger('err', 'red');
 
     // port
     app.set('port', (process.env.PORT || 5000));
@@ -46,8 +47,8 @@
             var tag = req.param('tag');
             var msg = req.param('msg');
 
-            if (typeof msg === 'undefined') {
-                return res.status(400).send('`msg` param not defined');
+            if (!msg) {
+                return res.status(400).send('Param `msg` not defined');
             }
 
             try {
@@ -63,11 +64,12 @@
                 console.tag(tag).log(msg);
             }
 
-            res.status(200).send("server logged message");
+            res.status(200).send("Server logged message");
         });
 
         req.on('close', function(err){
-            res.status(400).json(err);
+            console.err(err);
+            res.status(400).json("Server read stream closed unexpectedly. Check console.");
         });
 
     });
