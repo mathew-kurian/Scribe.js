@@ -18,6 +18,8 @@
                 tag : tag,
                 msg : msg
             }, function(data){
+                $("#input-tag").val("");
+                $("#input-msg").val("");
                 alert(data);
             }).fail(function(err) {
                 alert(err.responseText);

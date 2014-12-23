@@ -415,6 +415,7 @@ body {
                 padding: 2px 4px;  color: #FFF;
                 border: 1px solid #333;
                 transition: background 250ms;
+                margin-right: 5px;
 }
         .action--reload {
             color: #888;
