@@ -74,14 +74,14 @@ html, body {
 .important {
     border-left:8px solid #333;
     padding:20px;
-    padding-bottom: 30px;
+    padding-bottom: 40px;
 }
 
 .normal {
     border-left:8px solid transparent;
     padding:20px;
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 0;
 }
 
 h1 {
@@ -126,19 +126,62 @@ h5 {
 }
 
 .button {
-    padding:10px 15px;
-    color:#FFF;
+    padding: 16px 26px;
+    color: #fff;
     font-size:11px;
-    background:#21ce99;
+    background: #555;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 1px;
     display: inline-block;
-    border-radius: 4px;
-    margin-top:20px;
     cursor: pointer;
     outline: none;
     text-decoration: none;
+    border: 2px solid #555;
+    vertical-align: top;
+    border-top-width: 3px;
+    border-radius: 4px;
+}
+
+.direct {
+    padding: 16px 40px;
+    color: #21ce99;
+    font-size: 14px;
+    background: transparent;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    border: none;
+    vertical-align: top;
+    border-top-width: 3px;
+    border-radius: 8px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.direct:before {
+    content: "▶";
+    color: #21ce99;
+    font-size: 36px;
+    position: absolute;
+    top: -2px;
+    left: 0px;
+}
+
+input {
+    padding: 16px;
     border:none;
-    margin-bottom:10px;
+    background: #222;
+    font-family:"Ubuntu Mono", monospace;
+    font-size: 16px;
+    color:#fff;
+    display: inline-block;
+    vertical-align: top;
+    outline:none;
+    border: 2px solid #333;
+    border-radius: 4px;
 }

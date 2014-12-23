@@ -89,7 +89,7 @@
             //default order by time
             $scope.order   = "context.time";
             //order reverse
-            $scope.reverse = false;
+            $scope.reverse = true;
 
             /**
              * $scope.addFile

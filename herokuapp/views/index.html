@@ -12,7 +12,9 @@
     <script src ="js/index.js" type="text/javascript"></script>
   </head>
   <body>
-    <a class = "fork" target="_blank" href="https://github.com/bluejamesbond/Scribe.js"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    <a class = "fork" target="_blank" href="https://github.com/bluejamesbond/Scribe.js">
+      <img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png">
+    </a>
     <div class = "header">
       <div class = "header__logo"></div>
     </div>
@@ -26,12 +28,17 @@
           <div class = "normal">
             <h2>Demo</h2>
             <h5>Enter some text to be printed out. JSON is supported as well. The text will be printed out by the server using a scribe-enabled console. You can then view the logs to see your content displayed.</h5>
-            <a class="button" target="_frame" href="logs">access server logs</a>
+            <div style="width:100%;margin-top:20px;">
+              <input id="input-tag" style="margin-right:10px;color:#21ce99;" placeholder="Enter tag"/>
+              <input id="input-msg" style="margin-right:10px;width:565px" placeholder="Enter message"/>
+              <button id="submit" class="button" href="#">Console.log</button>
+            </div>
+              <a class="direct" target="_frame" href="logs">Access System Logs</a>
           </div>
           <div class = "normal">
             <h2>Web Access</h2>
             <h5>All your logs can be accessed from the web with a rich HTML interface.</h5>
-            <img src = "img/screenshot-1.png"/>
+            <img alt="WebPanel screenshot" src = "img/screenshot-1.png"/>
           </div>
         </div>
       </div>
