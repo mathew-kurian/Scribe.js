@@ -383,7 +383,7 @@ body {
             .action > * {
                 display: inline-block;
                 vertical-align: middle;
-            
+
                 font-family: "Open Sans";
                 font-size: 11px;
                 font-weight: bold;
@@ -475,9 +475,9 @@ body {
         background: #333;
 }
     .log__collapse {
-        font-size: 12px;
-        padding-right: 13px;
-        padding-left: 7px;
+        font-size: 8px;
+        padding-right: 10px;
+        padding-left: 5px;
 }
         .log__collapse > span {
             display: block;
