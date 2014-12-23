@@ -411,8 +411,9 @@ body {
 
                 background: #222;
                 outline: none;
-                background: #222;  font-size: 11px;
-                padding: 2px 4px;  color: #FFF;  border: 1px solid #2C2C2C;
+                background: #333;  font-size: 11px;
+                padding: 2px 4px;  color: #FFF;
+                border: 1px solid #333;
                 transition: background 250ms;
 }
         .action--reload {
