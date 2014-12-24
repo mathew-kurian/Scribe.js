@@ -1,2 +1,2 @@
-scribe: node ./herokuapp/app.js
+web: node ./herokuapp/app.js
 
