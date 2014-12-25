@@ -24,7 +24,7 @@ You can access a live demo of the library [here](https://bluejamesbond.github.io
 
 #Wiki
 
-For examples, tests, and API refer to the [Scribe.js Wiki](https://github.com/bluejamesbond/Scribe.js/wiki/1-·-Home).
+For examples, tests, and API refer to the [Scribe.js Wiki](https://github.com/bluejamesbond/Scribe.js/wiki).
 
 #Installation
 ```
