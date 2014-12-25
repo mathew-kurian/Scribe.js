@@ -20,7 +20,7 @@ Unlike many of the libraries out there, Scribe.js allows logging on multiple fil
 - Features a rich HTML web panel to access logs from anywhere in the world
 
 #Live Demo
-You can access a live demo of the library [Scribe.js Wiki](https://bluejamesbond.github.io/Scribe.js/).
+You can access a live demo of the library [here](https://bluejamesbond.github.io/Scribe.js/).
 
 #Wiki
 
