@@ -28,7 +28,7 @@ For examples, tests, and API refer to the [Scribe.js Wiki](https://github.com/bl
 
 #Installation
 ```
-npm install git+https://github.com/bluejamesbond/Scribe.js.git
+npm install scribe-js
 ```
 
 #Contributors
