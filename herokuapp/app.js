@@ -64,12 +64,12 @@
                 console.log(msg);
             }
 
-            res.status(200).send("Server logged message");
+            res.status(200).send("Success! Check system logs to see your message.");
         });
 
         req.on('close', function(err){
             console.err(err);
-            res.status(400).json("Server read stream closed unexpectedly. Check console.");
+            res.status(400).json("Error! Check system logs to identify the error.");
         });
 
     });
