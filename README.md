@@ -4,7 +4,7 @@
 
 #Overview
 
-![Example](http://i.imgur.com/fM696mU.png)
+![Sidebyside](http://i.imgur.com/uvmCEWT.png)
 
 Unlike many of the libraries out there, Scribe.js allows logging on multiple files and is divided into folders by date. And it is possibly the easiest logging you can implement.
 
