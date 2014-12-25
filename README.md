@@ -4,13 +4,13 @@
 
 #Overview
 
-![webPanel](__misc/webPanelDemo.gif)
-*Web Panel*
-
-![terminal](__misc/terminalDemo.png)
-*Terminal*
-
 Unlike many of the libraries out there, Scribe.js allows logging on multiple files and is divided into folders by date. And it is possibly the easiest logging you can implement.
+
+##WebPanel
+![webPanel](__misc/webPanelDemo.gif)  
+
+##Terminal
+![terminal](__misc/terminalDemo.png)  
 
 ##Features
 
