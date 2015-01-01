@@ -13,13 +13,13 @@
 
     <span class="log__item log__time log__time_80" ng-if="showDate != 0 && (showDate == 1 || log.show.date)">
         <span  class="log__time__higher">
-            {{log.context.time | date: 'EEE MMM dd yyyy'}}
+            {{timezoneDate(log.context.time) | date: 'EEE MMM dd yyyy'}}
         </span>
     </span>
 
     <span class="log__item log__time log__time_122" ng-if="showTime != 0 && (showTime == 1 || log.show.time)">
         <span class="log__time__lower">
-            {{log.context.time | date: 'yyyy-MM-ddTHH:mm:ss:Z'}}
+            {{timezoneDate(log.context.time) | date: 'yyyy-MM-ddTHH:mm:ss:Z'}}
         </span>
     </span>
 
