@@ -24,7 +24,7 @@
              * Go to to a next page
              *
              * @param {int} next    if < 0, goes to older dates, if > 0 goes to newer dates
-             */ 
+             */
             $scope.nextPage = function (next) {
 
                 var currentDate = $location.search().from || Date.now(),
@@ -42,17 +42,21 @@
 
             //build blocks
             $scope.blocks = dates.map(function (item) {
-                
+
+                var itemDate = $rootScope.timezoneDate(item.date);
+                console.log(item.date);
+                console.log(itemDate);
+
                 return {
                     type          : 'date',
-                    messageTop    : $filter('date')(item.date, 'MMM'),
-                    message       : $filter('date')(item.date, 'd'),
-                    messageBottom : $filter('date')(item.date, 'yyyy'),
+                    messageTop    : $filter('date')(itemDate, 'MMM'),
+                    message       : $filter('date')(itemDate, 'd'),
+                    messageBottom : $filter('date')(itemDate, 'yyyy'),
                     click : function () {
                         //save files
                         logs.setLogs(item.files.map(function (el, index) {
                             return {
-                                selected : index === 0, //select the first by default 
+                                selected : index === 0, //select the first by default
                                 name     : el.name,
                                 path     : el.path
                             };
@@ -62,7 +66,7 @@
                         $rootScope.go('logs');
                     }
                 };
-                
+
             });
         }
     ]);

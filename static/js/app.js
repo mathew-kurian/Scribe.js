@@ -205,6 +205,43 @@
             });
 
             /**
+             * $rootScope.scribeTimezone
+             *
+             * Store the Scribe server timezoneOffset for showing good dates
+             *
+             * @type {Int}
+             */
+            $rootScope.scribeTimezone = 0;
+
+            ScribeAPI.timezoneOffset(function (result) {
+                $rootScope.scribeTimezone = result.timezoneOffset;
+            });
+
+            /**
+             * timezoneDate
+             *
+             * Add/remove minutes to the timestamp according to
+             * the timezone offset between server and browser time
+             * Because angular date filter print date with the browser timezone
+             *
+             * @param  {Int|String}  timestamp
+             * @return {Int}                    the new timestamp
+             *
+             * @type {Function}
+             */
+            $rootScope.timezoneDate = function (timestamp) {
+
+                timestamp = Number(timestamp);
+
+                var serverOffset = $rootScope.scribeTimezone;
+                var localOffset  = (new Date()).getTimezoneOffset();
+
+                var offset = serverOffset - localOffset;
+
+                return timestamp + offset * 60;
+            };
+
+            /**
              * $rootScope.back
              *
              * History back

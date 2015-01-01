@@ -17,7 +17,7 @@
 
             //build block for each logWriter
             $scope.blocks = $rootScope.logWriters.map(function (item) {
-                
+
                 return {
                     message : item,
                     click   : function () {

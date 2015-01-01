@@ -69,7 +69,9 @@
             templateUrl : 'partials/elements/log.html',
             replace     : true,
 
-            controller : ['$scope', function ($scope) {
+            controller : ['$rootScope', '$scope', function ($rootScope, $scope) {
+
+                $scope.timezoneDate = $rootScope.timezoneDate;
 
                 /**
                  * $scope.handleTags
