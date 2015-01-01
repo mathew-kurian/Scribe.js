@@ -8,3 +8,4 @@ logs*/
 Thumbs.db
 
 npm-debug.logGruntfile.js
+npm-debug.log
