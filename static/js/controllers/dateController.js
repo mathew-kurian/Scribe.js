@@ -44,8 +44,6 @@
             $scope.blocks = dates.map(function (item) {
 
                 var itemDate = $rootScope.timezoneDate(item.date);
-                console.log(item.date);
-                console.log(itemDate);
 
                 return {
                     type          : 'date',
