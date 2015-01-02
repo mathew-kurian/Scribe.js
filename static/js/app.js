@@ -238,7 +238,7 @@
 
                 var offset = serverOffset - localOffset;
 
-                return timestamp + offset * 60;
+                return timestamp + offset * 60 * 1000;
             };
 
             /**
