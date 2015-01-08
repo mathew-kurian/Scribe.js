@@ -78,7 +78,9 @@
 
 
     //temp, log every 10 minutes
-    console.tag("Test").log("Server date : " + new Date());
+    setInterval(function () {
+        console.tag("Test").log("Server date : " + new Date());
+    }, 10 * 60 * 1000);
 
     app.listen(port, function() {
         console.time().log('Server listening at port ' + port);
