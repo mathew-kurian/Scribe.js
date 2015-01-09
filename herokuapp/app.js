@@ -76,13 +76,13 @@
 
     var port = app.get('port');
 
-
-    //temp, log every 10 minutes
+    //log something every 10 minutes
     setInterval(function () {
-        console.tag("Test").log("Server date : " + new Date());
+        console.tag("Test").log("Hi there ! Server date : " + new Date());
     }, 10 * 60 * 1000);
 
     app.listen(port, function() {
         console.time().log('Server listening at port ' + port);
     });
+
 })();
