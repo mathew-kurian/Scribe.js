@@ -29,7 +29,11 @@ myConfigConsole.addLogger('fun', ['rainbow', 'inverse', 'black']);
 
 myConfigConsole.fun('Some rainbow in background !');
 
-myConfigConsole.addLogger('log');
+myConfigConsole.addLogger('log', null,
+    {
+        defaultTags : [{msg : 'Default tag', colors: 'cyan'}]
+    }
+);
 
 myConfigConsole.tag('A tag', 123).log('custom tags');
 myConfigConsole.time().log('custom time');
