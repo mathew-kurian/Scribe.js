@@ -16,7 +16,15 @@
             ></log>
     </div>
 
-    <div class="logs__empty" ng-if="lines.length == 0">
+    <div class="logs__loader sk-spinner sk-spinner-wave" ng-if="lines === false">
+        <div class="sk-rect1"></div>
+        <div class="sk-rect2"></div>
+        <div class="sk-rect3"></div>
+        <div class="sk-rect4"></div>
+        <div class="sk-rect5"></div>
+    </div>
+
+    <div class="logs__empty" ng-if="lines !== false && lines.length == 0">
         <h1>Select file(s) from</h1>
         <h1>sidebar to display</h1>
     </div>
