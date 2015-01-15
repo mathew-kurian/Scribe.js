@@ -15,6 +15,7 @@
 
             //reset
             $rootScope.sidebar = false;
+
             /**
              * attachCurrentFiles
              *
@@ -43,12 +44,13 @@
 
                 $scope.currentFiles.forEach(function (file) {
 
-                    $scope.lines = [];
-
                     if (file.selected) {
                         ScribeAPI.log({
                             path : file.path
                         }, function (data) {
+                            if (!Array.isArray($scope.lines)) {
+                                $scope.lines = [];
+                            }
                             $scope.lines = $scope.lines.concat(data);
                         });
                     }
@@ -84,7 +86,7 @@
             $scope.showTags = 1;
 
             //Stores all lines (a line = a log)
-            $scope.lines = [];
+            $scope.lines = false;
 
             //default order by time
             $scope.order   = "context.time";
@@ -113,6 +115,7 @@
              * @type {Function}
              */
             $scope.reload = function () {
+                $scope.lines = false;
                 attachCurrentFiles(logs.getLogs());
                 getCurrentLogs();
             };
@@ -127,6 +130,7 @@
             //watch current files for changes
             //as user can select / unselect files in sidebar
             $scope.$watch('currentFiles', function (value, old) {
+                $scope.lines = false;
                 if (value !== old) {
                     getCurrentLogs();
                 }
