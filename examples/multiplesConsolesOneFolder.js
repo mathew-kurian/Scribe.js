@@ -13,6 +13,6 @@ var consoleTwo = scribe.console({
     }
 });
 
-//both will log in /testLogs 
+//both will log in /testLogs
 consoleOne.log("Hello one");
 consoleOne.log("Hello two");
