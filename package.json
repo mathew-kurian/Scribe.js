@@ -1,7 +1,7 @@
 {
   "name": "scribe-js",
   "description": "Comprehensive logging framework with online interface",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "homepage": "https://github.com/bluejamesbond/Scribe.js",
   "keywords": [],
   "author": {
@@ -23,18 +23,6 @@
     }
   ],
   "main": "scribe.js",
-  "scripts": {
-    "test": "grunt nodeunit"
-  },
-  "devDependencies": {
-    "grunt-contrib-jshint": "~0.6.4",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt": "~0.4.5"
-  },
-  "directories": {
-    "test": "test"
-  },
   "license": "MIT",
   "dependencies": {
     "callsite": "^1.0.0",

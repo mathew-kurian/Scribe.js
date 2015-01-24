@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/scribe-js.svg)](http://badge.fury.io/js/scribe-js)  [![Build Status](https://travis-ci.org/bluejamesbond/Scribe.js.svg?branch=master)](https://travis-ci.org/bluejamesbond/Scribe.js)  
+   
 ![Logo](https://raw.githubusercontent.com/bluejamesbond/Scribe.js/master/__misc/scribejs%20design%20logo%20%5Ba%5D.png)
 
 **Lightweight NodeJS Logging**
