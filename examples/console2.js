@@ -22,6 +22,7 @@ console.tag({msg : 'my-tag', colors : ['red', 'inverse']}).log("Use colors.js co
 
 //File and line number
 console.file().log("Print the file and the line of the call");
+console.file('myFile.js', 42).log("Custom filename and line");
 
 //Object
 console.log({just : 'an object'});
