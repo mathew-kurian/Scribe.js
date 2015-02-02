@@ -14,6 +14,8 @@ console.log("A string %s and a number %d", "hello", "123"); //you can use printf
 //Time
 console.time().log("Print the full time");
 console.date().log("Just print the date");
+//custom time
+console.time((new Date()).setFullYear(1999)).log("Custom time");
 
 //Tags
 console.tag("My Tag").log("Add a tag");
