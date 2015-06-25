@@ -593,6 +593,7 @@ body {
     font-weight: bold;
     margin-right: 5px;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .log__time__lower {
