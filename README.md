@@ -4,6 +4,9 @@
 
 **Lightweight NodeJS Logging**
 
+# UPDATE: Download Scribe 2.0 [Alpha 1](https://github.com/bluejamesbond/Scribe.js/tree/dev)
+Use cautiously
+
 #Overview
 
 Unlike many of the libraries out there, Scribe.js allows logging on multiple files and is divided into folders by date. And it is possibly the easiest logging you can implement.
