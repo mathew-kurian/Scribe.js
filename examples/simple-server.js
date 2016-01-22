@@ -3,12 +3,14 @@ import Scribe from '../index.js'
 import * as JSON2 from '../libs/JSON2'
 
 const port = 4005;
+const socketPort = 50000;
+
 const console = new Scribe(process.pid, {
   name: 'Scribe',
   mongoUri: 'mongodb://localhost/scribe',
   publicUri: 'http://localhost',
   basePath: 'scribe/',
-  socketPort: 4000,
+  socketPort: socketPort,
   web: {
     router: {
       username: 'build',
@@ -19,8 +21,8 @@ const console = new Scribe(process.pid, {
       useSession: true
     },
     client: {
-      port: 4005,
-      socketPorts: [4000],
+      port: port,
+      socketPorts: [socketPort],
       exposed: {
         all: {label: 'all', query: {expose: {$exists: true}}},
         error: {label: 'error', query: {expose: 'error'}},
