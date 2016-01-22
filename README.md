@@ -51,5 +51,6 @@ Refer to [`examples`](/examples)
 Documentation coming in the future
 
 ```js
-console.pipe(expose, 'bash',new Inspector(), new DefaultConsole());
+// console.pipe(expose, name, ...throughs);
+console.pipe('log', 'bash',new Inspector(), new DefaultConsole());
 ```

@@ -1,7 +1,7 @@
 import Scribe from '../'
 import express from 'express'
 import expect from 'expect.js'
-import fetch from 'node-fetch'
+import request from 'superagent'
 import async from 'async'
 
 describe('Basic Scribe', ()=> {
@@ -32,10 +32,19 @@ describe('Basic Scribe', ()=> {
       console.log(`Listening on ${port}`);
 
       async.each(new Array(requestsCount), (i, callback)=> {
-        fetch(`http://localhost:${port}/test`)
-            .then(res => res.text())
-            .then(text => console.log(`Received response ${++count}/${requestsCount}`, text))
-            .then(()=> callback());
+        count++;
+
+        request
+            .get(`http://localhost:${port}/test`)
+            .end((err, req)=> {
+              if (err) {
+                return callback();
+              } else {
+                console
+                    .log(`Received response ${count}/${requestsCount}`, req.body)
+                    .then(()=>callback());
+              }
+            });
       }, () => {
         expect(count).to.equal(requestsCount);
         done();
