@@ -5,7 +5,7 @@ import Scribe from '../index.js'
 import * as JSON2 from '../libs/JSON2'
 
 const port = 4005;
-const socketPort = 4000;
+const socketPort = 50000;
 const cpus = 4;
 
 if (cluster.isMaster) {
@@ -18,7 +18,7 @@ if (cluster.isMaster) {
     mongoUri: 'mongodb://localhost/scribe',
     publicUri: 'http://localhost',
     basePath: 'scribe/',
-    socketPort: 4000 + cluster.worker.id - 1,
+    socketPort: socketPort + cluster.worker.id - 1, // assign a port to a worker worker
     web: {
       router: {
         username: 'build',
@@ -31,7 +31,7 @@ if (cluster.isMaster) {
         useSession: true
       },
       client: {
-        port: 4005,
+        port: port,
         socketPorts: [socketPort, socketPort + 1, socketPort + 2, socketPort + 3],
         exposed: {
           all: {label: 'all', query: {expose: {$exists: true}}},
