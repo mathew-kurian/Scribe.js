@@ -1,7 +1,7 @@
 # Scribe 3.0
 Node.js logging made simple! Online access to logs and more... 
 
-```
+```bash
 npm install git://github.com/bluejamesbond/Scribe.js.git#dev
 ```
 
@@ -9,6 +9,7 @@ npm install git://github.com/bluejamesbond/Scribe.js.git#dev
 - Console features a pipeline (i.e. transforms)
 - Using React instead of Angular for improvements with large data
 - Live notifications with Socket.IO
+- Native applications for Windows/Linux/Mac
 - MongoDB writer
 - Extensive object inspector
 - Support for multithreading (clusters)
@@ -45,3 +46,10 @@ http://localhost:4005/scribe
 
 ## Reference
 Refer to [`examples`](/examples) 
+
+## Custom Pipelines
+Documentation coming in the future
+
+```js
+console.pipe(expose, 'bash',new Inspector(), new DefaultConsole());
+```
