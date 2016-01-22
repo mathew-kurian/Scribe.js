@@ -1,4 +1,4 @@
-# Scribe 2.0
+# Scribe 3.0
 Node.js logging made simple! Online access to logs and more... 
 
 ```
