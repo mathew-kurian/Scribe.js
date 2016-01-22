@@ -1,0 +1,46 @@
+.scroll {
+  overflow: hidden;
+  &:hover {
+    overflow: auto;
+  }
+  &.scroll-y:hover {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  &.scroll-x:hover {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  transition: all 250ms ease-in;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  transition: all 250ms ease-in;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  transition: all 250ms ease-in;
+  background: rgba(255, 255, 255, 0.3) !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+  transition: all 250ms ease-in;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  transition: all 250ms ease-in;
+  background: rgba(255, 255, 255, 0.1) !important;
+}

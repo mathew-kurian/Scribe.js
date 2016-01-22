@@ -1,0 +1,363 @@
+@import "shared/reset";
+@import "shared/fonts";
+@import "shared/base";
+@import "shared/scroll";
+@import "shared/layouts";
+@import "shared/datepicker";
+
+html, body {
+  background: #222;
+  font-size: 0.95rem;
+  line-height: 1.5rem;
+}
+
+.header {
+  width: 100%;
+  height: 50px;
+  min-height: 50px;
+  background: #222;
+  box-shadow: 0 1px 10px #111;
+  position: relative;
+  z-index: 3;
+}
+
+.group {
+  .title {
+    text-transform: uppercase;
+    color: #444;
+    font-weight: bold;
+    height: 50px;
+    line-height: 50px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #ddd;
+    padding-left: 20px;
+    font-size: 80%;
+  }
+
+  .item {
+    text-transform: uppercase;
+    padding: 5px 20px;
+    color: #888;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-size: 90%;
+    &.selected {
+      background: #2589DE;
+      color: white !important;
+    }
+  }
+}
+
+.sidebar {
+  width: 200px;
+  min-width: 170px;
+  background: #fff;
+}
+
+.bgRed {
+  background: #B90707 !important;
+}
+
+.bgBlue {
+  background: #026869 !important;
+}
+
+.bgGreen {
+  background: #00b400 !important;
+}
+
+.green {
+  color: #00b400 !important;
+}
+
+.darkGray {
+  color: #525252 !important;
+}
+
+.bgDarkRed {
+  background: #2F0505;
+}
+
+.gray {
+  color: #888;
+}
+
+.dim {
+  opacity: 0.5;
+}
+
+.tag {
+  margin-right: 4px;
+  text-transform: uppercase;
+  color: #CF358C;
+  &.persistent {
+    color: #32BBC7;
+  }
+  &.stroke {
+    font-size: 9px;
+    padding: 1px 3px;
+    border: 1px solid #888;
+    border-radius: 10px;
+  }
+  &.fill {
+    margin-left: 0;
+    padding: 2px 5px;
+    color: rgba(255, 255, 255, 0.6);
+    background: #2F2F2F;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    font-size: 8px;
+  }
+}
+
+.pre {
+  margin-right: 3px;
+  @extend .monospaced;
+  font-size: 85%;
+  font-weight: normal;
+}
+
+.yellow {
+  color: #D4D400;
+}
+
+.entry {
+  font-size: 80%;
+  line-height: 130%;
+  padding: 3px 0;
+  white-space: pre;
+}
+
+.line {
+  color: #555;
+  text-align: right;
+  display: inline-block;
+  margin-right: 5px;
+  @extend .monospaced;
+  font-size: 80%;
+}
+
+.raw {
+  position: relative;
+  z-index: 2;
+  padding: 8px 20px !important;
+  padding-left: 0 !important;
+  border-top: 1px dotted #333;
+  border-bottom: 1px dotted #333;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.white {
+  color: #FFF;
+}
+
+.inspector {
+  position: relative;
+  flex: 1;
+  white-space: pre-wrap;
+  &:first-child {
+    padding-left: 0;
+  }
+}
+
+.inspector > .ObjectInspector {
+  display: inline-block;
+  margin-right: 4px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.ObjectInspector {
+  cursor: default;
+  display: block;
+  color: #FFF;
+}
+
+.ObjectInspector-unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.ObjectInspector:first-child .ObjectInspector-expand-control {
+  margin-left: 0;
+}
+
+.ObjectInspector-expand-control {
+  color: #888888;
+  margin-right: 3px;
+  white-space: pre;
+  margin-left: 5px;
+  font-size: 60%;
+  position: relative;
+  top: 1px;
+}
+
+.ObjectInspector-property {
+  padding-top: 2px;
+}
+
+.ObjectInspector-object-name {
+  color: #26F714;
+}
+
+.ObjectInspector-object-value-null, .ObjectInspector-object-value-undefined {
+  color: rgb(128, 128, 128);
+}
+
+.ObjectInspector-object-value-string {
+  color: #525252;
+}
+
+.ObjectInspector-object-value-symbol {
+  color: #32BBC7;
+}
+
+.ObjectInspector-object-value-number {
+  color: #32BBC7;
+}
+
+.ObjectInspector-object-value-boolean {
+  color: #CF358C;
+}
+
+.ObjectInspector-object-value-function-keyword {
+  color: #CF358C;
+  font-style: italic;
+}
+
+.ObjectInspector-object-value-function-name {
+  font-style: italic;
+}
+
+.ObjectInspector-object-preview {
+  font-style: italic;
+}
+
+.ObjectInspector-property-nodes-container {
+  padding-left: 12px
+}
+
+.expand-right {
+  max-width: 12px;
+  width: 12px;
+  min-width: 12px;
+  transition: transform 300ms;
+  cursor: pointer;
+  user-select: none;
+  transform-origin: center center;
+  max-height: 12px;
+  min-height: 12px;
+  margin-right: 3px;
+  height: 12px;
+  text-align: center;
+  font-size: 60%;
+  display: inline-block;
+  &.rotate {
+    transform: rotate(-90deg);
+  }
+}
+
+.datepicker__input-container {
+  display: inline-block;
+  float: right;
+}
+
+.datepicker__input {
+  width: 60px;
+  opacity: 0;
+  top: 10px;
+  cursor: pointer;
+}
+
+.datepicker__input-container::after {
+  font-family: 'Fontello';
+  content: '';
+  min-height: 10px;
+  min-width: 10px;
+  position: relative;
+  left: -15px;
+  font-size: 80%;
+  top: -1px;
+  pointer-events: none;
+}
+
+.query {
+  width: 100%;
+  border-radius: 4px;
+  margin: 0;
+  outline: none;
+  line-height: 14px;
+  font-size: 14px;
+  overflow: hidden;
+  color: #FFF;
+}
+
+.field {
+  $fieldRadius: 3px;
+
+  .name {
+    font-size: 10px;
+    width: 60px;
+    max-width: 60px;
+    background: #444;
+    color: #999;
+    letter-spacing: 1px;
+    border-radius: $fieldRadius 0 0 $fieldRadius;
+    padding-right: 5px;
+    line-height: 26px;
+    text-align: right;
+    text-transform: uppercase;
+  }
+  .input {
+    background: #272822;
+    border-radius: 0 $fieldRadius $fieldRadius 0;
+    padding: 5px 5px 4px;
+    border: 1px solid #444;
+    * {
+      font-size: 10px;
+    }
+  }
+}
+
+.button {
+  background: #2589DE;
+  border-radius: 20px;
+  color: #FFF;
+  font-size: 70%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: background 50ms;
+  height: 26px;
+  line-height: 26px;
+  &.disabled {
+    cursor: none;
+    pointer-events: none;
+    background: #0f3657;
+  }
+}
+
+.spinner > div {
+  background: rgba(255, 255, 255, 0.40) !important;
+}
+
+.spinner {
+  margin: 0 auto;
+  transform: scale3d(0.5, 0.5, 1);
+  top: 1px;
+  position: relative;
+  position: relative;
+}
+
+.bgPurple {
+  background: #6C07B9 !important;
+}

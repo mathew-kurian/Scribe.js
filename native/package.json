@@ -1,0 +1,20 @@
+{
+    "main": "http://localhost:4005/scribe/",
+    "name": "Scribe",
+    "description": "Scribe logging",
+    "version": "0.1.0",
+    "window": {
+        "title": "Scribe.js",
+        "icon": "logo.png",
+        "toolbar": false,
+        "frame": true,
+        "width": 800,
+        "height": 500,
+        "position": "center",
+        "min_width": 400,
+        "min_height": 200
+    },
+    "webkit": {
+        "plugin": false
+    }
+}

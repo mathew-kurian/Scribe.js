@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    link(rel='stylesheet', type='text/css', href='styles/viewer.min.css')
+    script.
+      window.config = !{config};
+    script(src='scripts/socket.io-1.4.3.js',defer=true)
+    script(src='scripts/viewer/Bootstrap.min.js',defer=true)
+    style.
+      body,.full {width:100%;height:100%;position:relative;}
+  body
+    #app.full

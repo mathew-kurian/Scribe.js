@@ -1,0 +1,341 @@
+[
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "async",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git+https://github.com/caolan/async.git",
+    "comment": "1.5.2"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-plugin-transform-object-rest-spread",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-object-rest-spread",
+    "comment": "6.3.13"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-plugin-transform-runtime",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-runtime",
+    "comment": "6.4.3"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-preset-es2015",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-preset-es2015",
+    "comment": "6.3.13"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-register",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-register",
+    "comment": "6.4.3"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "basic-auth",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/jshttp/basic-auth",
+    "comment": "1.0.3"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "body-parser",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/expressjs/body-parser",
+    "comment": "1.14.2"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "brace",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git://github.com/thlorenz/brace.git",
+    "comment": "0.7.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "callsite",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "link": "http://registry.npmjs.org/callsite/-/callsite-1.0.0.tgz",
+    "comment": "1.0.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "chalk",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git+https://github.com/chalk/chalk.git",
+    "comment": "1.1.1"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "express",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/strongloop/express",
+    "comment": "4.13.3"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "express-session",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/expressjs/session",
+    "comment": "1.13.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "format-error",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git://github.com/endangeredmassa/format-error",
+    "comment": "1.0.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "install",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git://github.com/benjamn/install.git",
+    "comment": "0.4.1"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "jade",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git://github.com/jadejs/jade.git",
+    "comment": "1.11.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "keymirror",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "Apache-2.0",
+    "link": "https://github.com/STRML/keyMirror",
+    "comment": "0.1.1"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "minimongo",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "LGPLv3",
+    "link": "git+https://github.com/mWater/minimongo.git",
+    "comment": "3.6.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "moment",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/moment/moment.git",
+    "comment": "2.11.1"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "mongoose",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git://github.com/Automattic/mongoose.git",
+    "comment": "4.3.6"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "npm",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "Artistic-2.0",
+    "link": "git+https://github.com/npm/npm.git",
+    "comment": "3.5.4"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "on-finished",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/jshttp/on-finished",
+    "comment": "2.3.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "react",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "BSD-3-Clause",
+    "link": "git+https://github.com/facebook/react.git",
+    "comment": "0.14.6"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "react-ace",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "http://github.com/securingsincity/react-ace.git",
+    "comment": "3.1.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "react-datepicker",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git://github.com/Hacker0x01/react-datepicker.git",
+    "comment": "0.18.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "react-dom",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "BSD-3-Clause",
+    "link": "git+https://github.com/facebook/react.git",
+    "comment": "0.14.6"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "react-influx",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "ISC",
+    "link": "git+https://github.com/bluejamesbond/Influx.js.git",
+    "comment": "1.0.7"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "react-list",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git+https://github.com/orgsync/react-list.git",
+    "comment": "0.7.11"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "react-object-inspector",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git+https://github.com/xyc/react-object-inspector.git",
+    "comment": "0.1.6"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "react-prefixr",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/naman34/react-stylePrefixr.git",
+    "comment": "0.1.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "react-spinkit",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git+https://github.com/KyleAMathews/react-spinkit.git",
+    "comment": "1.1.4"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "socket.io",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git://github.com/Automattic/socket.io",
+    "comment": "1.4.4"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "strip-ansi",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/sindresorhus/strip-ansi",
+    "comment": "3.0.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "superagent",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git://github.com/visionmedia/superagent.git",
+    "comment": "1.7.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "underscore",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git://github.com/jashkenas/underscore.git",
+    "comment": "1.8.3"
+  }
+]

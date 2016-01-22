@@ -1,0 +1,68 @@
+* {
+  font-family: 'Proxima Nova', "Helvetica", "Helvetic Neue", "Open Sans", sans-serif;
+  vertical-align: top;
+  box-sizing: border-box;
+  outline: none;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.monospaced {
+  font-family: 'Monaco', 'Consolas', monospace;
+}
+
+code {
+  @extend .monospaced;
+}
+
+.ace_content *, .ace_gutter * {
+  @extend .monospaced;
+}
+
+.icon {
+  font-family: 'Fontello', sans-serif !important;
+  font-weight: normal;
+  display: inline-block;
+  text-align: center;
+
+  $icons: "support" ,
+  "price" ,
+  "close" ,
+  "dmenu" ,
+  "pop" ,
+  "settings" ,
+  "archive" ,
+  "console" ,
+  "menu" ;
+
+  @each $i in $icons {
+    &.#{nth($i, 1)}:before {
+      content: "" + nth($i, 2) + "";
+    }
+  }
+}
+
+$animateSpeed: 400ms;
+
+.animate {
+  transition: all $animateSpeed ease-in-out
+}
+
+.animate-transform {
+  transition: transform $animateSpeed ease-in-out;
+}
+
+.animate-height {
+  transition: height $animateSpeed ease-in-out;
+}
+
+.animate-height {
+  transition: width $animateSpeed ease-in-out;
+}
+
+.animate-background {
+  transition: background $animateSpeed ease-in-out;
+}
+
+.float-right {
+  float: right;
+}
