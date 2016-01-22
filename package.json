@@ -1,7 +1,7 @@
 {
   "name": "scribe-js",
   "description": "Comprehensive logging framework with online interface",
-  "version": "3.0.4",
+  "version": "3.0.0",
   "homepage": "https://github.com/bluejamesbond/Scribe.js",
   "keywords": [],
   "scripts": {
