@@ -12,7 +12,7 @@ import DefaultConsole from './writers/DefaultConsole'
 import {create} from './routers/viewer'
 import NwBuilder from 'nw-builder'
 import rc from 'rc'
-import nativePackage from './native/package.json'
+import nativePackage from './../native/package.json'
 
 export const Writer = {MongoDB, DefaultConsole};
 export const Reader = {BasicConsole, Console};

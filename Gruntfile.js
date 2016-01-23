@@ -49,6 +49,20 @@ module.exports = function (grunt) {
         }]
       }
     },
+    babel: {
+      options: {
+        sourceMap: false
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'src/',
+          src: ['**/*.js','*.js'],
+          dest: 'dist/',
+          ext: '.js'
+        }]
+      }
+    },
     browserify: {
       dist: {
         options: {
@@ -129,7 +143,7 @@ module.exports = function (grunt) {
         }
       }
     },
-    clean: ["public/", "./package.noDevDeps.json"]
+    clean: ["public/", "./package.noDevDeps.json", "dist/"]
   });
 
   var lastNodeEnv;
@@ -166,5 +180,5 @@ module.exports = function (grunt) {
   grunt.registerTask('default', 'build');
   grunt.registerTask('auto-build-scripts', ['browserify:dev']);
   grunt.registerTask('auto-build-styles', ['sass:dev', 'watch:sass']);
-  grunt.registerTask('production', ['env-force-production', 'clean', 'build', 'uglify:dist', 'env-restore']);
+  grunt.registerTask('production', ['env-force-production', 'clean', 'build', 'uglify:dist', 'babel', 'env-restore']);
 };

@@ -1,3 +1,1 @@
-require('babel-register');
-
-module.exports = require('./scribe');
+module.exports = require('./dist/scribe').default;

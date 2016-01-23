@@ -19,8 +19,8 @@ function getObject(d, def) {
   }
 }
 
-const viewer = jade.compileFile(`${__dirname}/../views/viewer.jade`);
-const login = jade.compileFile(`${__dirname}/../views/login.jade`);
+const viewer = jade.compileFile(`${__dirname}/../../views/viewer.jade`);
+const login = jade.compileFile(`${__dirname}/../../views/login.jade`);
 
 export function create(mongoUri = 'mongodb://localhost/scribe', routerConfig = {}, clientConfig = {}, debug = false) {
   routerConfig = Object.assign({

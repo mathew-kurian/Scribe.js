@@ -52,6 +52,16 @@
   {
     "department": "kessler",
     "relatedTo": "stuff",
+    "name": "babel-runtime",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-runtime",
+    "comment": "6.3.19"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
     "name": "basic-auth",
     "licensePeriod": "perpetual",
     "material": "material",
@@ -101,12 +111,22 @@
   {
     "department": "kessler",
     "relatedTo": "stuff",
+    "name": "cssify",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "BSD",
+    "link": "git+https://github.com/davidguttman/cssify.git",
+    "comment": "1.0.2"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
     "name": "express",
     "licensePeriod": "perpetual",
     "material": "material",
     "licenseType": "MIT",
-    "link": "https://github.com/strongloop/express",
-    "comment": "4.13.3"
+    "link": "https://github.com/expressjs/express",
+    "comment": "4.13.4"
   },
   {
     "department": "kessler",
@@ -151,6 +171,16 @@
   {
     "department": "kessler",
     "relatedTo": "stuff",
+    "name": "json-fn",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git://github.com/vkiryukhin/jsonfn.git",
+    "comment": "0.60.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
     "name": "keymirror",
     "licensePeriod": "perpetual",
     "material": "material",
@@ -166,7 +196,7 @@
     "material": "material",
     "licenseType": "LGPLv3",
     "link": "git+https://github.com/mWater/minimongo.git",
-    "comment": "3.6.0"
+    "comment": "3.6.1"
   },
   {
     "department": "kessler",
@@ -196,7 +226,17 @@
     "material": "material",
     "licenseType": "Artistic-2.0",
     "link": "git+https://github.com/npm/npm.git",
-    "comment": "3.5.4"
+    "comment": "3.6.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "nw-builder",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git://github.com/mllrsohn/nw-builder.git",
+    "comment": "2.2.0"
   },
   {
     "department": "kessler",
@@ -207,6 +247,16 @@
     "licenseType": "MIT",
     "link": "https://github.com/jshttp/on-finished",
     "comment": "2.3.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "rc",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "(BSD-2-Clause OR MIT OR Apache-2.0)",
+    "link": "git+https://github.com/dominictarr/rc.git",
+    "comment": "1.1.6"
   },
   {
     "department": "kessler",
@@ -326,7 +376,7 @@
     "material": "material",
     "licenseType": "MIT",
     "link": "git://github.com/visionmedia/superagent.git",
-    "comment": "1.7.0"
+    "comment": "1.7.1"
   },
   {
     "department": "kessler",

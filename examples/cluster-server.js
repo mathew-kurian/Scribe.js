@@ -2,7 +2,7 @@ import cluster from 'cluster'
 import http from 'http'
 import express from 'express'
 import Scribe from '../index.js'
-import * as JSON2 from '../libs/JSON2'
+import * as JSON2 from '../src/libs/JSON2'
 
 const port = 4005;
 const socketPort = 50000;

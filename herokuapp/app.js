@@ -1,6 +1,6 @@
 /* jshint -W079 */
 (function() {
-    var scribe = require('../scribe')(),
+    var scribe = require('../src/scribe')(),
         console = process.console,
         express = require('express'),
         path = require('path'),

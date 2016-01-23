@@ -1,7 +1,7 @@
 import Influx from 'react-influx'
 import keyMirror from 'keymirror'
 import Dispatcher from '../dispatchers/Dispatcher'
-import * as JSON2 from '../../../libs/JSON2'
+import * as JSON2 from '../../../src/libs/JSON2'
 
 const Events = keyMirror({
   DATABASE_READY: null,
