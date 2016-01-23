@@ -47,14 +47,14 @@ exports.default = function () {
     _package2.default.main = opts.publicUri + ':' + _path2.default.join(String(opts.web.client.port), opts.basePath);
 
     // save
-    _fs2.default.writeFileSync(__dirname + '/native/package.json', (0, _stringify2.default)(_package2.default, null, 4), { encoding: 'utf8' });
+    _fs2.default.writeFileSync(__dirname + '/../native/package.json', (0, _stringify2.default)(_package2.default, null, 4), { encoding: 'utf8' });
 
     var nw = new _nwBuilder2.default((0, _assign2.default)({
       platforms: ['win', 'osx', 'linux'],
-      buildDir: __dirname + '/public/native',
+      buildDir: __dirname + '/../public/native',
       version: '0.12.3',
       zip: true
-    }, opts.nwjs, { files: './native/**/**' }));
+    }, opts.nwjs, { files: __dirname + '/../native/**/**' }));
 
     if (opts.debug) {
       nw.on('log', function (d) {
