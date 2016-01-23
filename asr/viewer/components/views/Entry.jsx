@@ -85,7 +85,7 @@ export default class Entry extends React.Component {
       args = (
           <span>
             <span className='tag fill bgGreen'>{express.method}</span>
-            <span className='gray'>{express.url}</span>
+            <span className='gray'>{express.originalUrl}</span>
             <span className="green" style={{margin:'0 4px'}}>{express.status} - {express.contentLength} </span>
             <span className='darkGray'>{Number(entry.args[0].duration).toFixed(3)}ms</span>
           </span>
