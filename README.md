@@ -1,4 +1,5 @@
-# Scribe 3.0
+# Scribe 3.0 
+[![Build Status](https://travis-ci.org/bluejamesbond/Scribe.js.svg?branch=dev)](https://travis-ci.org/bluejamesbond/Scribe.js)  
 Node.js logging made simple! Online access to logs and more... 
 
 ```bash

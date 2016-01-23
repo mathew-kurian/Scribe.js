@@ -93,11 +93,11 @@ export default function (id = process.pid, opts = rc('scribe', defaultOpts)) {
     nativePackage.main = `${opts.publicUri}:${path.join(String(opts.web.client.port), opts.basePath)}`;
 
     // save
-    fs.writeFileSync('./native/package.json', JSON.stringify(nativePackage, null, 4), {encoding: 'utf8'});
+    fs.writeFileSync(`${__dirname}/native/package.json`, JSON.stringify(nativePackage, null, 4), {encoding: 'utf8'});
 
     const nw = new NwBuilder(Object.assign({
       platforms: ['win', 'osx', 'linux'],
-      buildDir: './public/native',
+      buildDir: `${__dirname}/public/native`,
       version: '0.12.3',
       zip: true
     }, opts.nwjs, {files: './native/**/**'}));

@@ -12,56 +12,6 @@
   {
     "department": "kessler",
     "relatedTo": "stuff",
-    "name": "babel-plugin-transform-object-rest-spread",
-    "licensePeriod": "perpetual",
-    "material": "material",
-    "licenseType": "MIT",
-    "link": "https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-object-rest-spread",
-    "comment": "6.3.13"
-  },
-  {
-    "department": "kessler",
-    "relatedTo": "stuff",
-    "name": "babel-plugin-transform-runtime",
-    "licensePeriod": "perpetual",
-    "material": "material",
-    "licenseType": "MIT",
-    "link": "https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-runtime",
-    "comment": "6.4.3"
-  },
-  {
-    "department": "kessler",
-    "relatedTo": "stuff",
-    "name": "babel-preset-es2015",
-    "licensePeriod": "perpetual",
-    "material": "material",
-    "licenseType": "MIT",
-    "link": "https://github.com/babel/babel/tree/master/packages/babel-preset-es2015",
-    "comment": "6.3.13"
-  },
-  {
-    "department": "kessler",
-    "relatedTo": "stuff",
-    "name": "babel-register",
-    "licensePeriod": "perpetual",
-    "material": "material",
-    "licenseType": "MIT",
-    "link": "https://github.com/babel/babel/tree/master/packages/babel-register",
-    "comment": "6.4.3"
-  },
-  {
-    "department": "kessler",
-    "relatedTo": "stuff",
-    "name": "babel-runtime",
-    "licensePeriod": "perpetual",
-    "material": "material",
-    "licenseType": "MIT",
-    "link": "https://github.com/babel/babel/tree/master/packages/babel-runtime",
-    "comment": "6.3.19"
-  },
-  {
-    "department": "kessler",
-    "relatedTo": "stuff",
     "name": "basic-auth",
     "licensePeriod": "perpetual",
     "material": "material",
