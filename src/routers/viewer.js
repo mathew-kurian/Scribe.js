@@ -37,7 +37,7 @@ export function create(mongoUri = 'mongodb://localhost/scribe', routerConfig = {
   const conn = mongoose.createConnection(mongoUri);
   const Entry = conn.model('Entry', EntrySchema);
 
-  router.use(express.static('public'));
+  router.use(express.static(`${__dirname}/../public`));
 
   function isAuthenticated(req, res, next) {
     if (!routerConfig.authentication || req.session.authenticated) {
