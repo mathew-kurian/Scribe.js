@@ -84,7 +84,7 @@ function create() {
   var conn = _mongoose2.default.createConnection(mongoUri);
   var Entry = conn.model('Entry', _entry2.default);
 
-  router.use(_express2.default.static(__dirname + '/../public'));
+  router.use(_express2.default.static(__dirname + '/../../public'));
 
   function isAuthenticated(req, res, next) {
     if (!routerConfig.authentication || req.session.authenticated) {
