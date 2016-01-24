@@ -176,7 +176,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('styles', ['sass:dist', 'postcss:dist']);
-  grunt.registerTask('build', ['get-deps', 'sass:dist', 'postcss:dist', 'browserify:dist', 'copy', 'imagemin']);
+  grunt.registerTask('build', ['get-deps', 'sass:dist', 'postcss:dist', 'browserify:dist', 'copy', 'imagemin', 'babel']);
   grunt.registerTask('default', 'build');
   grunt.registerTask('auto-build-scripts', ['browserify:dev']);
   grunt.registerTask('auto-build-styles', ['sass:dev', 'watch:sass']);

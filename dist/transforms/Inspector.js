@@ -114,9 +114,9 @@ var Inspector = function () {
     key: 'inspectTags',
     value: function inspectTags(data) {
       return (data.persistent['tags'] || []).map(function (tag) {
-        return _chalk2.default.cyan('' + tag.toUpperCase());
+        return _chalk2.default.cyan('' + String(tag).toUpperCase());
       }).concat((data.transient['tags'] || []).map(function (tag) {
-        return _chalk2.default.magenta('' + tag.toUpperCase());
+        return _chalk2.default.magenta('' + String(tag).toUpperCase());
       })).join(' ');
     }
   }, {
