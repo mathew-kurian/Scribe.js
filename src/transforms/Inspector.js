@@ -49,8 +49,8 @@ export default class Inspector {
   }
 
   inspectTags(data) {
-    return ((data.persistent['tags'] || []).map(tag => chalk.cyan(`${tag.toUpperCase()}`)))
-        .concat((data.transient['tags'] || []).map(tag => chalk.magenta(`${tag.toUpperCase()}`))).join(' ');
+    return ((data.persistent['tags'] || []).map(tag => chalk.cyan(`${String(tag).toUpperCase()}`)))
+        .concat((data.transient['tags'] || []).map(tag => chalk.magenta(`${String(tag).toUpperCase()}`))).join(' ');
   }
 
   inspectPre(data) {
