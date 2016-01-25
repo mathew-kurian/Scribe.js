@@ -180,5 +180,5 @@ module.exports = function (grunt) {
   grunt.registerTask('default', 'build');
   grunt.registerTask('auto-build-scripts', ['browserify:dev']);
   grunt.registerTask('auto-build-styles', ['sass:dev', 'watch:sass']);
-  grunt.registerTask('production', ['env-force-production', 'clean', 'build', 'uglify:dist', 'babel', 'env-restore']);
+  grunt.registerTask('production', ['env-force-production', 'clean', 'build', 'uglify:dist', 'env-restore']);
 };

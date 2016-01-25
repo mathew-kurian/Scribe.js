@@ -5,6 +5,7 @@ import BasicConsole from './readers/BasicConsole'
 import Inspector from './transforms/Inspector'
 import ExpressInspector from './transforms/ExpressInspector'
 import ExpressExtractor from './transforms/ExpressExtractor'
+import JSON2Converter from './transforms/JSON2Converter'
 import ErrorExtractor from './transforms/ErrorExtractor'
 import MongoDB from './writers/MongoDB'
 import SocketIO from './writers/SocketIO'
@@ -13,17 +14,19 @@ import {create} from './routers/viewer'
 import NwBuilder from 'nw-builder'
 import rc from 'rc'
 import nativePackage from './../native/package.json'
+import extend from 'extend'
 
 export const Writer = {MongoDB, DefaultConsole};
 export const Reader = {BasicConsole, Console};
-export const Transform = {Inspector, ExpressInspector, ExpressExtractor, ErrorExtractor};
+export const Transform = {Inspector, ExpressInspector, ExpressExtractor, ErrorExtractor, JSON2Converter};
 
 const defaultOpts = {
   name: 'Scribe',
   mongoUri: 'mongodb://localhost/scribe',
-  publicUri: 'http://localhost',
+  mongo: true,
   basePath: 'scribe/',
   socketPort: 4000,
+  socket: true,
   web: {
     router: {
       username: 'build',
@@ -52,30 +55,39 @@ const defaultOpts = {
 };
 
 export default function (id = process.pid, opts = rc('scribe', defaultOpts)) {
-  opts = Object.assign({}, defaultOpts, opts);
+  opts = extend(true, {}, defaultOpts, opts);
 
   var console = new BasicConsole(opts.name, id || opts.instanceId);
 
-  console.exposed().forEach(expose => {
-    if (opts.mongoUri) {
-      console.pipe(expose, 'mongo-socket',
-          new ErrorExtractor(),
-          new MongoDB(opts.mongoUri, opts.debug),
-          opts.socketPort ? new SocketIO(opts.socketPort, opts.debug) : null);
+  function appendTransforms(args) {
+    if (opts.mongo && opts.mongoUri && opts.socket && opts.socketPort) {
+      args.push(new JSON2Converter());
+      args.push(new MongoDB(opts.mongoUri, opts.debug));
+      args.push(new SocketIO(opts.socketPort, opts.debug));
+    } else if (opts.mongo && opts.mongoUri) {
+      args.push(new JSON2Converter());
+      args.push(new MongoDB(opts.mongoUri, opts.debug));
+    } else if (opts.socket && opts.socketPort) {
+      args.push(new JSON2Converter());
+      args.push(new SocketIO(opts.socketPort, opts.debug));
     }
+
+    return args;
+  }
+
+  console.exposed().forEach(expose => {
+    let args = appendTransforms([expose, 'mongo-socket', new ErrorExtractor()]);
+
+    console.pipe.apply(console, args);
 
     console.pipe(expose, 'bash',
         new Inspector(),
         new DefaultConsole());
   });
 
-  if (opts.mongoUri) {
-    console.pipe('express', 'mongo-socket',
-        new ErrorExtractor(),
-        new ExpressExtractor(),
-        new MongoDB(opts.mongoUri, opts.debug),
-        opts.socketPort ? new SocketIO(opts.socketPort, opts.debug) : null);
-  }
+  let args = appendTransforms(['express', 'mongo-socket', new ErrorExtractor(), new ExpressExtractor()]);
+
+  console.pipe.apply(console, args);
 
   console.pipe('express', 'bash',
       new ExpressExtractor(),
@@ -83,9 +95,7 @@ export default function (id = process.pid, opts = rc('scribe', defaultOpts)) {
       new Inspector(),
       new DefaultConsole());
 
-  opts.web.client.socketUris = opts.web.client.socketPorts.map(port=> `${opts.publicUri}:${port}`);
-
-  console.viewer = create.bind(null, opts.mongoUri, opts.web.router, opts.web.client, opts.debug);
+  console.viewer = create.bind(null, opts.mongo && opts.mongoUri, opts.web.router, opts.web.client, opts.debug);
 
   console.build = ()=> {
 
@@ -95,7 +105,7 @@ export default function (id = process.pid, opts = rc('scribe', defaultOpts)) {
     // save
     fs.writeFileSync(`${__dirname}/../native/package.json`, JSON.stringify(nativePackage, null, 4), {encoding: 'utf8'});
 
-    const nw = new NwBuilder(Object.assign({
+    const nw = new NwBuilder(extend(true, {
       platforms: ['win', 'osx', 'linux'],
       buildDir: `${__dirname}/../public/native`,
       version: '0.12.3',

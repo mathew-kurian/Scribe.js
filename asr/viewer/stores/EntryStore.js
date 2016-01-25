@@ -28,13 +28,18 @@ class EntryStore extends Influx.Store {
   }
 
   _onDispatcherRequestInitDatabase() {
-    db.Entry.find({}).fetch(() => this.emit(Events.DATABASE_READY));
+    db.Entry.find({}).fetch(()=>this.emit(Events.DATABASE_READY), ()=>this.emit(Events.DATABASE_READY));
   }
 
   _onDispatcherRequestInitSocket() {
-    (config.socketUris || []).map(socketUri => {
-      this.socket = io(socketUri);
+    const url = window.location;
+    (config.socketPorts || []).map(port => {
+      this.socket = io(`${url.protocol}//${url.hostname}:${port}`);
+      this.socket.on('connection', function (socket) {
+        console.log('sup!!!');
+      });
       this.socket.on('data', data => {
+        console.log(data);
         db.localDb.Entry.upsert(data, () => {
           this.searchEntries(this.data.query, this.getSearchOptions());
         });
@@ -63,7 +68,7 @@ class EntryStore extends Influx.Store {
   searchEntries(query = {}, options = this.data.options, remote = false) {
     this.data.query = query;
     this.data.options = options;
-    
+
     const searchLocal = ()=> {
       db.localDb.Entry.find(query, Object.assign({}, options)).fetch(entries => {
         this.data.search = entries.map(e => JSON2.parse(JSON.stringify(e)));

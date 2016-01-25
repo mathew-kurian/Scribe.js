@@ -31,11 +31,15 @@ export function create(mongoUri = 'mongodb://localhost/scribe', routerConfig = {
     password: 'build'
   }, routerConfig);
 
-  mongoose.set('debug', debug);
+  let conn, Entry;
+
+  if (mongoUri) {
+    mongoose.set('debug', debug);
+    conn = mongoose.createConnection(mongoUri);
+    Entry = conn.model('Entry', EntrySchema);
+  }
 
   const router = new Router();
-  const conn = mongoose.createConnection(mongoUri);
-  const Entry = conn.model('Entry', EntrySchema);
 
   router.use(express.static(`${__dirname}/../../public`));
 
@@ -79,6 +83,10 @@ export function create(mongoUri = 'mongodb://localhost/scribe', routerConfig = {
   })));
 
   router.get('/rest/:collection', isAuthenticated, (req, res)=> {
+    if (!mongoUri) {
+      return res.json({err: 0, docs: []});
+    }
+
     var collection = req.params.collection;
     var selector = getObject(req.query.selector);
     var fields = typeof req.query.fields === 'string' ? req.query.fields : '';
@@ -99,6 +107,11 @@ export function create(mongoUri = 'mongodb://localhost/scribe', routerConfig = {
   });
 
   router.delete('/rest/:collection', isAuthenticated, (req, res)=> {
+    if (!mongoUri) {
+      res.status(410);
+      return res.send();
+    }
+
     var collection = rreq.params.collection;
     var ids = req.query.id;
 

@@ -4,7 +4,7 @@ let sio;
 
 export default class SocketIO {
   constructor(port = 4000, debug = false) {
-    process.env.DEBUG = debug;
+    process.env.DEBUG = debug && 'socket.io*';
 
     if (!sio) {
       sio = io(port);

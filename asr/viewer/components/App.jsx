@@ -6,12 +6,14 @@ import Entry from './views/Entry.jsx'
 import Header from './views/Header.jsx'
 import Sidebar from './views/Sidebar.jsx'
 import ReactList from 'react-list';
+import querystring from 'querystring'
 
 class App extends Influx.Component {
   constructor(...args) {
     super(...args);
 
-    this.state = {entries: []};
+    const params = querystring.parse(location.search.substring(1));
+    this.state = {entries: [], hideSidebar: params.hideSidebar, hideHeader: params.hideSidebar};
   }
 
   getListeners() {
@@ -46,11 +48,11 @@ class App extends Influx.Component {
 
     return (
         <div className="full flex">
-          <Sidebar />
-          <div className='full box'>
+          <Sidebar hide={this.state.hideSidebar}/>
+            <div className='full box'>
             <div className='full-abs'>
               <div className="full flex vertical" style={{overflow:'hidden'}}>
-                <Header />
+                <Header hide={this.state.hideHeader}/>
                 <div style={{overflow:'scroll',overflowX:'hidden',paddingTop:10}}>
                   <ReactList useTranslate3d={true} length={length} itemRenderer={rowRenderer}/>
                 </div>

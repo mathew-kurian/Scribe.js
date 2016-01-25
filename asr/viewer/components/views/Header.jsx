@@ -19,8 +19,7 @@ export default class Header extends Influx.Component {
 
   getListeners() {
     return [
-      [EntryStore, EntryStore.Events.UPDATED, this._onEntryStoreUpdated],
-      [Dispatcher, Dispatcher.Events.REQUEST_ENTRY_SEARCH, this._onDispatcherRequestEntrySearch]
+      [EntryStore, EntryStore.Events.UPDATED, this._onEntryStoreUpdated]
     ]
   }
 
@@ -53,7 +52,7 @@ export default class Header extends Influx.Component {
 
   render() {
     return (
-        <div className="header" style={{padding:13}}>
+        <div className={ifcat('header', {hide:this.props.hide})} style={{padding:13}}>
           <div className="flex">
             <div className="box" style={{marginRight:13}}>
               <div className='field flex'>

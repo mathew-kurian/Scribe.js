@@ -65,7 +65,7 @@ export default class Sidebar extends Influx.Component {
     });
 
     return (
-        <div className='sidebar box'>
+        <div className={ifcat('sidebar box',{hide:this.props.hide})}>
           <div className="group">
             <div className="title">Exposed <DatePicker onChange={this._selectDate.bind(this)}
                                                        selected={this.state.date}/>

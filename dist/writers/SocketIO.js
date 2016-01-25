@@ -26,7 +26,7 @@ var SocketIO = function () {
     var debug = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
     (0, _classCallCheck3.default)(this, SocketIO);
 
-    process.env.DEBUG = debug;
+    process.env.DEBUG = debug && 'socket.io*';
 
     if (!sio) {
       sio = (0, _socket2.default)(port);

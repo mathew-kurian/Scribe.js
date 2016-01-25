@@ -78,11 +78,16 @@ function create() {
     password: 'build'
   }, routerConfig);
 
-  _mongoose2.default.set('debug', debug);
+  var conn = undefined,
+      Entry = undefined;
+
+  if (mongoUri) {
+    _mongoose2.default.set('debug', debug);
+    conn = _mongoose2.default.createConnection(mongoUri);
+    Entry = conn.model('Entry', _entry2.default);
+  }
 
   var router = new _express.Router();
-  var conn = _mongoose2.default.createConnection(mongoUri);
-  var Entry = conn.model('Entry', _entry2.default);
 
   router.use(_express2.default.static(__dirname + '/../../public'));
 
@@ -126,6 +131,10 @@ function create() {
   });
 
   router.get('/rest/:collection', isAuthenticated, function (req, res) {
+    if (!mongoUri) {
+      return res.json({ err: 0, docs: [] });
+    }
+
     var collection = req.params.collection;
     var selector = getObject(req.query.selector);
     var fields = typeof req.query.fields === 'string' ? req.query.fields : '';
@@ -145,6 +154,11 @@ function create() {
   });
 
   router.delete('/rest/:collection', isAuthenticated, function (req, res) {
+    if (!mongoUri) {
+      res.status(410);
+      return res.send();
+    }
+
     var collection = rreq.params.collection;
     var ids = req.query.id;
 

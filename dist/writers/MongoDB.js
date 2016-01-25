@@ -46,7 +46,7 @@ var MongoDB = function () {
     value: function through(data, callback) {
       var _this = this;
 
-      new this.Entry(JSON.parse(JSON2.stringify(data))).save(function (err, data) {
+      new this.Entry(data).save(function (err, data) {
         if (err && _this._debug) console.error(err);
         callback(err, data);
       });

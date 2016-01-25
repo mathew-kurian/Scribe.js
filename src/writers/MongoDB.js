@@ -16,7 +16,7 @@ export default class MongoDB {
   }
 
   through(data, callback) {
-    new this.Entry(JSON.parse(JSON2.stringify(data))).save((err, data) => {
+    new this.Entry(data).save((err, data) => {
       if (err && this._debug) console.error(err);
       callback(err, data);
     });
