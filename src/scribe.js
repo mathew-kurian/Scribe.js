@@ -37,7 +37,6 @@ const defaultOpts = {
       useSession: true
     },
     client: {
-      port: 4005,
       socketPorts: [4000],
       exposed: {
         all: {label: 'all', query: {expose: {$exists: true}}},
@@ -54,7 +53,7 @@ const defaultOpts = {
   debug: false
 };
 
-export default function (id = process.pid, opts = rc('scribe', defaultOpts)) {
+export default function (id = process.pid, opts = rc('scribe', defaultOpts), ...exposers) {
   opts = extend(true, {}, defaultOpts, opts);
 
   var console = new BasicConsole(opts.name, id || opts.instanceId);
@@ -75,7 +74,9 @@ export default function (id = process.pid, opts = rc('scribe', defaultOpts)) {
     return args;
   }
 
-  console.exposed().forEach(expose => {
+  console.exposed().concat(exposers).forEach(expose => {
+    console.expose(expose);
+
     let args = appendTransforms([expose, 'mongo-socket', new ErrorExtractor()]);
 
     console.pipe.apply(console, args);

@@ -33,7 +33,13 @@ exports.default = function () {
     return args;
   }
 
-  console.exposed().forEach(function (expose) {
+  for (var _len = arguments.length, exposers = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    exposers[_key - 2] = arguments[_key];
+  }
+
+  console.exposed().concat(exposers).forEach(function (expose) {
+    console.expose(expose);
+
     var args = appendTransforms([expose, 'mongo-socket', new _ErrorExtractor2.default()]);
 
     console.pipe.apply(console, args);
@@ -171,7 +177,6 @@ var defaultOpts = {
       useSession: true
     },
     client: {
-      port: 4005,
       socketPorts: [4000],
       exposed: {
         all: { label: 'all', query: { expose: { $exists: true } } },

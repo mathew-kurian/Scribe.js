@@ -12,6 +12,16 @@
   {
     "department": "kessler",
     "relatedTo": "stuff",
+    "name": "babel-runtime",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-runtime",
+    "comment": "6.3.19"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
     "name": "basic-auth",
     "licensePeriod": "perpetual",
     "material": "material",
@@ -87,6 +97,16 @@
     "licenseType": "MIT",
     "link": "https://github.com/expressjs/session",
     "comment": "1.13.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "extend",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git+https://github.com/justmoon/node-extend.git",
+    "comment": "3.0.0"
   },
   {
     "department": "kessler",
