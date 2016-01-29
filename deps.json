@@ -166,7 +166,7 @@
     "material": "material",
     "licenseType": "LGPLv3",
     "link": "git+https://github.com/mWater/minimongo.git",
-    "comment": "3.6.1"
+    "comment": "3.7.2"
   },
   {
     "department": "kessler",
@@ -196,7 +196,7 @@
     "material": "material",
     "licenseType": "Artistic-2.0",
     "link": "git+https://github.com/npm/npm.git",
-    "comment": "3.6.0"
+    "comment": "3.7.0"
   },
   {
     "department": "kessler",
@@ -276,7 +276,7 @@
     "material": "material",
     "licenseType": "ISC",
     "link": "git+https://github.com/bluejamesbond/Influx.js.git",
-    "comment": "1.0.7"
+    "comment": "1.0.8"
   },
   {
     "department": "kessler",
@@ -326,7 +326,7 @@
     "material": "material",
     "licenseType": "MIT",
     "link": "git://github.com/Automattic/socket.io",
-    "comment": "1.4.4"
+    "comment": "1.4.5"
   },
   {
     "department": "kessler",
@@ -346,7 +346,7 @@
     "material": "material",
     "licenseType": "MIT",
     "link": "git://github.com/visionmedia/superagent.git",
-    "comment": "1.7.1"
+    "comment": "1.7.2"
   },
   {
     "department": "kessler",

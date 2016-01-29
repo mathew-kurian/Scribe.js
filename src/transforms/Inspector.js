@@ -1,9 +1,14 @@
 import _ from 'underscore'
 import chalk from 'chalk'
-import inspect from '../libs/inspect'
+import inspector from '../libs/inspect'
+
+function inspect(x, ctx) {
+  return typeof x === 'string' ? x : inspector(x, ctx);
+}
 
 export default class Inspector {
-  constructor(inspectOpts = {colors: true, showHidden: false, depth: 5}) {
+  constructor(inspectOpts = {colors: true, showHidden: false,
+      depth: 5, pre: true, args: true, metrics: true, tags: true}) {
     this.inspectOpts = inspectOpts;
   }
 
@@ -73,11 +78,11 @@ export default class Inspector {
       data.args = '';
     }
 
-    const pre = this.inspectPre(data);
-    const tags = this.inspectTags(data);
-    const metrics = this.inspectMetrics(data);
-    const site = this.inspectCallSite(data);
-    const pretty = this.inspectArguments(data);
+    const pre = this.inspectOpts.pre ? `${this.inspectPre(data)} ` : '';
+    const tags = this.inspectOpts.tags ? this.inspectTags(data) : '';
+    const metrics = this.inspectOpts.metrics ? this.inspectMetrics(data) : '';
+    const site = this.inspectOpts.callsite ? this.inspectCallSite(data) : '';
+    const pretty = this.inspectOpts.args ? this.inspectArguments(data) : '';
     const inspected = pretty.split('\n').map(line =>`${pre} ${[tags, metrics, line, site].join(' ')}`);
 
     data.inspected = inspected;

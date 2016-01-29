@@ -44,14 +44,14 @@ exports.default = function () {
 
     console.pipe.apply(console, args);
 
-    console.pipe(expose, 'bash', new _Inspector2.default(), new _DefaultConsole2.default());
+    console.pipe(expose, 'bash', new _Inspector2.default(opts.inspector), new _DefaultConsole2.default());
   });
 
   var args = appendTransforms(['express', 'mongo-socket', new _ErrorExtractor2.default(), new _ExpressExtractor2.default()]);
 
   console.pipe.apply(console, args);
 
-  console.pipe('express', 'bash', new _ExpressExtractor2.default(), new _ExpressInspector2.default(), new _Inspector2.default(), new _DefaultConsole2.default());
+  console.pipe('express', 'bash', new _ExpressExtractor2.default(), new _ExpressInspector2.default(), new _Inspector2.default(opts.inspector), new _DefaultConsole2.default());
 
   console.viewer = _viewer.create.bind(null, opts.mongo && opts.mongoUri, opts.web.router, opts.web.client, opts.debug);
 
@@ -167,6 +167,16 @@ var defaultOpts = {
   basePath: 'scribe/',
   socketPort: 4000,
   socket: true,
+  inspector: {
+    colors: true,
+    showHidden: false,
+    depth: 5,
+    pre: true,
+    callsite: true,
+    tags: true,
+    args: true,
+    metrics: true
+  },
   web: {
     router: {
       username: 'build',

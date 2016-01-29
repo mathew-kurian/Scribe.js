@@ -34,9 +34,14 @@ var _inspect2 = _interopRequireDefault(_inspect);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function inspect(x, ctx) {
+  return typeof x === 'string' ? x : (0, _inspect2.default)(x, ctx);
+}
+
 var Inspector = function () {
   function Inspector() {
-    var inspectOpts = arguments.length <= 0 || arguments[0] === undefined ? { colors: true, showHidden: false, depth: 5 } : arguments[0];
+    var inspectOpts = arguments.length <= 0 || arguments[0] === undefined ? { colors: true, showHidden: false,
+      depth: 5, pre: true, args: true, metrics: true, tags: true } : arguments[0];
     (0, _classCallCheck3.default)(this, Inspector);
 
     this.inspectOpts = inspectOpts;
@@ -61,7 +66,7 @@ var Inspector = function () {
           for (var _iterator = (0, _getIterator3.default)([f].concat(args)), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
             var arg = _step.value;
 
-            objects.push((0, _inspect2.default)(arg, ctx));
+            objects.push(inspect(arg, ctx));
           }
         } catch (err) {
           _didIteratorError = true;
@@ -95,12 +100,12 @@ var Inspector = function () {
           case '%s':
           case '%d':
           case '%j':
-            return (0, _inspect2.default)(args[i++], ctx);
+            return inspect(args[i++], ctx);
         }
       });
 
       for (var x = args[i]; i < len; x = args[++i]) {
-        str += ' ' + (0, _inspect2.default)(x, ctx);
+        str += ' ' + inspect(x, ctx);
       }
 
       return str;
@@ -151,11 +156,11 @@ var Inspector = function () {
         data.args = '';
       }
 
-      var pre = this.inspectPre(data);
-      var tags = this.inspectTags(data);
-      var metrics = this.inspectMetrics(data);
-      var site = this.inspectCallSite(data);
-      var pretty = this.inspectArguments(data);
+      var pre = this.inspectOpts.pre ? this.inspectPre(data) + ' ' : '';
+      var tags = this.inspectOpts.tags ? this.inspectTags(data) : '';
+      var metrics = this.inspectOpts.metrics ? this.inspectMetrics(data) : '';
+      var site = this.inspectOpts.callsite ? this.inspectCallSite(data) : '';
+      var pretty = this.inspectOpts.args ? this.inspectArguments(data) : '';
       var inspected = pretty.split('\n').map(function (line) {
         return pre + ' ' + [tags, metrics, line, site].join(' ');
       });

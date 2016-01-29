@@ -27,6 +27,16 @@ const defaultOpts = {
   basePath: 'scribe/',
   socketPort: 4000,
   socket: true,
+  inspector: {
+    colors: true,
+    showHidden: false,
+    depth: 5,
+    pre: true,
+    callsite: true,
+    tags: true,
+    args: true,
+    metrics: true
+  },
   web: {
     router: {
       username: 'build',
@@ -82,7 +92,7 @@ export default function (id = process.pid, opts = rc('scribe', defaultOpts), ...
     console.pipe.apply(console, args);
 
     console.pipe(expose, 'bash',
-        new Inspector(),
+        new Inspector(opts.inspector),
         new DefaultConsole());
   });
 
@@ -93,7 +103,7 @@ export default function (id = process.pid, opts = rc('scribe', defaultOpts), ...
   console.pipe('express', 'bash',
       new ExpressExtractor(),
       new ExpressInspector(),
-      new Inspector(),
+      new Inspector(opts.inspector),
       new DefaultConsole());
 
   console.viewer = create.bind(null, opts.mongo && opts.mongoUri, opts.web.router, opts.web.client, opts.debug);
