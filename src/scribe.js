@@ -50,12 +50,12 @@ const defaultOpts = {
       socketPorts: [4000],
       exposed: {
         all: {label: 'all', query: {expose: {$exists: true}}},
-        error: {label: 'error', query: {expose: 'error'}},
-        express: {label: 'express', query: {expose: 'express'}},
-        info: {label: 'info', query: {expose: 'info'}},
-        log: {label: 'log', query: {expose: 'log'}},
-        warn: {label: 'warn', query: {expose: 'warn'}},
-        trace: {label: 'trace', query: {expose: 'trace'}}
+        //error: {label: 'error', query: {expose: 'error'}},
+        //express: {label: 'express', query: {expose: 'express'}},
+        //info: {label: 'info', query: {expose: 'info'}},
+        //log: {label: 'log', query: {expose: 'log'}},
+        //warn: {label: 'warn', query: {expose: 'warn'}},
+        //trace: {label: 'trace', query: {expose: 'trace'}}
       }
     }
   },

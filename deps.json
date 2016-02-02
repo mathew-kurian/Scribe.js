@@ -196,7 +196,7 @@
     "material": "material",
     "licenseType": "Artistic-2.0",
     "link": "git+https://github.com/npm/npm.git",
-    "comment": "3.7.0"
+    "comment": "3.7.1"
   },
   {
     "department": "kessler",

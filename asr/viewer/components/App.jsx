@@ -13,7 +13,7 @@ class App extends Influx.Component {
     super(...args);
 
     const params = querystring.parse(location.search.substring(1));
-    this.state = {entries: [], hideSidebar: params.hideSidebar, hideHeader: params.hideSidebar};
+    this.state = {entries: [], hideSidebar: params.hideSidebar, hideHeader: params.hideHeader};
   }
 
   getListeners() {
