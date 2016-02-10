@@ -50,7 +50,6 @@ export default class Inspector {
   }
 
   inspectArguments(data) {
-    if (!data.args || !data.args.length) return '';
     return this.format(...data.args);
   }
 
