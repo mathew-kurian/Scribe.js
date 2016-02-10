@@ -129,6 +129,10 @@ var _class = function () {
           transient.callsite = _this.callSite();
         }
 
+        if (!args.length) {
+          args = [''];
+        }
+
         // reset before async
         _this.reset();
 

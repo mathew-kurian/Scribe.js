@@ -10,7 +10,8 @@ describe('Basic Scribe', ()=> {
   it('should print objects to terminal', done => {
     Promise.all([
       console.tag('object').log('Inspect object', {test: true}),
-      console.tag('object').log('Inspect object', console)
+      console.tag('object').log('Inspect object', console),
+      console.log()
     ]).then(() => done());
   });
 

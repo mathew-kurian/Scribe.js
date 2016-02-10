@@ -77,6 +77,10 @@ export default class {
         transient.callsite = this.callSite();
       }
 
+      if (!args.length){
+        args = [''];
+      }
+
       // reset before async
       this.reset();
 
