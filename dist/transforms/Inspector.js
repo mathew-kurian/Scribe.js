@@ -113,6 +113,7 @@ var Inspector = function () {
   }, {
     key: 'inspectArguments',
     value: function inspectArguments(data) {
+      if (!data.length) return '';
       return this.format.apply(this, (0, _toConsumableArray3.default)(data.args));
     }
   }, {

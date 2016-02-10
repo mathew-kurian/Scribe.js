@@ -17,7 +17,7 @@
     "material": "material",
     "licenseType": "MIT",
     "link": "https://github.com/babel/babel/tree/master/packages/babel-runtime",
-    "comment": "6.3.19"
+    "comment": "6.5.0"
   },
   {
     "department": "kessler",
@@ -176,7 +176,7 @@
     "material": "material",
     "licenseType": "MIT",
     "link": "https://github.com/moment/moment.git",
-    "comment": "2.11.1"
+    "comment": "2.11.2"
   },
   {
     "department": "kessler",
@@ -186,7 +186,7 @@
     "material": "material",
     "licenseType": "MIT",
     "link": "git://github.com/Automattic/mongoose.git",
-    "comment": "4.3.7"
+    "comment": "4.4.3"
   },
   {
     "department": "kessler",
@@ -196,7 +196,7 @@
     "material": "material",
     "licenseType": "Artistic-2.0",
     "link": "git+https://github.com/npm/npm.git",
-    "comment": "3.7.1"
+    "comment": "3.7.2"
   },
   {
     "department": "kessler",
@@ -326,7 +326,7 @@
     "material": "material",
     "licenseType": "MIT",
     "link": "git://github.com/Automattic/socket.io",
-    "comment": "1.4.5"
+    "comment": "1.4.3"
   },
   {
     "department": "kessler",
