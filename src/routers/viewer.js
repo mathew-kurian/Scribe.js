@@ -2,7 +2,6 @@ import express, {Router} from 'express'
 import mongoose from 'mongoose'
 import EntrySchema from '../schemas/entry'
 import jade from 'jade'
-import session from 'express-session'
 import basicAuth from 'basic-auth';
 import bodyParser from 'body-parser'
 
@@ -70,7 +69,10 @@ export function create(mongoUri = 'mongodb://localhost/scribe', routerConfig = {
     router.use(bodyParser.json());
   }
 
-  router.get('/viewer', (req, res)=> res.send(viewer({config: JSON.stringify(clientConfig)})));
+  const renderViewer = (req, res)=> res.send(viewer({config: JSON.stringify(clientConfig)}));
+
+  router.get('/', renderViewer);
+  router.get('/viewer', renderViewer);
 
   router.get('/rest/:collection', (req, res)=> {
     if (!mongoUri) {
