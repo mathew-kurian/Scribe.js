@@ -46,8 +46,7 @@ export default class {
 
       return site;
     } catch (e) {
-      console.error(e);
-      return {};
+      return { line: 0, file: '-', func: '-'};
     }
   }
 
