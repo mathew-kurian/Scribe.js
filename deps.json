@@ -37,7 +37,7 @@
     "material": "material",
     "licenseType": "MIT",
     "link": "https://github.com/expressjs/body-parser",
-    "comment": "1.14.2"
+    "comment": "1.15.0"
   },
   {
     "department": "kessler",
@@ -166,7 +166,7 @@
     "material": "material",
     "licenseType": "LGPLv3",
     "link": "git+https://github.com/mWater/minimongo.git",
-    "comment": "3.7.2"
+    "comment": "3.8.0"
   },
   {
     "department": "kessler",
@@ -196,7 +196,7 @@
     "material": "material",
     "licenseType": "Artistic-2.0",
     "link": "git+https://github.com/npm/npm.git",
-    "comment": "3.7.2"
+    "comment": "3.7.3"
   },
   {
     "department": "kessler",

@@ -46,8 +46,7 @@ export default class {
 
       return site;
     } catch (e) {
-      console.error(e);
-      return {};
+      return {line: 0, file: '-', func: '-'};
     }
   }
 
@@ -77,7 +76,7 @@ export default class {
         transient.callsite = this.callSite();
       }
 
-      if (!args.length){
+      if (!args.length) {
         args = [''];
       }
 

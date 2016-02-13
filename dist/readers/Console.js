@@ -90,8 +90,7 @@ var _class = function () {
 
         return site;
       } catch (e) {
-        console.error(e);
-        return {};
+        return { line: 0, file: '-', func: '-' };
       }
     }
   }, {
