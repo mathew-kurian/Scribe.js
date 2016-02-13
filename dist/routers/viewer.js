@@ -41,6 +41,10 @@ var _expressSession = require('express-session');
 
 var _expressSession2 = _interopRequireDefault(_expressSession);
 
+var _basicAuth = require('basic-auth');
+
+var _basicAuth2 = _interopRequireDefault(_basicAuth);
+
 var _bodyParser = require('body-parser');
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
@@ -71,8 +75,6 @@ function create() {
   var debug = arguments.length <= 3 || arguments[3] === undefined ? false : arguments[3];
 
   routerConfig = (0, _assign2.default)({
-    sessionSecret: 'scribe-session',
-    useSession: true,
     useBodyParser: true,
     username: 'build',
     password: 'build'
@@ -89,48 +91,41 @@ function create() {
 
   var router = new _express.Router();
 
-  router.use(_express2.default.static(__dirname + '/../../public'));
+  var authenticate = function authenticate(req, res, next) {
+    function unauthorized(res) {
+      res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+      return res.sendStatus(401);
+    }
 
-  function isAuthenticated(req, res, next) {
-    if (!routerConfig.authentication || req.session.authenticated) {
+    if (!routerConfig.authorization || !routerConfig.username && !routerConfig.password) {
       return next();
     }
 
-    res.redirect(req.baseUrl);
-  }
+    var user = (0, _basicAuth2.default)(req);
 
-  if (routerConfig.useSession) {
-    router.use((0, _expressSession2.default)({ secret: routerConfig.sessionSecret, saveUninitialized: true, resave: true }));
-  }
+    if (!user || !user.name || !user.pass) {
+      return unauthorized(res);
+    }
+
+    if (user.name === routerConfig.username && user.pass === routerConfig.password) {
+      return next();
+    } else {
+      return unauthorized(res);
+    }
+  };
+
+  router.use(authenticate);
+  router.use(_express2.default.static(__dirname + '/../../public'));
 
   if (routerConfig.useBodyParser) {
     router.use(_bodyParser2.default.json());
   }
 
-  router.post('/', function (req, res) {
-    req.session.authenticated |= !routerConfig.authentication || req.body.username === routerConfig.username && req.body.password === routerConfig.password;
-    if (req.session.authenticated) {
-      return res.json({ data: 'viewer' });
-    }
-
-    res.json({ status: 1, message: 'Invalid username/password' });
+  router.get('/viewer', function (req, res) {
+    return res.send(viewer({ config: (0, _stringify2.default)(clientConfig) }));
   });
 
-  router.get('/', function (req, res) {
-    if (!routerConfig.authentication || req.session.authenticated) {
-      return res.redirect('viewer');
-    }
-
-    res.send(login());
-  });
-
-  router.get('/viewer', isAuthenticated, function (req, res) {
-    return res.send(viewer({
-      config: (0, _stringify2.default)(clientConfig)
-    }));
-  });
-
-  router.get('/rest/:collection', isAuthenticated, function (req, res) {
+  router.get('/rest/:collection', function (req, res) {
     if (!mongoUri) {
       return res.json({ err: 0, docs: [] });
     }
@@ -153,7 +148,7 @@ function create() {
     });
   });
 
-  router.delete('/rest/:collection', isAuthenticated, function (req, res) {
+  router.delete('/rest/:collection', function (req, res) {
     if (!mongoUri) {
       res.status(410);
       return res.send();

@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import EntrySchema from '../schemas/entry'
 import jade from 'jade'
 import session from 'express-session'
+import basicAuth from 'basic-auth';
 import bodyParser from 'body-parser'
 
 function getObject(d, def) {
@@ -24,8 +25,6 @@ const login = jade.compileFile(`${__dirname}/../../views/login.jade`);
 
 export function create(mongoUri = 'mongodb://localhost/scribe', routerConfig = {}, clientConfig = {}, debug = false) {
   routerConfig = Object.assign({
-    sessionSecret: 'scribe-session',
-    useSession: true,
     useBodyParser: true,
     username: 'build',
     password: 'build'
@@ -41,48 +40,39 @@ export function create(mongoUri = 'mongodb://localhost/scribe', routerConfig = {
 
   const router = new Router();
 
-  router.use(express.static(`${__dirname}/../../public`));
+  var authenticate = function (req, res, next) {
+    function unauthorized(res) {
+      res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+      return res.sendStatus(401);
+    }
 
-  function isAuthenticated(req, res, next) {
-    if (!routerConfig.authentication || req.session.authenticated) {
+    if (!routerConfig.authorization || (!routerConfig.username && !routerConfig.password)) {
       return next();
     }
 
-    res.redirect(req.baseUrl);
-  }
+    var user = basicAuth(req);
 
-  if (routerConfig.useSession) {
-    router.use(session({secret: routerConfig.sessionSecret, saveUninitialized: true, resave: true}));
-  }
+    if (!user || !user.name || !user.pass) {
+      return unauthorized(res);
+    }
+
+    if (user.name === routerConfig.username && user.pass === routerConfig.password) {
+      return next();
+    } else {
+      return unauthorized(res);
+    }
+  };
+
+  router.use(authenticate);
+  router.use(express.static(`${__dirname}/../../public`));
 
   if (routerConfig.useBodyParser) {
     router.use(bodyParser.json());
   }
 
-  router.post('/', (req, res)=> {
-    req.session.authenticated |=
-        !routerConfig.authentication ||
-        (req.body.username === routerConfig.username && req.body.password === routerConfig.password);
-    if (req.session.authenticated) {
-      return res.json({data: 'viewer'});
-    }
+  router.get('/viewer', (req, res)=> res.send(viewer({config: JSON.stringify(clientConfig)})));
 
-    res.json({status: 1, message: 'Invalid username/password'});
-  });
-
-  router.get('/', (req, res)=> {
-    if (!routerConfig.authentication || req.session.authenticated) {
-      return res.redirect('viewer');
-    }
-
-    res.send(login());
-  });
-
-  router.get('/viewer', isAuthenticated, (req, res)=> res.send(viewer({
-    config: JSON.stringify(clientConfig)
-  })));
-
-  router.get('/rest/:collection', isAuthenticated, (req, res)=> {
+  router.get('/rest/:collection', (req, res)=> {
     if (!mongoUri) {
       return res.json({err: 0, docs: []});
     }
@@ -106,7 +96,7 @@ export function create(mongoUri = 'mongodb://localhost/scribe', routerConfig = {
         .exec((err = 0, docs = []) => res.json({err, docs}));
   });
 
-  router.delete('/rest/:collection', isAuthenticated, (req, res)=> {
+  router.delete('/rest/:collection', (req, res)=> {
     if (!mongoUri) {
       res.status(410);
       return res.send();
