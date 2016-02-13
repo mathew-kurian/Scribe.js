@@ -94,7 +94,7 @@ function create() {
       return res.sendStatus(401);
     }
 
-    if (!routerConfig.authorization || !routerConfig.username && !routerConfig.password) {
+    if (routerConfig.authentication === false || !routerConfig.username && !routerConfig.password) {
       return next();
     }
 
