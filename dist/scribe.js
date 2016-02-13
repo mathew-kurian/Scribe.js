@@ -1,13 +1,13 @@
 'use strict';
 
-var _stringify = require('babel-runtime/core-js/json/stringify');
-
-var _stringify2 = _interopRequireDefault(_stringify);
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.Transform = exports.Reader = exports.Writer = undefined;
+
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
 
 exports.default = function () {
   var id = arguments.length <= 0 || arguments[0] === undefined ? process.pid : arguments[0];

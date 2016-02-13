@@ -284,6 +284,7 @@ function formatValue(ctx, value, recurseTimes) {
   } catch (e) {}
   // ignore
 
+
   // IE doesn't make error fields non-enumerable
   // http://msdn.microsoft.com/en-us/library/ie/dww52sbt(v=vs.94).aspx
   if (isError(value) && (keys.indexOf('message') >= 0 || keys.indexOf('description') >= 0)) {

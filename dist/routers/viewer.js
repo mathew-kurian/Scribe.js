@@ -1,5 +1,9 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _maxSafeInteger = require('babel-runtime/core-js/number/max-safe-integer');
 
 var _maxSafeInteger2 = _interopRequireDefault(_maxSafeInteger);
@@ -16,9 +20,6 @@ var _typeof2 = require('babel-runtime/helpers/typeof');
 
 var _typeof3 = _interopRequireDefault(_typeof2);
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 exports.create = create;
 
 var _express = require('express');
@@ -36,10 +37,6 @@ var _entry2 = _interopRequireDefault(_entry);
 var _jade = require('jade');
 
 var _jade2 = _interopRequireDefault(_jade);
-
-var _expressSession = require('express-session');
-
-var _expressSession2 = _interopRequireDefault(_expressSession);
 
 var _basicAuth = require('basic-auth');
 
@@ -121,9 +118,12 @@ function create() {
     router.use(_bodyParser2.default.json());
   }
 
-  router.get('/viewer', function (req, res) {
+  var renderViewer = function renderViewer(req, res) {
     return res.send(viewer({ config: (0, _stringify2.default)(clientConfig) }));
-  });
+  };
+
+  router.get('/', renderViewer);
+  router.get('/viewer', renderViewer);
 
   router.get('/rest/:collection', function (req, res) {
     if (!mongoUri) {

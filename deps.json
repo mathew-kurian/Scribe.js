@@ -71,32 +71,12 @@
   {
     "department": "kessler",
     "relatedTo": "stuff",
-    "name": "cssify",
-    "licensePeriod": "perpetual",
-    "material": "material",
-    "licenseType": "BSD",
-    "link": "git+https://github.com/davidguttman/cssify.git",
-    "comment": "1.0.2"
-  },
-  {
-    "department": "kessler",
-    "relatedTo": "stuff",
     "name": "express",
     "licensePeriod": "perpetual",
     "material": "material",
     "licenseType": "MIT",
-    "link": "https://github.com/expressjs/express",
-    "comment": "4.13.4"
-  },
-  {
-    "department": "kessler",
-    "relatedTo": "stuff",
-    "name": "express-session",
-    "licensePeriod": "perpetual",
-    "material": "material",
-    "licenseType": "MIT",
-    "link": "https://github.com/expressjs/session",
-    "comment": "1.13.0"
+    "link": "git://github.com/visionmedia/express",
+    "comment": "4.0.0"
   },
   {
     "department": "kessler",
@@ -117,16 +97,6 @@
     "licenseType": "MIT",
     "link": "git://github.com/endangeredmassa/format-error",
     "comment": "1.0.0"
-  },
-  {
-    "department": "kessler",
-    "relatedTo": "stuff",
-    "name": "install",
-    "licensePeriod": "perpetual",
-    "material": "material",
-    "licenseType": "MIT",
-    "link": "git://github.com/benjamn/install.git",
-    "comment": "0.4.1"
   },
   {
     "department": "kessler",
@@ -191,16 +161,6 @@
   {
     "department": "kessler",
     "relatedTo": "stuff",
-    "name": "npm",
-    "licensePeriod": "perpetual",
-    "material": "material",
-    "licenseType": "Artistic-2.0",
-    "link": "git+https://github.com/npm/npm.git",
-    "comment": "3.7.3"
-  },
-  {
-    "department": "kessler",
-    "relatedTo": "stuff",
     "name": "nw-builder",
     "licensePeriod": "perpetual",
     "material": "material",
@@ -236,7 +196,7 @@
     "material": "material",
     "licenseType": "BSD-3-Clause",
     "link": "git+https://github.com/facebook/react.git",
-    "comment": "0.14.6"
+    "comment": "0.14.7"
   },
   {
     "department": "kessler",
@@ -256,7 +216,7 @@
     "material": "material",
     "licenseType": "MIT",
     "link": "git://github.com/Hacker0x01/react-datepicker.git",
-    "comment": "0.18.0"
+    "comment": "0.22.0"
   },
   {
     "department": "kessler",
@@ -266,7 +226,7 @@
     "material": "material",
     "licenseType": "BSD-3-Clause",
     "link": "git+https://github.com/facebook/react.git",
-    "comment": "0.14.6"
+    "comment": "0.14.7"
   },
   {
     "department": "kessler",
@@ -286,7 +246,7 @@
     "material": "material",
     "licenseType": "MIT",
     "link": "git+https://github.com/orgsync/react-list.git",
-    "comment": "0.7.11"
+    "comment": "0.7.14"
   },
   {
     "department": "kessler",

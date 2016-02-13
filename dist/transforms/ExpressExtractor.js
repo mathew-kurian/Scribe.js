@@ -1,5 +1,9 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
@@ -7,10 +11,6 @@ var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 var _createClass2 = require('babel-runtime/helpers/createClass');
 
 var _createClass3 = _interopRequireDefault(_createClass2);
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
 var _chalk = require('chalk');
 
@@ -71,6 +71,7 @@ var ExpressExtractor = function () {
       var req = _data$args$.req;
       var res = _data$args$.res;
       var duration = _data$args$.duration;
+
 
       var status = this.status(res);
       var url = req.url;
