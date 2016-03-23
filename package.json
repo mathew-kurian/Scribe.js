@@ -1,7 +1,7 @@
 {
   "name": "scribe-js",
   "description": "Comprehensive logging framework with online interface",
-  "version": "3.0.0",
+  "version": "3.0.0-alpha.1",
   "homepage": "https://github.com/bluejamesbond/Scribe.js",
   "keywords": [],
   "scripts": {
@@ -39,8 +39,8 @@
     "callsite": "1.0.0",
     "chalk": "1.1.1",
     "express": "4.0.0",
-    "extend": "^3.0.0",
-    "format-error": "^1.0.0",
+    "extend": "3.0.0",
+    "format-error": "1.0.0",
     "jade": "1.11.0",
     "json-fn": "0.60.0",
     "keymirror": "0.1.1",
@@ -62,12 +62,15 @@
     "socket.io": "1.4.3",
     "strip-ansi": "3.0.0",
     "superagent": "1.7.2",
-    "underscore": "1.8.3"
+    "underscore": "1.8.3",
+    "babel-plugin-transform-object-rest-spread": "6.5.0",
+    "babel-plugin-transform-runtime": "6.5.2",
+    "babel-preset-es2015": "6.5.0",
+    "babel-preset-react": "6.5.0"
   },
   "readmeFilename": "README.md",
   "devDependencies": {
     "autoprefixer": "6.3.3",
-    "babel-preset-react": "6.5.0",
     "babelify": "7.2.0",
     "cssify": "1.0.2",
     "expect.js": "0.3.1",
@@ -84,9 +87,6 @@
     "license-report": "2.0.0",
     "load-grunt-tasks": "3.4.0",
     "mocha": "2.4.5",
-    "time-grunt": "1.3.0",
-    "babel-plugin-transform-object-rest-spread": "6.5.0",
-    "babel-plugin-transform-runtime": "6.5.2",
-    "babel-preset-es2015": "6.5.0"
+    "time-grunt": "1.3.0"
   }
 }
