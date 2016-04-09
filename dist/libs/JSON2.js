@@ -4,9 +4,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
 var _stringify = require('babel-runtime/core-js/json/stringify');
 
 var _stringify2 = _interopRequireDefault(_stringify);
+
+var _typeof2 = require('babel-runtime/helpers/typeof');
+
+var _typeof3 = _interopRequireDefault(_typeof2);
 
 var _promise = require('babel-runtime/core-js/promise');
 
@@ -19,7 +27,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function parse(str, reviver) {
   return JSON.parse(str, function (k, v) {
-    var rv = undefined;
+    var rv = void 0;
     if (typeof v === 'string') {
       if (/^Promise \{(.*?)}$/g.test(v)) {
         return new _promise2.default(function (r, e) {
@@ -27,7 +35,7 @@ function parse(str, reviver) {
         });
       } else if (/^function ([a-zA-Z0-9_\$]*?)\((.*?)\)\s?\{(.*?)}$/g.test(rv = v.replace(/\n/g, ''))) {
         try {
-          var x = undefined;
+          var x = void 0;
           eval('x = ' + v);
           if (x) {
             return x;
@@ -50,8 +58,77 @@ function parse(str, reviver) {
   });
 }
 
+var stringifyOnce = function stringifyOnce(obj, replacer, indent) {
+  var printedObjects = [];
+  var printedObjectKeys = [];
+
+  function printOnceReplacer(key, value) {
+    if (printedObjects.length > 2000) {
+      // browsers will not print more than 20K, I don't see the point to allow 2K.. algorithm will not be fast anyway if we have too many objects
+      return 'object too long';
+    }
+    var printedObjIndex = false;
+    printedObjects.forEach(function (obj, index) {
+      if (obj === value) {
+        printedObjIndex = index;
+      }
+    });
+
+    if (key == '') {
+      //root element
+      printedObjects.push(obj);
+      printedObjectKeys.push("root");
+      return value;
+    } else if (printedObjIndex + "" != "false" && (typeof value === 'undefined' ? 'undefined' : (0, _typeof3.default)(value)) == "object") {
+      if (printedObjectKeys[printedObjIndex] == "root") {
+        return "(pointer to root)";
+      } else {
+        return "(see " + (!!value && !!value.constructor ? value.constructor.name.toLowerCase() : typeof value === 'undefined' ? 'undefined' : (0, _typeof3.default)(value)) + " with key " + printedObjectKeys[printedObjIndex] + ")";
+      }
+    } else {
+
+      var qualifiedKey = key || "(empty key)";
+      printedObjects.push(value);
+      printedObjectKeys.push(qualifiedKey);
+      if (replacer) {
+        return replacer(key, value);
+      } else {
+        return value;
+      }
+    }
+  }
+
+  return (0, _stringify2.default)(obj, printOnceReplacer, indent);
+};
+
+// http://www.z-car.com/blog/programming/how-to-escape-mongo-keys-using-node-js-in-a-flash
+function escapeKeys(obj) {
+  if (!(Boolean(obj) && (typeof obj === 'undefined' ? 'undefined' : (0, _typeof3.default)(obj)) == 'object' && (0, _keys2.default)(obj).length > 0)) {
+    return false;
+  }
+
+  (0, _keys2.default)(obj).forEach(function (key) {
+    if ((0, _typeof3.default)(obj[key]) == 'object') {
+      escapeKeys(obj[key]);
+    } else {
+      if (key.indexOf('.') !== -1) {
+        var newkey = key.replace(/\./g, '_dot_');
+        obj[newkey] = obj[key];
+        delete obj[key];
+      }
+      if (key.indexOf('$') !== -1) {
+        var newkey = key.replace(/\$/g, '_amp_');
+        obj[newkey] = obj[key];
+        delete obj[key];
+      }
+    }
+  });
+
+  return true;
+}
+
 function stringify(obj, replacer, spaces) {
-  return (0, _stringify2.default)(obj, function (k, v) {
+  var objStr = stringifyOnce(obj, function (k, v) {
     if (typeof v !== 'undefined' && v !== null) {
       if (typeof v.then === 'function') {
         return 'Promise { <pending> }';
@@ -64,4 +141,10 @@ function stringify(obj, replacer, spaces) {
 
     return v;
   }, spaces);
+
+  var objCpy = JSON.parse(objStr);
+
+  escapeKeys(objCpy);
+
+  return (0, _stringify2.default)(objCpy);
 }

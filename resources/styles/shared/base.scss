@@ -1,5 +1,4 @@
 * {
-  font-family: 'Proxima Nova', "Helvetica", "Helvetic Neue", "Open Sans", sans-serif;
   vertical-align: top;
   box-sizing: border-box;
   outline: none;
@@ -30,8 +29,10 @@ code {
   "dmenu" ,
   "pop" ,
   "settings" ,
+  "calendar" ,
   "archive" ,
   "console" ,
+  "arrow" ,
   "menu" ;
 
   @each $i in $icons {

@@ -8,6 +8,43 @@ import Sidebar from './views/Sidebar.jsx'
 import ReactList from 'react-list';
 import querystring from 'querystring'
 
+class ReactListTracked extends ReactList {
+  constructor(...args) {
+    super(...args);
+
+    this._triggerTimeSeriesBound = this._triggerTimeSeries.bind(this);
+    this.session = null;
+  }
+
+  componentDidUpdate() {
+    super.componentDidUpdate();
+
+    this._triggerTimeSeries();
+  }
+
+  _triggerTimeSeries() {
+    const [first] = this.getVisibleRange();
+
+    if (this.props.entries[first]) {
+      Dispatcher.emit(Dispatcher.Events.REQUEST_TIMESERIES_DATE, this.props.entries[first].date);
+    }
+  }
+
+  componentWillUnmount() {
+    super.componentWillUnmount();
+
+    this.scrollParent.removeEventListener("scroll", this._triggerTimeSeriesBound);
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+
+    this.scrollParent.addEventListener("scroll", this._triggerTimeSeriesBound);
+
+    window.document.body.style.background = config.background;
+  }
+}
+
 class App extends Influx.Component {
   constructor(...args) {
     super(...args);
@@ -24,6 +61,12 @@ class App extends Influx.Component {
   }
 
   _onEntryStoreUpdated() {
+    const session = EntryStore.getSessionId();
+    if (this.session !== session) {
+      this.lastLength = null;
+      this.session = session;
+    }
+
     this.setState({entries: EntryStore.getSearchResults()});
   }
 
@@ -31,7 +74,13 @@ class App extends Influx.Component {
     Dispatcher.emit(Dispatcher.Events.REQUEST_INIT_SOCKET);
   }
 
+  componentDidUpdate() {
+    const {entries} = this.state;
+  }
+
   componentDidMount() {
+    super.componentDidMount();
+
     Dispatcher.emit(Dispatcher.Events.REQUEST_INIT_DATABASE);
   }
 
@@ -41,25 +90,33 @@ class App extends Influx.Component {
     const maxLineChars = String(length).length + 3;
 
     const rowRenderer = (i, key) => {
-      return <Entry key={key} lines={length} line={length - i} maxLineChars={maxLineChars}
-                    entry={this.state.entries[i]}/>
+      const entry = this.state.entries[i];
+      if (i + 1 === length && this.lastLength !== length) {
+        Dispatcher.emit(Dispatcher.Events.REQUEST_GROW_SEARCH);
+        Dispatcher.emit(Dispatcher.Events.REQUEST_TIMESERIES_DATE, entry.date);
+
+        this.lastLength = length;
+      }
+
+      return <Entry key={key} lines={length} line={i + 1} maxLineChars={maxLineChars}
+                    entry={entry}/>
     };
 
-
     return (
-        <div className="full flex">
-          <Sidebar hide={this.state.hideSidebar}/>
-            <div className='full box'>
-            <div className='full-abs'>
-              <div className="full flex vertical" style={{overflow:'hidden'}}>
-                <Header hide={this.state.hideHeader}/>
-                <div style={{overflow:'scroll',overflowX:'hidden',paddingTop:10}}>
-                  <ReactList useTranslate3d={true} length={length} itemRenderer={rowRenderer}/>
-                </div>
+      <div className="full flex">
+        <Sidebar hide={this.state.hideSidebar}/>
+        <div className='full box'>
+          <div className='full-abs'>
+            <div className="full flex vertical" style={{overflow:'hidden'}}>
+              <Header hide={this.state.hideHeader}/>
+              <div style={{overflow:'scroll',overflowX:'hidden',paddingTop:10}}>
+                <ReactListTracked entries={entries} ref='list' useTranslate3d={true} length={length}
+                                  itemRenderer={rowRenderer}/>
               </div>
             </div>
           </div>
         </div>
+      </div>
     );
   }
 }

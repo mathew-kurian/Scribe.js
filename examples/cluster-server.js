@@ -1,7 +1,7 @@
 import cluster from 'cluster'
 import http from 'http'
 import express from 'express'
-import Scribe from '../index.js'
+import * as Scribe from '../index.js';
 import * as JSON2 from '../src/libs/JSON2'
 
 const port = 4005;
@@ -13,40 +13,23 @@ if (cluster.isMaster) {
     cluster.fork();
   }
 } else {
-  const console = new Scribe(cluster.worker.id, {
-    name: 'ScribeCluster',
-    mongoUri: 'mongodb://localhost/scribe',
-    publicUri: 'http://localhost',
-    basePath: 'scribe/',
-    socketPort: socketPort + cluster.worker.id - 1, // assign a port to a worker worker
-    web: {
-      router: {
-        username: 'build',
-        password: 'build',
-        // authentication must be implemented by yourself
-        // if you are in cluster mode
-        authentication: false,
-        sessionSecret: 'scribe-session',
-        useBodyParser: true,
-        useSession: true
+  const options = {
+    "app": 'cluster-server',
+    "id": process.pid,
+    "module": {
+      "writer/SocketIO": {
+        "port": socketPort + cluster.worker.id - 1,
+        "options": {}
       },
-      client: {
-        port: port,
-        socketPorts: [socketPort, socketPort + 1, socketPort + 2, socketPort + 3],
-        exposed: {
-          all: {label: 'all', query: {expose: {$exists: true}}},
-          error: {label: 'error', query: {expose: 'error'}},
-          express: {label: 'express', query: {expose: 'express'}},
-          info: {label: 'info', query: {expose: 'info'}},
-          log: {label: 'log', query: {expose: 'log'}},
-          warn: {label: 'warn', query: {expose: 'warn'}},
-          trace: {label: 'trace', query: {expose: 'trace'}},
-          perf: {label: 'perf', query: {expose: 'perf'}}
-        }
+      "router/Viewer/client": {
+        "background": "#131B21",
+        "socketPorts": [socketPort, socketPort + 1, socketPort + 2, socketPort + 3]
       }
     },
-    debug: false
-  });
+    "debug": false
+  };
+
+  const console = Scribe.create(options);
 
   // default tags
   console.persistent('tags', ['mocha', 'scribe']);
@@ -61,9 +44,14 @@ if (cluster.isMaster) {
 
   // express
   const app = express();
+  const logger = new Scribe.Middleware.ExpressLogger(console);
+  const viewer = new Scribe.Router.Viewer(console);
 
   // express logger
-  app.use(console.middleware('express'));
+  app.use(logger.getMiddleware());
+
+  // viewer
+  app.use('/scribe', viewer.getRouter());
 
   // test harness
   app.get('/test', (req, res) => {
@@ -72,15 +60,7 @@ if (cluster.isMaster) {
     });
   });
 
-  // viewer
-  app.use('/scribe', console.viewer());
-
   app.listen(port, () => console.log(`Listening to ${port} - Cluster ${cluster.worker.id}`));
-
-  // build native app
-  if (cluster.worker.id == 1) {
-    console.build().then(()=> console.log('Created native apps!')).catch(err => console.error(err));
-  }
 
   // override default console
   console.override();

@@ -4,19 +4,37 @@
 @import "shared/scroll";
 @import "shared/layouts";
 @import "shared/datepicker";
+@import "shared/checkbox";
 
 html, body {
   background: #222;
   font-size: 0.95rem;
   line-height: 1.5rem;
+  font-family: 'Proxima Nova', "Helvetica", "Helvetic Neue", "Open Sans", sans-serif;
+  &.blue {
+    background: #242831;
+  }
+
+  transition: background 1500ms;
+}
+
+.animate-height {
+  transition: max-height 600ms, min-height 600ms, height 600ms;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.animate-visibility {
+  transition: visibility 600ms, opacity 600ms;
 }
 
 .header {
   width: 100%;
-  height: 50px;
-  min-height: 50px;
-  background: #222;
-  box-shadow: 0 1px 10px #111;
+  height: 125px;
+  min-height: 125px;
   position: relative;
   z-index: 3;
 }
@@ -24,12 +42,11 @@ html, body {
 .group {
   .title {
     text-transform: uppercase;
-    color: #444;
+    color: #E4E4E4;
     font-weight: bold;
     height: 50px;
     line-height: 50px;
     letter-spacing: 1px;
-    border-bottom: 1px solid #ddd;
     padding-left: 20px;
     font-size: 80%;
   }
@@ -51,7 +68,7 @@ html, body {
 .sidebar {
   width: 200px;
   min-width: 170px;
-  background: #fff;
+  background: rgba(0, 0, 0, .5);
 }
 
 .bgRed {
@@ -91,7 +108,7 @@ html, body {
   text-transform: uppercase;
   color: #CF358C;
   &.persistent {
-    color: #32BBC7;
+    color: rgb(155, 187, 220);
   }
   &.stroke {
     font-size: 9px;
@@ -107,25 +124,24 @@ html, body {
     border-radius: 2px;
     letter-spacing: 1px;
     font-size: 8px;
+    &.new-entry {
+      background: #3F51B5;
+    }
   }
 }
 
 .pre {
   margin-right: 3px;
-  @extend .monospaced;
-  font-size: 85%;
   font-weight: normal;
-}
-
-.yellow {
-  color: #D4D400;
+  color: rgb(93, 176, 215);
 }
 
 .entry {
-  font-size: 80%;
-  line-height: 130%;
+  line-height: 110%;
   padding: 3px 0;
   white-space: pre;
+  font-family: Meslo, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
 }
 
 .line {
@@ -133,7 +149,6 @@ html, body {
   text-align: right;
   display: inline-block;
   margin-right: 5px;
-  @extend .monospaced;
   font-size: 80%;
 }
 
@@ -172,7 +187,7 @@ html, body {
 .ObjectInspector {
   cursor: default;
   display: block;
-  color: #FFF;
+  color: rgb(189, 198, 207);
 }
 
 .ObjectInspector-unselectable {
@@ -204,7 +219,7 @@ html, body {
 }
 
 .ObjectInspector-object-name {
-  color: #26F714;
+  color: rgb(227, 110, 236);
 }
 
 .ObjectInspector-object-value-null, .ObjectInspector-object-value-undefined {
@@ -212,7 +227,7 @@ html, body {
 }
 
 .ObjectInspector-object-value-string {
-  color: #525252;
+  color: rgb(242, 151, 102);
 }
 
 .ObjectInspector-object-value-symbol {
@@ -306,7 +321,7 @@ html, body {
     font-size: 10px;
     width: 60px;
     max-width: 60px;
-    background: #444;
+    background: rgba(255, 255, 255, 0.1);
     color: #999;
     letter-spacing: 1px;
     border-radius: $fieldRadius 0 0 $fieldRadius;
@@ -316,19 +331,30 @@ html, body {
     text-transform: uppercase;
   }
   .input {
-    background: #272822;
+    background: transparent;
     border-radius: 0 $fieldRadius $fieldRadius 0;
-    padding: 5px 5px 4px;
-    border: 1px solid #444;
+    padding: 6px 5px 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     * {
       font-size: 10px;
     }
   }
+
+  &.readonly {
+    .input {
+      border: transparent;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.ace-monokai {
+  background: transparent !important;
 }
 
 .button {
   background: #2589DE;
-  border-radius: 20px;
+  border-radius: 2px;
   color: #FFF;
   font-size: 70%;
   text-transform: uppercase;
@@ -339,6 +365,8 @@ html, body {
   transition: background 50ms;
   height: 26px;
   line-height: 26px;
+  display: block;
+  text-decoration: none;
   &.disabled {
     cursor: none;
     pointer-events: none;
@@ -360,4 +388,204 @@ html, body {
 
 .bgPurple {
   background: #6C07B9 !important;
+}
+
+.big-input {
+  letter-spacing: 1px;
+  font-size: 15px;
+  width: 100%;
+  border: none;
+  color: #FFF;
+  outline: none;
+  margin: 0;
+  font-weight: 100;
+  padding: 17px 17px 5px;
+  background: transparent;
+}
+
+.ggroup {
+  padding: 0 2px;
+  border-left: 1px solid rgba(148, 148, 148, 0.07);
+  transition: background 1200ms;
+  &:first-child {
+    border-left: none;
+  }
+  .gg {
+    justify-content: center;
+  }
+}
+
+.bar {
+  background: #333;
+  position: relative;
+  max-width: 3px;
+  margin-right: 2px;
+  min-width: 1px;
+  transition: height 300ms, top 300ms, background 300ms;
+  &:last-child {
+    margin-right: 0;
+  }
+  &.log {
+    background: green;
+  }
+  &.error {
+    background: red;
+  }
+  &.info {
+    background: cyan;
+  }
+  &.debug {
+    background: yellow;
+  }
+  &.trace {
+    background: magenta;
+  }
+  &.express {
+    background: #423eff;
+  }
+}
+
+.ObjectInspector-object-preview {
+  .ObjectInspector-object-value-string {
+    max-height: 24px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-block;
+  }
+}
+
+.checkbox {
+  margin: 0 8px 0 0;
+  border-radius: 2px;
+  background: #444;
+  border: none;
+  .check:before {
+    border-color: rgb(146, 247, 29) !important;
+  }
+}
+
+.red-selected {
+  background: rgba(255, 0, 0, 0.3);
+}
+
+.time-series-label {
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  top: 5px;
+  font-size: 8px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.1);
+  letter-spacing: 1px;
+  line-height: 10px;
+  pointer-events: none;
+}
+
+.date-holder {
+  height: 14px;
+  position: relative;
+  top: -1px;
+  cursor: pointer;
+}
+
+.react-datepicker__input-container {
+  input {
+    display: inline-block;
+    border-radius: 2px;
+    color: #FFF;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: normal;
+    font-size: 9px !important;
+    line-height: 14px;
+    margin-right: 5px;
+    background: rgba(255, 255, 255, 0.16);
+    outline: none;
+    border: none;
+    padding: 0 15px 0 5px;
+  }
+}
+
+.react-datepicker__input-container::after {
+  font-family: 'Fontello';
+  content: '';
+  position: absolute;
+  right: 8px;
+  font-size: 80%;
+  top: 0;
+  pointer-events: none;
+  line-height: 14px;
+  color: rgba(255, 255, 255, 0.41);
+}
+
+.date {
+}
+
+.date-to {
+  line-height: 13px;
+  margin-right: 6px;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 3px;
+  position: absolute;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 1s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  z-index: 99999;
+  line-height: 11px;
+  border: 1px solid #222;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip-top {
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.arrow-expand {
+  position: absolute;
+  right: 0px;
+  cursor: pointer;
+  top: 0px;
+  bottom: -10px;
+  width: 40px;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  opacity: 0.5;
+  line-height: 50px;
+  transition: opacity 300ms, transform 300ms;
+  transform-origin: 50% 50%;
+  &.rotate-down {
+    transform: rotate(-180deg);
+  }
+}
+
+.arrow-expand:hover {
+  opacity: 1;
 }

@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+.checkbox {
+  width: 13px;
+  height: 13px;
+  min-height: 13px;
+  min-width: 13px;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+
+  .light & {
+    color: #444;
+  }
+
+  .dark & {
+    color: rgb(63, 200, 41);
+  }
+
+  .light & {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+  }
+
+  .dark & {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .check {
+    visibility: hidden;
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
+    font-family: 'Fontello', sans-serif;
+    position: relative;
+  }
+
+  &.checked {
+
+    .check {
+      visibility: visible;
+
+      &:before {
+        font-size: 12px;
+        content: '';
+        width: 10px;
+        height: 5px;
+        position: absolute;
+        top: 0;
+        left: 2px;
+        border: 3px solid #555;
+        border-top: none;
+        border-right: none;
+        background: transparent;
+        transform: rotate(-45deg);
+
+        .dark & {
+          border-color: #00FF2A;
+        }
+      }
+    }
+  }
+
+  $toggleSize: 20px;
+
+  &.toggle {
+    width: auto;
+    height: $toggleSize;
+    border-radius: $toggleSize;
+    background: #555;
+    position: relative;
+    padding-left: $toggleSize;
+    border-color: rgba(255, 255, 255, 0.1);
+    transition: padding 400ms, background 400ms;
+
+    .light & {
+      background: #A3AAAF;
+      border-color: rgba(0, 0, 0, 0.15);
+    }
+
+    > .label {
+      font-size: 9px;
+      display: block;
+      padding: 0 10px;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #bbb;
+      line-height: $toggleSize - 1px;
+      letter-spacing: 1px;
+      transition: color 400ms;
+      .light & {
+        color: #eee;
+      }
+    }
+
+    .check {
+      visibility: visible;
+      background: #DDD;
+      border-radius: $toggleSize;
+      width: $toggleSize + 4px;
+      height: $toggleSize + 4px;
+      position: absolute;
+      top: -3px;
+      left: 0;
+      margin-left: -2px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15);
+      transition: left 400ms, margin-left 400ms;
+
+      .light & {
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    &.checked {
+      padding-left: 0;
+      padding-right: $toggleSize;
+      background: #6EC53A;
+
+      .label {
+        color: #fff;
+      }
+
+      .check {
+        left: 100%;
+        margin-left: -$toggleSize - 2px;
+
+        &:before {
+          content: none;
+          border: none;
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,28 @@
 {
-    "presets": [
-        "es2015",
-        "react"
+  "presets": [
+    "es2015",
+    "react"
+  ],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-runtime",
+    "syntax-class-properties",
+    "transform-export-default-name",
+    [
+      "transform-async-functions",
+      {
+        "module": "bluebird",
+        "method": "coroutine"
+      }
     ],
-    "plugins": [
-        "transform-object-rest-spread",
-        "transform-runtime"
-    ]
+    [
+      "transform-async-to-module-method",
+      {
+        "module": "bluebird",
+        "method": "coroutine"
+      }
+    ],
+    "transform-class-properties",
+    "syntax-async-functions"
+  ]
 }

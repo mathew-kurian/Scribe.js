@@ -1,88 +1,84 @@
 /* jshint -W079 */
-(function() {
-    var scribe = require('../src/scribe')(),
-        console = process.console,
-        express = require('express'),
-        path = require('path'),
-        app = express();
+(function () {
+  var Scribe = require('../');
+  var express = require('express');
+  var path = require('path');
+  var bodyParser = require('body-parser');
+  var app = express();
 
-    console.addLogger('log', 'green');
-    console.addLogger('err', 'red');
+  const options = {
+    "app": 'simple-server',
+    "id": process.pid,
+    "module": {
+      "writer/MongoDB": {
+        "uri": process.env.MONGOLAB_URI || "mongodb://localhost/scribe"
+      },
+      "router/Viewer": {
+        "mongoUri": process.env.MONGOLAB_URI || "mongodb://localhost/scribe"
+      },
+      "writer/SocketIO": {
+        "port": 50000,
+        "options": {}
+      },
+      "router/Viewer/client": {
+        "background": "#222",
+        "socketPorts": [
+          50000
+        ]
+      }
+    },
+    "debug": false
+  };
 
-    // port
-    app.set('port', (process.env.PORT || 5000));
+  const console = Scribe.create(options);
+  const logger = new Scribe.Middleware.ExpressLogger(console);
+  const viewer = new Scribe.Router.Viewer(console);
 
-    // public dir
-    app.use('/', express.static(path.join(__dirname, 'public')));
+  console.persistent('tags', ['scribe']);
 
-    // scribe
-    app.use(scribe.express.logger());
-    app.use('/logs', scribe.webPanel());
+  app.set('port', (process.env.PORT || 5000));
 
-    // index
-    app.get('/', function(req, res) {
-        res.sendFile(path.join(__dirname, 'views', 'index.html'));
-    });
+  app.use(logger.getMiddleware());
+  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.json());
 
-    function _param(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-        var results = regex.exec("https://r.com?" + this.body);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  app.use('/', express.static(path.join(__dirname, 'public')));
+
+  app.use('/scribe', viewer.getRouter());
+
+  app.post('/', function (req, res) {
+    var tag = req.param('tag');
+    var msg = req.param('msg');
+
+    if (!msg) {
+      return res.status(400).send('Param `msg` not defined');
     }
 
-    // log
-    app.post('/', function(req, res) {
+    try {
+      msg = JSON.parse(msg);
+    } catch (e) {
+      // ignore
+    }
 
-        req.body = '';
-        req.setEncoding('utf8');
+    // print
+    if (tag) {
+      console.tag(tag).log(msg);
+    } else {
+      console.log(msg);
+    }
 
-        req.on('data', function(chunk) {
-            req.body += chunk;
-        });
+    res.status(200).send("Success! Check system logs to see your message.");
+  });
 
-        req.on('end', function() {
-            req.param = _param;
+  var port = app.get('port');
 
-            var tag = req.param('tag');
-            var msg = req.param('msg');
+  //log something every 10 minutes
+  setInterval(function () {
+    console.tag("Test").log("Hi there ! Server date : " + new Date());
+  }, 10 * 60 * 1000);
 
-            if (!msg) {
-                return res.status(400).send('Param `msg` not defined');
-            }
-
-            try {
-                msg = JSON.parse(msg);
-            } catch (e) {
-                // ignore
-            }
-
-            // print
-            if (tag) {
-                console.tag(tag).log(msg);
-            } else {
-                console.log(msg);
-            }
-
-            res.status(200).send("Success! Check system logs to see your message.");
-        });
-
-        req.on('close', function(err){
-            console.err(err);
-            res.status(400).json("Error! Check system logs to identify the error.");
-        });
-
-    });
-
-    var port = app.get('port');
-
-    //log something every 10 minutes
-    setInterval(function () {
-        console.tag("Test").log("Hi there ! Server date : " + new Date());
-    }, 10 * 60 * 1000);
-
-    app.listen(port, function() {
-        console.time().log('Server listening at port ' + port);
-    });
+  app.listen(port, function () {
+    console.time().log('Server listening at port ' + port);
+  });
 
 })();

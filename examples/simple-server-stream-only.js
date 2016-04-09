@@ -1,73 +1,70 @@
 import express from 'express'
-import Scribe from '../index.js'
+import * as Scribe from '../index.js';
 import * as JSON2 from '../src/libs/JSON2'
 
 const port = 4005;
 const socketPort = 3000;
 
-const console = new Scribe(process.pid, {
-  name: 'Scribe',
-  mongoUri: 'mongodb://localhost/scribe',
-  mongo: false,
-  publicUri: 'http://localhost',
-  basePath: 'scribe/',
-  socketPort: socketPort,
-  web: {
-    router: {
-      username: 'build',
-      password: 'build',
-      authentication: true,
-      sessionSecret: 'scribe-session',
-      useBodyParser: true,
-      useSession: true
+const options = {
+  "app": 'simple-server-stream-only',
+  "id": process.pid,
+  "expose": {
+    "default": [
+      "socket",
+      "bash"
+    ],
+    "express": [
+      "express-socket",
+      "express-bash"
+    ]
+  },
+  "expose/pipeline": {
+    "socket": [
+      "transform/ErrorExtractor",
+      "transform/ToJSON2",
+      "transform/FullTextSerialize",
+      "writer/SocketIO"
+    ],
+    "express-socket": [
+      "transform/ExpressExtractor",
+      "transform/ErrorExtractor",
+      "transform/ToJSON2",
+      "transform/FullTextSerialize",
+      "writer/SocketIO"
+    ]
+  },
+  "module": {
+    "writer/SocketIO": {
+      "port": socketPort,
+      "options": {}
     },
-    client: {
-      port: port,
-      socketPorts: [socketPort],
-      exposed: {
-        all: {label: 'all', query: {expose: {$exists: true}}},
-        error: {label: 'error', query: {expose: 'error'}},
-        express: {label: 'express', query: {expose: 'express'}},
-        info: {label: 'info', query: {expose: 'info'}},
-        log: {label: 'log', query: {expose: 'log'}},
-        warn: {label: 'warn', query: {expose: 'warn'}},
-        trace: {label: 'trace', query: {expose: 'trace'}},
-        timing: {label: 'time', query: {expose: 'timing'}},
-        user: {label: 'user', query: {'transient.tags': {$in: ['USER ID']}}}
-      }
+    "router/Viewer/client": {
+      "background": "#131B21",
+      "socketPorts": [
+        socketPort
+      ]
     }
   },
-  native: {},
-  debug: false
-});
+  "debug": false
+};
+
+const console = Scribe.create(options);
 
 console.time('serverStartup');
 
 // default tags
 console.persistent('tags', ['mocha', 'scribe']);
 
-// modify an existing pipeline i.e. the express
-console.pipe('express', 'mongo-socket').unshift({
-  through(data, callback){
-    const {req, res} = data.args[0]; // access the req, res objects
-
-    // modify data as needed
-
-    // i.e.
-    // add user tags
-    const tags = data.transient.tags || [];
-    tags.push('USER_ID'); // perhaps put in the user id here
-    data.transient.tags = tags;
-
-    callback(null, data);
-  }
-});
-
 // express
 const app = express();
+const logger = new Scribe.Middleware.ExpressLogger(console);
+const viewer = new Scribe.Router.Viewer(console);
 
 // express logger
-app.use(console.middleware('express'));
+app.use(logger.getMiddleware());
+
+// viewer
+app.use('/scribe', viewer.getRouter());
 
 // test harness
 app.get('/test', (req, res) => {
@@ -75,9 +72,6 @@ app.get('/test', (req, res) => {
     res.json({test: new Array(parseInt(Math.random() * 50)).join('.')})
   });
 });
-
-// viewer
-app.use('/scribe', console.viewer());
 
 app.listen(port, () => {
   console.log(`Listening to ${port}`);
@@ -97,6 +91,3 @@ app.listen(port, () => {
 
   console.timeEnd('serverStartup');
 });
-
-// build native app
-console.build().then(()=> console.log('Created native apps!')).catch(err => console.error(err));

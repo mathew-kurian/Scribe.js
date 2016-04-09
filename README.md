@@ -3,7 +3,7 @@
 Node.js logging made simple! Online access to logs and more... 
 
 ```bash
-npm install git://github.com/bluejamesbond/Scribe.js.git#dev
+npm install scribe@3.0.0-alpha.5
 ```
 
 ### Features
@@ -16,19 +16,21 @@ npm install git://github.com/bluejamesbond/Scribe.js.git#dev
 - Support for multithreading (clusters)
 - Support for logging custom metrics i.e. `databaseResponseTime`
 - ES6 and Promise support - see examples
+- Aggregated timeseries of the log entries
+- Range selection
+- Keyword searching
 
 ### Future
 - Add client-side options i.e. hide/display tags, show timings, abstract away search
 - Endpoint response time graphing
 - Graphing tools for custom metrics
 - Support for third-party plugins i.e. data parsing and performance tracking (in progress)
-- Delete logs from front-end
 
 ## Console
 ![](/screenshots/console-0.png)
 
 ## Web
-![](/screenshots/web-panel-1.png)
+![](https://www.dropbox.com/s/pgjd6eu692fen8y/Screenshot%202016-04-10%2019.52.57.png?dl=1)
 
 ## Native
 ![](/screenshots/native-0.png)

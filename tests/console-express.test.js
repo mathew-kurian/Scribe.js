@@ -1,4 +1,4 @@
-import Scribe from '../'
+import * as Scribe from '../'
 import express from 'express'
 import expect from 'expect.js'
 import request from 'superagent'
@@ -8,7 +8,7 @@ describe('Basic Scribe', ()=> {
 
   const port = 3008;
   const requestsCount = 10;
-  const console = new Scribe();
+  const console = Scribe.create();
 
   console.persistent('tags', ['mocha', 'scribe']);
 
@@ -16,8 +16,9 @@ describe('Basic Scribe', ()=> {
 
     const app = express();
     let count = 0, did404 = 0;
+    const logger = new Scribe.Middleware.ExpressLogger(console);
 
-    app.use(console.middleware('express'));
+    app.use(logger.getMiddleware());
     app.get('/test', (req, res) => {
       if (did404) {
         return res.json({test: new Array(parseInt(Math.random() * 50)).join('.')});
@@ -35,16 +36,16 @@ describe('Basic Scribe', ()=> {
         count++;
 
         request
-            .get(`http://localhost:${port}/test`)
-            .end((err, req)=> {
-              if (err) {
-                return callback();
-              } else {
-                console
-                    .log(`Received response ${count}/${requestsCount}`, req.body)
-                    .then(()=>callback());
-              }
-            });
+          .get(`http://localhost:${port}/test`)
+          .end((err, req)=> {
+            if (err) {
+              return callback();
+            } else {
+              console
+                .log(`Received response ${count}/${requestsCount}`, req.body)
+                .then(()=>callback());
+            }
+          });
       }, () => {
         expect(count).to.equal(requestsCount);
         done();

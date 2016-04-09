@@ -1,1 +1,1 @@
-module.exports = require('./dist/scribe').default;
+module.exports = require('./dist/scribe');

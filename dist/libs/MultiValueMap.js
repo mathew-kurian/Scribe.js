@@ -18,14 +18,14 @@ var _createClass3 = _interopRequireDefault(_createClass2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _class = function () {
-  function _class() {
-    (0, _classCallCheck3.default)(this, _class);
+var multiValueMap = function () {
+  function multiValueMap() {
+    (0, _classCallCheck3.default)(this, multiValueMap);
 
     this._map = new _map2.default();
   }
 
-  (0, _createClass3.default)(_class, [{
+  (0, _createClass3.default)(multiValueMap, [{
     key: "get",
     value: function get(key) {
       if (!this._map.has(key)) {
@@ -64,7 +64,7 @@ var _class = function () {
       this._map.remove(old);
     }
   }]);
-  return _class;
+  return multiValueMap;
 }();
 
-exports.default = _class;
+exports.default = multiValueMap;

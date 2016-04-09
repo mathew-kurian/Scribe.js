@@ -23,12 +23,18 @@ function JQueryHttpClient(method, url, params, data, success, error) {
 
   req.end((err, res) => {
     if (err) return error(err);
-    return success(res.body.docs || []);
+    let docs = [];
+    try {
+      docs = JSON.parse(res.text);
+    } catch (e) {
+      // ignore
+    }
+    return success(docs);
   }).on('progress', e => console.log('Percentage done: ', e.percent));
 }
 
 export default class MongoDB {
-  constructor(url = 'rest/', namespace = 'scribe', client = 'webapp') {
+  constructor(url = 'rest/db/', namespace = 'scribe', client = 'webapp') {
     this.url = url;
     this.namespace = namespace;
     this.client = client;

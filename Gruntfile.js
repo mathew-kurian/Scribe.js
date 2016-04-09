@@ -104,7 +104,7 @@ module.exports = function (grunt) {
         map: false,
         processors: [
           require('autoprefixer')({
-            browsers: ['Chrome > 20']
+            browsers: ['> 1%']
           })
         ]
       },
@@ -178,7 +178,7 @@ module.exports = function (grunt) {
   grunt.registerTask('styles', ['sass:dist', 'postcss:dist']);
   grunt.registerTask('build', ['get-deps', 'sass:dist', 'postcss:dist', 'browserify:dist', 'copy', 'imagemin', 'babel']);
   grunt.registerTask('default', 'build');
-  grunt.registerTask('auto-build-scripts', ['browserify:dev']);
-  grunt.registerTask('auto-build-styles', ['sass:dev', 'watch:sass']);
+  grunt.registerTask('watch-scripts', ['browserify:dev']);
+  grunt.registerTask('watch-styles', ['sass:dev', 'watch:sass']);
   grunt.registerTask('production', ['env-force-production', 'clean', 'build', 'uglify:dist', 'env-restore']);
 };

@@ -2,12 +2,132 @@
   {
     "department": "kessler",
     "relatedTo": "stuff",
+    "name": "JSONStream",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "(MIT OR Apache-2.0)",
+    "link": "git://github.com/dominictarr/JSONStream.git",
+    "comment": "1.1.1"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
     "name": "async",
     "licensePeriod": "perpetual",
     "material": "material",
     "licenseType": "MIT",
     "link": "git+https://github.com/caolan/async.git",
     "comment": "1.5.2"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-plugin-syntax-async-functions",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-async-functions",
+    "comment": "6.5.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-plugin-syntax-class-properties",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-class-properties",
+    "comment": "6.5.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-plugin-transform-async-functions",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-async-functions",
+    "comment": "6.5.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-plugin-transform-async-to-module-method",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-async-to-module-method",
+    "comment": "6.7.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-plugin-transform-class-properties",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-class-properties",
+    "comment": "6.5.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-plugin-transform-export-default-name",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "BSD-3-Clause",
+    "link": "git+https://github.com/gajus/babel-plugin-transform-export-default-name.git",
+    "comment": "1.0.4"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-plugin-transform-object-rest-spread",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-object-rest-spread",
+    "comment": "6.5.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-plugin-transform-runtime",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-runtime",
+    "comment": "6.5.2"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-preset-es2015",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-preset-es2015",
+    "comment": "6.5.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-preset-react",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-preset-react",
+    "comment": "6.5.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "babel-register",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/babel/babel/tree/master/packages/babel-register",
+    "comment": "6.5.2"
   },
   {
     "department": "kessler",
@@ -28,6 +148,26 @@
     "licenseType": "MIT",
     "link": "https://github.com/jshttp/basic-auth",
     "comment": "1.0.3"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "basic-auth-connect",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "https://github.com/expressjs/basic-auth-connect.git",
+    "comment": "1.0.0"
+  },
+  {
+    "department": "kessler",
+    "relatedTo": "stuff",
+    "name": "bluebird",
+    "licensePeriod": "perpetual",
+    "material": "material",
+    "licenseType": "MIT",
+    "link": "git://github.com/petkaantonov/bluebird.git",
+    "comment": "3.3.4"
   },
   {
     "department": "kessler",
@@ -216,7 +356,7 @@
     "material": "material",
     "licenseType": "MIT",
     "link": "git://github.com/Hacker0x01/react-datepicker.git",
-    "comment": "0.18.0"
+    "comment": "0.25.0"
   },
   {
     "department": "kessler",
@@ -236,7 +376,7 @@
     "material": "material",
     "licenseType": "ISC",
     "link": "git+https://github.com/bluejamesbond/Influx.js.git",
-    "comment": "1.0.8"
+    "comment": "1.1.5"
   },
   {
     "department": "kessler",

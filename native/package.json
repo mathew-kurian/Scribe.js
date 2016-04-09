@@ -1,5 +1,5 @@
 {
-    "main": "http://localhost:4005/scribe/",
+    "main": "",
     "name": "Scribe",
     "description": "Scribe logging",
     "version": "0.1.0",
