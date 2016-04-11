@@ -106,8 +106,10 @@ function resolvePipeline(scribe, pipeline) {
   return resolved;
 }
 
+var defaultOpts = _fs2.default.readFileSync(__dirname + '/../.scriberc', 'utf8');
+
 function create(opts) {
-  opts = (0, _extend2.default)(true, (0, _rc2.default)('scribe', {}), opts);
+  opts = (0, _extend2.default)(true, (0, _rc2.default)('scribe', JSON.parse(defaultOpts)), opts);
 
   // create default console
   var console = new Reader.BasicConsole(opts);

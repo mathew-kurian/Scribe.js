@@ -3,8 +3,11 @@
   var Scribe = require('../');
   var express = require('express');
   var path = require('path');
+  var http = require('http');
   var bodyParser = require('body-parser');
   var app = express();
+  var server = http.createServer(app);
+  var port = process.env.PORT || 5000;
 
   const options = {
     "app": 'simple-server',
@@ -14,16 +17,18 @@
         "uri": process.env.MONGOLAB_URI || "mongodb://localhost/scribe"
       },
       "router/Viewer": {
-        "mongoUri": process.env.MONGOLAB_URI || "mongodb://localhost/scribe"
+        "mongoUri": process.env.MONGOLAB_URI || "mongodb://localhost/scribe",
+        "username": false,
+        "password": false
       },
       "writer/SocketIO": {
-        "port": 50000,
+        "server": server,
         "options": {}
       },
       "router/Viewer/client": {
         "background": "#222",
         "socketPorts": [
-          50000
+          process.env.PORT ? 443 : port
         ]
       }
     },
@@ -31,12 +36,12 @@
   };
 
   const console = Scribe.create(options);
-  const logger = new Scribe.Middleware.ExpressLogger(console);
+  const logger = new Scribe.Middleware.ExpressRequestLogger(console);
   const viewer = new Scribe.Router.Viewer(console);
 
   console.persistent('tags', ['scribe']);
 
-  app.set('port', (process.env.PORT || 5000));
+  app.set('port', port);
 
   app.use(logger.getMiddleware());
   app.use(bodyParser.urlencoded({extended: true}));
@@ -77,7 +82,7 @@
     console.tag("Test").log("Hi there ! Server date : " + new Date());
   }, 10 * 60 * 1000);
 
-  app.listen(port, function () {
+  server.listen(port, function () {
     console.time().log('Server listening at port ' + port);
   });
 

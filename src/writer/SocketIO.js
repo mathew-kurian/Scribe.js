@@ -7,7 +7,11 @@ export default class SocketIO {
     this.options = scribe.module('writer/SocketIO').options;
 
     if (!sio) {
-      sio = io(this.options.port, this.options.options);
+      if (typeof this.options.server === 'object') {
+        sio = io.listen(this.options.server, this.options.options);
+      } else {
+        sio = io(this.options.port, this.options.options);
+      }
     }
   }
 

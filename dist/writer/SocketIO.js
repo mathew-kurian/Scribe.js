@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _typeof2 = require('babel-runtime/helpers/typeof');
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
 var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
@@ -27,7 +31,11 @@ var SocketIO = function () {
     this.options = scribe.module('writer/SocketIO').options;
 
     if (!sio) {
-      sio = (0, _socket2.default)(this.options.port, this.options.options);
+      if ((0, _typeof3.default)(this.options.server) === 'object') {
+        sio = _socket2.default.listen(this.options.server, this.options.options);
+      } else {
+        sio = (0, _socket2.default)(this.options.port, this.options.options);
+      }
     }
   }
 

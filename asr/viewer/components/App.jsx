@@ -87,7 +87,7 @@ class App extends Influx.Component {
   render() {
     const {entries} = this.state;
     const length = entries.length;
-    const maxLineChars = String(length).length + 3;
+    const maxLineChars = String(length).length + 2;
 
     const rowRenderer = (i, key) => {
       const entry = this.state.entries[i];
@@ -109,7 +109,7 @@ class App extends Influx.Component {
           <div className='full-abs'>
             <div className="full flex vertical" style={{overflow:'hidden'}}>
               <Header hide={this.state.hideHeader}/>
-              <div style={{overflow:'scroll',overflowX:'hidden',paddingTop:10}}>
+              <div className="momentum" style={{overflow:'scroll',overflowX:'hidden',paddingTop:10}}>
                 <ReactListTracked entries={entries} ref='list' useTranslate3d={true} length={length}
                                   itemRenderer={rowRenderer}/>
               </div>

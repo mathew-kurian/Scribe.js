@@ -1,1 +1,1 @@
-web: node ./herokuapp/app.js
+web: npm run demo

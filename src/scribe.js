@@ -31,8 +31,10 @@ export function resolvePipeline(scribe, pipeline) {
   return resolved;
 }
 
+const defaultOpts = fs.readFileSync(`${__dirname}/../.scriberc`, 'utf8');
+
 export function create(opts) {
-  opts = extend(true, rc('scribe', {}), opts);
+  opts = extend(true, rc('scribe', JSON.parse(defaultOpts)), opts);
 
   // create default console
   const console = new Reader.BasicConsole(opts);

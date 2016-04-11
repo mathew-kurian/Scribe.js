@@ -80,7 +80,7 @@ $secondaryColor: #ae720c;
 .react-datepicker__header {
   text-align: center;
   background-color: $secondaryColor;
-  padding-top: 10px;
+  padding-top: 15px;
   position: relative;
 }
 
@@ -88,11 +88,10 @@ $secondaryColor: #ae720c;
   margin-top: 0;
   color: #FFF;
   font-weight: bold;
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
   position: relative;
-  top: -4px;
   display: inline-block;
 }
 
@@ -101,11 +100,11 @@ $secondaryColor: #ae720c;
 }
 
 .react-datepicker__navigation {
-  line-height: 24px;
+  line-height: 32px;
   text-align: center;
   cursor: pointer;
   position: absolute;
-  top: 10px;
+  top: 13px;
   width: 0;
   border: 6px solid transparent;
 }

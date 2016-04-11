@@ -1,5 +1,6 @@
-import stack from 'callsite'
-import async from 'async'
+import stack from 'callsite';
+import async from 'async';
+import Promise from 'bluebird'
 
 export default class {
   constructor(config) {

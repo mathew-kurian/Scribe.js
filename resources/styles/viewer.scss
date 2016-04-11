@@ -8,8 +8,7 @@
 
 html, body {
   background: #222;
-  font-size: 0.95rem;
-  line-height: 1.5rem;
+  font-size: 12px;
   font-family: 'Proxima Nova', "Helvetica", "Helvetic Neue", "Open Sans", sans-serif;
   &.blue {
     background: #242831;
@@ -48,7 +47,7 @@ html, body {
     line-height: 50px;
     letter-spacing: 1px;
     padding-left: 20px;
-    font-size: 80%;
+    font-size: 10px;
   }
 
   .item {
@@ -57,7 +56,7 @@ html, body {
     color: #888;
     letter-spacing: 1px;
     cursor: pointer;
-    font-size: 90%;
+    font-size: 11px;
     &.selected {
       background: #2589DE;
       color: white !important;
@@ -149,7 +148,7 @@ html, body {
   text-align: right;
   display: inline-block;
   margin-right: 5px;
-  font-size: 80%;
+  font-size: 11px;
 }
 
 .raw {
@@ -160,7 +159,7 @@ html, body {
   border-top: 1px dotted #333;
   border-bottom: 1px dotted #333;
   margin-top: 10px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .white {
@@ -209,7 +208,7 @@ html, body {
   margin-right: 3px;
   white-space: pre;
   margin-left: 5px;
-  font-size: 60%;
+  font-size: 10px;
   position: relative;
   top: 1px;
 }
@@ -272,7 +271,7 @@ html, body {
   margin-right: 3px;
   height: 12px;
   text-align: center;
-  font-size: 60%;
+  font-size: 10px;
   display: inline-block;
   &.rotate {
     transform: rotate(-90deg);
@@ -298,7 +297,7 @@ html, body {
   min-width: 10px;
   position: relative;
   left: -15px;
-  font-size: 80%;
+  font-size: 11px;
   top: -1px;
   pointer-events: none;
 }
@@ -356,7 +355,7 @@ html, body {
   background: #2589DE;
   border-radius: 2px;
   color: #FFF;
-  font-size: 70%;
+  font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;
@@ -511,7 +510,7 @@ html, body {
   content: '';
   position: absolute;
   right: 8px;
-  font-size: 80%;
+  font-size: 10px;
   top: 0;
   pointer-events: none;
   line-height: 14px;
@@ -588,4 +587,8 @@ a {
 
 .arrow-expand:hover {
   opacity: 1;
+}
+
+.momentum {
+  -webkit-overflow-scrolling: touch;
 }

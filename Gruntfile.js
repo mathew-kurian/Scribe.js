@@ -4,10 +4,10 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
   require('load-grunt-tasks')(grunt);
 
-  grunt.initConfig({
+  const gruntConfig = {
     uglify: {
       options: {
-        banner: '/*! Grunt Uglify <%= grunt.template.today("yyyy-mm-dd") %> */ ',
+        banner: '/*! Grunt Uglify <%= grunt.template.today(\'yyyy-mm-dd\') %> */ ',
         compress: {
           drop_console: true
         }
@@ -57,7 +57,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: 'src/',
-          src: ['**/*.js','*.js'],
+          src: ['**/*.js', '*.js'],
           dest: 'dist/',
           ext: '.js'
         }]
@@ -66,9 +66,9 @@ module.exports = function (grunt) {
     browserify: {
       dist: {
         options: {
-          transform: ["babelify"],
+          transform: ['babelify'],
           browserifyOptions: {
-            debug: true, // source mapping
+            debug: false, // source mapping
             ignoreMTime: true
           }
         },
@@ -84,7 +84,7 @@ module.exports = function (grunt) {
         options: {
           watch: true,
           keepAlive: true,
-          transform: ["babelify"],
+          transform: ['babelify'],
           browserifyOptions: {
             debug: true, // source mapping
             ignoreMTime: true
@@ -104,8 +104,8 @@ module.exports = function (grunt) {
         map: false,
         processors: [
           require('autoprefixer')({
-            browsers: ['> 1%']
-          })
+                                    browsers: ['> 1%']
+                                  })
         ]
       },
       dist: {
@@ -143,42 +143,15 @@ module.exports = function (grunt) {
         }
       }
     },
-    clean: ["public/", "./package.noDevDeps.json", "dist/"]
-  });
+    clean: ['public/', 'dist/']
+  };
 
-  var lastNodeEnv;
-  grunt.registerTask('env-force-production', '', function () {
-    lastNodeEnv = process.env.NODE_ENV;
-    process.env.NODE_ENV = 'production';
-  });
-
-  grunt.registerTask('env-restore', '', function () {
-    process.env.NODE_ENV = lastNodeEnv;
-  });
-
-  grunt.registerTask('get-deps', '', function () {
-    var done = this.async();
-    var pkg = require('./package.json');
-    var fs = require('fs');
-    var exec = require('child_process').exec;
-
-    delete pkg.devDependencies;
-
-    fs.writeFileSync('package.noDevDeps.json', JSON.stringify(pkg), "utf8");
-
-    exec('node node_modules/license-report/index.js --package=./package.noDevDeps.json --output=json',
-        function (err, stdout, stderr) {
-          if (err || stderr) console.error(err, stderr);
-          else fs.writeFileSync('deps.json', JSON.stringify(JSON.parse(stdout), null, 2), "utf8");
-          fs.unlinkSync('package.noDevDeps.json');
-          done();
-        })
-  });
+  grunt.initConfig(gruntConfig);
 
   grunt.registerTask('styles', ['sass:dist', 'postcss:dist']);
-  grunt.registerTask('build', ['get-deps', 'sass:dist', 'postcss:dist', 'browserify:dist', 'copy', 'imagemin', 'babel']);
+  grunt.registerTask('build', ['sass:dist', 'postcss:dist', 'browserify:dist', 'copy', 'imagemin', 'babel']);
   grunt.registerTask('default', 'build');
   grunt.registerTask('watch-scripts', ['browserify:dev']);
   grunt.registerTask('watch-styles', ['sass:dev', 'watch:sass']);
-  grunt.registerTask('production', ['env-force-production', 'clean', 'build', 'uglify:dist', 'env-restore']);
+  grunt.registerTask('production', ['clean', 'build', 'uglify:dist']);
 };

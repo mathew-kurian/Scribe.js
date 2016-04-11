@@ -4,12 +4,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ExpressLogger = require('./ExpressLogger');
+var _ExpressRequestLogger = require('./ExpressRequestLogger');
 
-Object.defineProperty(exports, 'ExpressLogger', {
+Object.defineProperty(exports, 'ExpressRequestLogger', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_ExpressLogger).default;
+    return _interopRequireDefault(_ExpressRequestLogger).default;
   }
 });
 

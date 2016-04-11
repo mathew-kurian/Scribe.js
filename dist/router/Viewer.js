@@ -89,7 +89,6 @@ function getObject(d, def) {
 }
 
 var viewer = _jade2.default.compileFile(__dirname + '/../../views/viewer.jade');
-var login = _jade2.default.compileFile(__dirname + '/../../views/login.jade');
 
 var Viewer = function () {
   function Viewer(scribe) {

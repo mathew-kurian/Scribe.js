@@ -1,9 +1,9 @@
 import onFinish from 'on-finished'
 import time from '../libs/time';
 
-export default class ExpressLogger {
+export default class ExpressRequestLogger {
   constructor(scribe) {
-    this.options = scribe.module('middleware/ExpressLogger').options;
+    this.options = scribe.module('middleware/ExpressRequestLogger').options;
     this.scribe = scribe;
   }
 

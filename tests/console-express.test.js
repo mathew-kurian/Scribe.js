@@ -16,7 +16,7 @@ describe('Basic Scribe', ()=> {
 
     const app = express();
     let count = 0, did404 = 0;
-    const logger = new Scribe.Middleware.ExpressLogger(console);
+    const logger = new Scribe.Middleware.ExpressRequestLogger(console);
 
     app.use(logger.getMiddleware());
     app.get('/test', (req, res) => {

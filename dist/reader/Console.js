@@ -8,10 +8,6 @@ var _assign = require('babel-runtime/core-js/object/assign');
 
 var _assign2 = _interopRequireDefault(_assign);
 
-var _promise = require('babel-runtime/core-js/promise');
-
-var _promise2 = _interopRequireDefault(_promise);
-
 var _typeof2 = require('babel-runtime/helpers/typeof');
 
 var _typeof3 = _interopRequireDefault(_typeof2);
@@ -35,6 +31,10 @@ var _callsite2 = _interopRequireDefault(_callsite);
 var _async = require('async');
 
 var _async2 = _interopRequireDefault(_async);
+
+var _bluebird = require('bluebird');
+
+var _bluebird2 = _interopRequireDefault(_bluebird);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -148,7 +148,7 @@ var console = function () {
 
       this.captureStackTrace();
 
-      return new _promise2.default(function (resolve, reject) {
+      return new _bluebird2.default(function (resolve, reject) {
         if (!_this2._pipelines[expose]) {
           return resolve();
         }

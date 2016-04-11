@@ -26,7 +26,6 @@ function getObject(d, def) {
 }
 
 const viewer = jade.compileFile(`${__dirname}/../../views/viewer.jade`);
-const login = jade.compileFile(`${__dirname}/../../views/login.jade`);
 
 export default class Viewer {
   constructor(scribe) {

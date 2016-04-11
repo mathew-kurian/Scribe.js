@@ -1,12 +1,14 @@
 {
   "name": "scribe-js",
   "description": "Comprehensive logging framework with online interface",
-  "version": "3.0.0-alpha.5",
+  "version": "3.0.0-alpha.8",
   "homepage": "https://github.com/bluejamesbond/Scribe.js",
   "keywords": [],
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --compilers js:babel-register --timeout 15000",
     "tests": "npm run test ./tests/*.test.js",
+    "production": "export NODE_ENV=production; grunt production",
+    "demo": "export NODE_ENV=production; node ./demo/app.js",
     "babel-node": "node ./babel-node"
   },
   "author": {
@@ -93,7 +95,6 @@
     "grunt-contrib-uglify": "0.11.1",
     "grunt-contrib-watch": "0.6.1",
     "grunt-postcss": "0.7.1",
-    "license-report": "2.0.0",
     "load-grunt-tasks": "3.4.0",
     "mocha": "2.4.5",
     "time-grunt": "1.3.0",

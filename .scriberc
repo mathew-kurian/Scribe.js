@@ -1,141 +1,144 @@
 {
-	"app": "Scribe",
-	"id": "instance-0",
-	"handleUncaughtException": true,
-	"reader": "reader/BasicConsole",
-	"expose": {
-		"default": [
-			"mongo-socket",
-			"bash"
-		],
-		"express": [
-			"express-mongo-socket",
-			"express-bash"
-		]
-	},
-	"expose/pipeline": {
-		"mongo-socket": [
-			"transform/ErrorExtractor",
-			"transform/ToJSON2",
-			"transform/FullTextSerialize",
-			"writer/MongoDB",
-			"writer/SocketIO"
-		],
-		"express-mongo-socket": [
-			"transform/ExpressExtractor",
-			"transform/ErrorExtractor",
-			"transform/ToJSON2",
-			"transform/FullTextSerialize",
-			"writer/MongoDB",
-			"writer/SocketIO"
-		],
-		"bash": [
-			"transform/Inspector",
-			"writer/DefaultConsole"
-		],
-		"express-bash": [
-			"transform/ExpressExtractor",
-			"transform/ExpressInspector",
-			"transform/Inspector",
-			"writer/DefaultConsole"
-		]
-	},
-	"module": {
-		"middleware/ExpressLogger": {
-			"expose": "express",
-			"ignore": ["(scribe)"]
-		},
-		"writer/MongoDB": {
-			"uri": "mongodb://localhost/scribe"
-		},
-		"writer/SocketIO": {
-			"port": 4000,
-			"options": {}
-		},
-		"transform/Inspector": {
-			"colors": true,
-			"showHidden": false,
-			"depth": 5,
-			"pre": true,
-			"callsite": true,
-			"tags": true,
-			"args": true,
-			"metrics": true
-		},
-		"router/Viewer": {
-			"mongoUri": "mongodb://localhost/scribe",
-			"basePath": "/scribe",
-			"username": "build",
-			"password": "build",
-			"authentication": true,
-			"sessionSecret": "scribe-session",
-			"useBodyParser": true,
-			"useSession": true
-		},
-		"router/Viewer/native": {
-			"protocol": "",
-			"host": "",
-			"port": "",
-			"pathname": ""
-		},
-		"router/Viewer/client": {
-			"background": "#222",
-			"socketPorts": [
-				4000
-			],
-			"socketOptions": {},
-			"queries": {
-				"all": {
-					"label": "all",
-					"query": {
-						"expose": {
-							"$exists": true
-						}
-					}
-				},
-				"error": {
-					"label": "error",
-					"query": {
-						"expose": "error"
-					},
-					"color": "red"
-				},
-				"express": {
-					"label": "express",
-					"query": {
-						"expose": "express"
-					},
-					"color": "blue"
-				},
-				"info": {
-					"label": "info",
-					"query": {
-						"expose": "info"
-					},
-					"color": "cyan"
-				},
-				"log": {
-					"label": "log",
-					"query": {
-						"expose": "log"
-					},
-					"color": "green"
-				},
-				"warn": {
-					"label": "warn",
-					"query": {
-						"expose": "warn"
-					},
-					"color": "yellow"
-				},
-				"trace": {
-					"label": "trace",
-					"query": {
-						"expose": "trace"
-					},
-					"color": "magenta"
-				}
-			}
-		}
-	}
+  "app": "Scribe",
+  "id": "instance-0",
+  "handleUncaughtException": true,
+  "reader": "reader/BasicConsole",
+  "expose": {
+    "default": [
+      "mongo-socket",
+      "bash"
+    ],
+    "express": [
+      "express-mongo-socket",
+      "express-bash"
+    ]
+  },
+  "expose/pipeline": {
+    "mongo-socket": [
+      "transform/ErrorExtractor",
+      "transform/ToJSON2",
+      "transform/FullTextSerialize",
+      "writer/MongoDB",
+      "writer/SocketIO"
+    ],
+    "express-mongo-socket": [
+      "transform/ExpressExtractor",
+      "transform/ErrorExtractor",
+      "transform/ToJSON2",
+      "transform/FullTextSerialize",
+      "writer/MongoDB",
+      "writer/SocketIO"
+    ],
+    "bash": [
+      "transform/Inspector",
+      "writer/DefaultConsole"
+    ],
+    "express-bash": [
+      "transform/ExpressExtractor",
+      "transform/ExpressInspector",
+      "transform/Inspector",
+      "writer/DefaultConsole"
+    ]
+  },
+  "module": {
+    "middleware/ExpressRequestLogger": {
+      "expose": "express",
+      "ignore": [
+        "(scribe)"
+      ]
+    },
+    "writer/MongoDB": {
+      "uri": "mongodb://localhost/scribe"
+    },
+    "writer/SocketIO": {
+      "port": 4000,
+      "options": {
+      }
+    },
+    "transform/Inspector": {
+      "colors": true,
+      "showHidden": false,
+      "depth": 5,
+      "pre": true,
+      "callsite": true,
+      "tags": true,
+      "args": true,
+      "metrics": true
+    },
+    "router/Viewer": {
+      "mongoUri": "mongodb://localhost/scribe",
+      "basePath": "/scribe",
+      "username": "build",
+      "password": "build",
+      "sessionSecret": "scribe-session",
+      "useBodyParser": true,
+      "useSession": true
+    },
+    "router/Viewer/native": {
+      "protocol": "",
+      "host": "",
+      "port": "",
+      "pathname": ""
+    },
+    "router/Viewer/client": {
+      "background": "#222",
+      "socketPorts": [
+        4000
+      ],
+      "socketOptions": {
+      },
+      "queries": {
+        "all": {
+          "label": "all",
+          "query": {
+            "expose": {
+              "$exists": true
+            }
+          }
+        },
+        "error": {
+          "label": "error",
+          "query": {
+            "expose": "error"
+          },
+          "color": "red"
+        },
+        "express": {
+          "label": "express",
+          "query": {
+            "expose": "express"
+          },
+          "color": "blue"
+        },
+        "info": {
+          "label": "info",
+          "query": {
+            "expose": "info"
+          },
+          "color": "cyan"
+        },
+        "log": {
+          "label": "log",
+          "query": {
+            "expose": "log"
+          },
+          "color": "green"
+        },
+        "warn": {
+          "label": "warn",
+          "query": {
+            "expose": "warn"
+          },
+          "color": "yellow"
+        },
+        "trace": {
+          "label": "trace",
+          "query": {
+            "expose": "trace"
+          },
+          "color": "magenta"
+        }
+      }
+    }
+  }
 }

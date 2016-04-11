@@ -50,7 +50,7 @@ console.pipe('express', 'express-mongo-socket')
 
 // express
 const app = express();
-const logger = new Scribe.Middleware.ExpressLogger(console);
+const logger = new Scribe.Middleware.ExpressRequestLogger(console);
 const viewer = new Scribe.Router.Viewer(console);
 
 // express logger
