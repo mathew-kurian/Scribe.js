@@ -26,7 +26,7 @@ if (cluster.isMaster) {
         "socketPorts": [socketPort, socketPort + 1, socketPort + 2, socketPort + 3]
       }
     },
-    "debug": false
+    "debug": true
   };
 
   const console = Scribe.create(options);

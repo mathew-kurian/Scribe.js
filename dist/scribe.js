@@ -13,6 +13,10 @@ var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
 
 var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
+var _stringify = require('babel-runtime/core-js/json/stringify');
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
 var _typeof2 = require('babel-runtime/helpers/typeof');
 
 var _typeof3 = _interopRequireDefault(_typeof2);
@@ -36,10 +40,6 @@ var _rc = require('rc');
 
 var _rc2 = _interopRequireDefault(_rc);
 
-var _extend = require('extend');
-
-var _extend2 = _interopRequireDefault(_extend);
-
 var _middleware = require('./middleware');
 
 var Middleware = _interopRequireWildcard(_middleware);
@@ -59,6 +59,14 @@ var Transform = _interopRequireWildcard(_transform);
 var _writer = require('./writer');
 
 var Writer = _interopRequireWildcard(_writer);
+
+var _scriberc = require('../.scriberc.json');
+
+var _scriberc2 = _interopRequireDefault(_scriberc);
+
+var _configExtend = require('./libs/config-extend');
+
+var _configExtend2 = _interopRequireDefault(_configExtend);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -106,10 +114,12 @@ function resolvePipeline(scribe, pipeline) {
   return resolved;
 }
 
-var defaultOpts = _fs2.default.readFileSync(__dirname + '/../.scriberc', 'utf8');
-
 function create(opts) {
-  opts = (0, _extend2.default)(true, (0, _rc2.default)('scribe', JSON.parse(defaultOpts)), opts);
+  opts = (0, _configExtend2.default)(_scriberc2.default, (0, _rc2.default)('scribe', {}), opts);
+
+  if (opts.debug) {
+    process.stdout.write((0, _stringify2.default)(opts, null, 2) + '\n');
+  }
 
   // create default console
   var console = new Reader.BasicConsole(opts);

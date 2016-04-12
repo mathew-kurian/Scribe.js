@@ -8,7 +8,7 @@ import NwBuilder from 'nw-builder';
 import nativePackage from '../../native/package.json';
 import {format} from 'url';
 import {EntrySchema} from '../writer/MongoDB';
-import extend from 'extend';
+import extend from '../libs/config-extend';
 import fs from 'fs';
 
 function getObject(d, def) {
@@ -167,12 +167,12 @@ export default class Viewer {
     fs.writeFileSync(`${__dirname}/../../native/package.json`,
                      JSON.stringify(nativePackage, null, 4), {encoding: 'utf8'});
 
-    const nw = new NwBuilder(extend(true, {
-      platforms: ['win', 'osx', 'linux'],
-      buildDir: `${__dirname}/../../public/native`,
-      version: '0.12.3',
-      zip: true
-    }, nativeOptions, {files: `${__dirname}/../../native/**/**`}));
+    const nw = new NwBuilder(extend({
+                                      platforms: ['win', 'osx', 'linux'],
+                                      buildDir: `${__dirname}/../../public/native`,
+                                      version: '0.12.3',
+                                      zip: true
+                                    }, nativeOptions, {files: `${__dirname}/../../native/**/**`}));
 
     if (nativeOptions.debug) {
       nw.on('log', d => console.log(d));

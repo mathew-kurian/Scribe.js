@@ -1,13 +1,15 @@
 import fs from 'fs';
 import path from 'path';
 import rc from 'rc'
-import extend from 'extend';
 
 import * as Middleware from './middleware';
 import * as Reader from './reader';
 import * as Router from './router';
 import * as Transform from './transform';
 import * as Writer from './writer';
+
+import defaultOpts from '../.scriberc.json';
+import extend from './libs/config-extend';
 
 export {Middleware};
 export {Reader};
@@ -31,10 +33,12 @@ export function resolvePipeline(scribe, pipeline) {
   return resolved;
 }
 
-const defaultOpts = fs.readFileSync(`${__dirname}/../.scriberc`, 'utf8');
-
 export function create(opts) {
-  opts = extend(true, rc('scribe', JSON.parse(defaultOpts)), opts);
+  opts = extend(defaultOpts, rc('scribe', {}), opts);
+
+  if (opts.debug) {
+    process.stdout.write(JSON.stringify(opts, null, 2) + '\n');
+  }
 
   // create default console
   const console = new Reader.BasicConsole(opts);

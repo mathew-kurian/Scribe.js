@@ -45,7 +45,7 @@ const options = {
       ]
     }
   },
-  "debug": false
+  "debug": true
 };
 
 const console = Scribe.create(options);

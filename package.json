@@ -1,7 +1,7 @@
 {
   "name": "scribe-js",
   "description": "Comprehensive logging framework with online interface",
-  "version": "3.0.0-alpha.8",
+  "version": "3.0.0-alpha.9",
   "homepage": "https://github.com/bluejamesbond/Scribe.js",
   "keywords": [],
   "scripts": {
@@ -54,11 +54,11 @@
     "callsite": "1.0.0",
     "chalk": "1.1.1",
     "express": "4.0.0",
-    "extend": "3.0.0",
     "format-error": "1.0.0",
     "jade": "1.11.0",
     "json-fn": "0.60.0",
     "keymirror": "0.1.1",
+    "lodash": "4.10.0",
     "minimongo": "3.8.0",
     "moment": "2.11.2",
     "mongoose": "4.4.3",

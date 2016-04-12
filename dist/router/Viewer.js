@@ -64,9 +64,9 @@ var _url = require('url');
 
 var _MongoDB = require('../writer/MongoDB');
 
-var _extend = require('extend');
+var _configExtend = require('../libs/config-extend');
 
-var _extend2 = _interopRequireDefault(_extend);
+var _configExtend2 = _interopRequireDefault(_configExtend);
 
 var _fs = require('fs');
 
@@ -229,7 +229,7 @@ var Viewer = function () {
       // save
       _fs2.default.writeFileSync(__dirname + '/../../native/package.json', (0, _stringify2.default)(_package2.default, null, 4), { encoding: 'utf8' });
 
-      var nw = new _nwBuilder2.default((0, _extend2.default)(true, {
+      var nw = new _nwBuilder2.default((0, _configExtend2.default)({
         platforms: ['win', 'osx', 'linux'],
         buildDir: __dirname + '/../../public/native',
         version: '0.12.3',
