@@ -28,10 +28,6 @@ var _getIterator3 = _interopRequireDefault(_getIterator2);
 exports.resolvePipeline = resolvePipeline;
 exports.create = create;
 
-var _fs = require('fs');
-
-var _fs2 = _interopRequireDefault(_fs);
-
 var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
