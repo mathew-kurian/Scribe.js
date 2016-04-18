@@ -38,7 +38,7 @@ npm install scribe@3.0.0-alpha.10
 # Start the example
 ```bash
 # run example
-git clone https://github.com/bluejamesbond/Scribe.js --branch  es6 --single-branch && cd Scribe.js && npm install && npm run babel-node ./examples/simple-server.js
+git clone https://github.com/bluejamesbond/Scribe.js --branch dev --single-branch && cd Scribe.js && npm install && npm run babel-node ./examples/simple-server.js
 
 # native apps (mac, linux, windows)
 cd public/native/Scribe && ls -l
