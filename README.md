@@ -4,8 +4,7 @@
 
 **Lightweight NodeJS Logging**
 
-# UPDATE: Download Scribe 3.0 [Alpha 1](https://github.com/bluejamesbond/Scribe.js/tree/dev)
-Use cautiously
+# UPDATE: Download Scribe 3.0 [Alpha 10](https://github.com/bluejamesbond/Scribe.js/tree/dev)
 
 #Overview
 
