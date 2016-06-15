@@ -3,7 +3,7 @@
 Node.js logging made simple! Online access to logs and more... 
 
 ```bash
-npm install scribe@3.0.0-alpha.10
+npm install scribe-js@3.0.0-alpha.10
 ```
 
 ### Features
