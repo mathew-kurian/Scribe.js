@@ -3,7 +3,7 @@
   font-family: 'Fontello';
   src: url('fonts/fontello.eot'); /* IE9 Compat Modes */
   src: url('fonts/fontello.eot?#fontello') format('embedded-opentype'), /* IE6-IE8 */
-       url('fonts/fontello.woff2') format('woff2'), /* Super Modern Browsers */
+       url('fonts/fontello.woff') format('woff2'), /* Super Modern Browsers */
        url('fonts/fontello.woff') format('woff'), /* Pretty Modern Browsers */
        url('fonts/fontello.ttf')  format('truetype'), /* Safari, Android, iOS */
        url('fonts/fontello.svg#svgFontName') format('svg'); /* Legacy iOS */
