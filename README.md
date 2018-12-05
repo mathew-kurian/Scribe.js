@@ -7,7 +7,7 @@ If you want to adopt + maintain this library, please drop me a message - bluejam
 
 **Lightweight NodeJS Logging**
 
-# UPDATE: Download Scribe 3.0 [Alpha 10](https://github.com/bluejamesbond/Scribe.js/tree/dev)
+# UPDATE: Download Scribe 3.0 [Alpha 10](https://github.com/mathew-kurian/Scribe.js/tree/dev)
 
 #Overview
 
@@ -31,11 +31,11 @@ Unlike many of the libraries out there, Scribe.js allows logging on multiple fil
 - Features a rich HTML web panel to access logs from anywhere in the world
 
 #Live Demo
-You can access a live demo of the library [here](https://bluejamesbond.github.io/Scribe.js/).
+You can access a live demo of the library [here](https://mathew-kurian.github.io/Scribe.js/).
 
 #Wiki
 
-For examples, tests, and API refer to the [Scribe.js Wiki](https://github.com/bluejamesbond/Scribe.js/wiki).
+For examples, tests, and API refer to the [Scribe.js Wiki](https://github.com/mathew-kurian/Scribe.js/wiki).
 
 #Installation
 ```
@@ -44,5 +44,5 @@ npm install scribe-js
 
 #Contributors
 
-- [bluejamesbond](https://github.com/bluejamesbond)
+- [mathew-kurian](https://github.com/mathew-kurian)
 - [guillaumewuip](https://github.com/guillaumewuip)
